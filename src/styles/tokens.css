@@ -1,0 +1,22 @@
+:root,
+[data-vui-theme='light'] {
+  --vui-color-bg: #ffffff;
+  --vui-color-surface: #f1f1f4;
+  --vui-color-surface-hover: #e8e8ec;
+  --vui-color-border: #dcdce2;
+  --vui-color-text: #1c1b20;
+  --vui-color-text-muted: #8a8a93;
+  --vui-color-focus: #4c7dff;
+  --vui-font-family:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+[data-vui-theme='dark'] {
+  --vui-color-bg: #1f1e23;
+  --vui-color-surface: #2d2c32;
+  --vui-color-surface-hover: #36353b;
+  --vui-color-border: #3b3a40;
+  --vui-color-text: #ffffff;
+  --vui-color-text-muted: #8e8d94;
+  --vui-color-focus: #7aa0ff;
+}
