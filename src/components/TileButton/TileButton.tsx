@@ -7,19 +7,12 @@ import {
   type Ref,
 } from 'react';
 import { cx } from '../../utils/cx';
+import { imagePositionVars, type ImagePosition } from '../../utils/imagePosition';
+import { toCssSize } from '../../utils/toCssSize';
 
 export type TileButtonVariant = 'filled' | 'outlined';
 export type TileButtonSize = 'sm' | 'md' | 'lg';
-export type TileButtonImagePosition =
-  | 'center'
-  | 'top'
-  | 'bottom'
-  | 'left'
-  | 'right'
-  | 'top-left'
-  | 'top-right'
-  | 'bottom-left'
-  | 'bottom-right';
+export type TileButtonImagePosition = ImagePosition;
 
 interface TileButtonOwnProps {
   /** Текст под плиткой. */
@@ -57,21 +50,6 @@ type AnchorProps = TileButtonOwnProps &
 
 export type TileButtonProps = ButtonProps | AnchorProps;
 
-const positions: Record<TileButtonImagePosition, [string, string, string]> = {
-  center: ['center', 'center', 'center'],
-  top: ['center', 'flex-start', 'center top'],
-  bottom: ['center', 'flex-end', 'center bottom'],
-  left: ['flex-start', 'center', 'left center'],
-  right: ['flex-end', 'center', 'right center'],
-  'top-left': ['flex-start', 'flex-start', 'left top'],
-  'top-right': ['flex-end', 'flex-start', 'right top'],
-  'bottom-left': ['flex-start', 'flex-end', 'left bottom'],
-  'bottom-right': ['flex-end', 'flex-end', 'right bottom'],
-};
-
-const toCssSize = (value: string | number | undefined) =>
-  typeof value === 'number' ? `${value}px` : value;
-
 export const TileButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, TileButtonProps>(
   function TileButton(props, ref) {
     const {
@@ -94,7 +72,7 @@ export const TileButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, Tile
       ...rest
     } = props;
 
-    const [justify, align, objectPosition] = positions[imagePosition];
+    const { justify, align, objectPosition } = imagePositionVars(imagePosition);
 
     const vars = {
       '--vui-tile-width': toCssSize(width),

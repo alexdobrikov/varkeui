@@ -8,6 +8,7 @@ import {
   type Ref,
 } from 'react';
 import { cx } from '../../utils/cx';
+import { toCssSize } from '../../utils/toCssSize';
 
 export type ListItemSize = 'sm' | 'md' | 'lg';
 
@@ -34,9 +35,6 @@ export type ListItemProps = ListItemOwnProps &
     /** Работает только для кликабельного пункта (`onClick` или `href`). */
     disabled?: boolean;
   };
-
-const toCssSize = (value: string | number | undefined) =>
-  typeof value === 'number' ? `${value}px` : value;
 
 export const ListItem = forwardRef<HTMLElement, ListItemProps>(function ListItem(props, ref) {
   const {
