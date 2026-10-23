@@ -307,9 +307,9 @@ src/
 
 1. В каждом PR с изменениями в библиотеке лежит changeset-файл (`npm run changeset`).
 2. После мержа в `main` бот открывает PR «Release» — в нём поднятая версия и CHANGELOG.
-3. Мерж этого PR публикует пакет в npm.
+3. Мерж этого PR публикует пакет в npm, ставит git-тег и создаёт GitHub Release.
 
-Для публикации в репозитории должен быть секрет `NPM_TOKEN` (Settings → Secrets and variables → Actions), а в Settings → Actions → General — включена галочка «Allow GitHub Actions to create and approve pull requests». Пока репозиторий приватный, workflow релиза пропускается.
+Публикация идёт через [trusted publishing](https://docs.npmjs.com/trusted-publishers): npm доверяет workflow `release.yml` из этого репозитория, поэтому токены и секреты не нужны. Настройка на стороне npm — в Settings пакета → Trusted Publisher. Право на публикацию (`id-token: write`) есть только у job'а `publish`.
 
 ## Лицензия
 
