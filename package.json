@@ -1,7 +1,7 @@
 {
   "name": "varkeui",
   "version": "0.1.0",
-  "description": "React UI components by Varke",
+  "description": "React UI components: tiles, lists, inputs and bento grids with light and dark themes",
   "license": "MIT",
   "author": "Alexey Dobrikov",
   "repository": {
@@ -10,9 +10,33 @@
   },
   "keywords": [
     "react",
+    "reactjs",
+    "react-components",
+    "react-component",
     "ui",
+    "ui-kit",
+    "uikit",
+    "ui-library",
+    "ui-components",
+    "component-library",
     "components",
-    "design-system"
+    "design-system",
+    "design",
+    "frontend",
+    "typescript",
+    "dark-mode",
+    "dark-theme",
+    "theming",
+    "css-variables",
+    "accessible",
+    "a11y",
+    "bento",
+    "bento-grid",
+    "tile",
+    "list",
+    "input",
+    "nextjs",
+    "next"
   ],
   "type": "module",
   "sideEffects": [
