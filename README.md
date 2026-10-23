@@ -8,11 +8,6 @@
 
 **[Документация и живые примеры →](https://alexdobrikov.github.io/varkeui/)**
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/bento-dark.png" />
-  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/bento-light.png" alt="Бенто-сетка из карточек varkeui" />
-</picture>
-
 ## Установка
 
 ```bash
@@ -71,7 +66,12 @@ export function Shortcuts() {
 
 ### [BentoGrid и BentoCard](https://alexdobrikov.github.io/varkeui/?path=/docs/components-bento--docs)
 
-Бенто-сетка из карточек-ссылок с адаптивной раскладкой и поддержкой `Link` из роутеров — пример на картинке в начале.
+Бенто-сетка из карточек-ссылок с адаптивной раскладкой и поддержкой `Link` из роутеров.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/bento-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/bento-light.png" alt="BentoGrid и BentoCard" width="640" />
+</picture>
 
 ## Разработка
 
