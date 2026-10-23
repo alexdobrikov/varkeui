@@ -1,5 +1,15 @@
 # varkeui
 
+## 0.3.0
+
+### Minor Changes
+
+- 75bc821: Новые компоненты `Button` и `IconButton`: варианты primary, secondary, outline, ghost и danger, три размера, иконки, состояние загрузки, ссылки через `href` и `as`. Иконка `TrashIcon`, токены `--vui-color-danger-solid*`.
+
+### Patch Changes
+
+- 9c871e6: README: скриншот бенто-сетки перенесён в раздел компонента.
+
 ## 0.2.0
 
 ### Minor Changes
