@@ -9,15 +9,15 @@ describe('ListItem', () => {
   it('renders title, subtitle and icon', () => {
     render(
       <ListItem
-        title="Protect your data"
-        subtitle="Turn on face login"
-        icon="/shield.png"
-        iconAlt="Shield"
+        title="Turn on reminders"
+        subtitle="We will nudge you"
+        icon="/bell.png"
+        iconAlt="Bell"
       />,
     );
-    expect(screen.getByText('Protect your data')).toHaveClass('vui-list-item__title');
-    expect(screen.getByText('Turn on face login')).toHaveClass('vui-list-item__subtitle');
-    expect(screen.getByRole('img', { name: 'Shield' })).toHaveAttribute('src', '/shield.png');
+    expect(screen.getByText('Turn on reminders')).toHaveClass('vui-list-item__title');
+    expect(screen.getByText('We will nudge you')).toHaveClass('vui-list-item__subtitle');
+    expect(screen.getByRole('img', { name: 'Bell' })).toHaveAttribute('src', '/bell.png');
   });
 
   it('is a plain block without onClick or href', () => {
@@ -28,8 +28,8 @@ describe('ListItem', () => {
 
   it('becomes a button with onClick', async () => {
     const onClick = vi.fn();
-    render(<ListItem title="Add family members" onClick={onClick} />);
-    const button = screen.getByRole('button', { name: 'Add family members' });
+    render(<ListItem title="Invite a friend" onClick={onClick} />);
+    const button = screen.getByRole('button', { name: 'Invite a friend' });
     expect(button).toHaveClass('vui-list-item--interactive');
     await userEvent.click(button);
     expect(onClick).toHaveBeenCalledOnce();

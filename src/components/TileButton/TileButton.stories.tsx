@@ -15,8 +15,8 @@ const meta = {
     },
   },
   args: {
-    label: 'Family card',
-    image: 'demo/card.svg',
+    label: 'Music',
+    image: 'demo/headphones.svg',
     variant: 'filled',
     size: 'lg',
     imagePosition: 'bottom',
@@ -35,29 +35,29 @@ const row = { display: 'flex', gap: 32, flexWrap: 'wrap' } as const;
 export const Playground: Story = {};
 
 export const Outlined: Story = {
-  args: { variant: 'outlined', badge: <PlusIcon /> },
+  args: { variant: 'outlined', badge: <PlusIcon />, label: 'New playlist' },
 };
 
 export const Gallery: Story = {
   render: () => (
     <div style={row}>
-      <TileButton label="Start saving with Savers" image="demo/bag.svg" imagePosition="bottom" />
+      <TileButton label="Music" image="demo/headphones.svg" imagePosition="bottom" />
       <TileButton
-        label="Cashback for a month"
-        image="demo/basket.svg"
+        label="Photo of the day"
+        image="demo/camera.svg"
         variant="outlined"
         badge={<PlusIcon />}
         imagePosition="bottom"
       />
       <TileButton
-        label="Family card"
-        image="demo/card.svg"
+        label="Quick note"
+        image="demo/notebook.svg"
         variant="outlined"
         badge={<PlusIcon />}
         imagePosition="bottom"
       />
-      <TileButton label="Cards and accounts" image="demo/wallet.svg" imagePosition="bottom" />
-      <TileButton label="Payment history" image="demo/folder.svg" imagePosition="bottom" />
+      <TileButton label="Weather" image="demo/weather.svg" imagePosition="bottom" />
+      <TileButton label="Watering schedule" image="demo/plant.svg" imagePosition="bottom" />
     </div>
   ),
 };
@@ -71,7 +71,7 @@ export const ImagePositions: Story = {
         <TileButton
           key={position}
           label={position}
-          image="demo/card.svg"
+          image="demo/calendar.svg"
           imageSize="70%"
           imagePosition={position}
           size="md"
@@ -84,9 +84,9 @@ export const ImagePositions: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ ...row, alignItems: 'flex-start' }}>
-      <TileButton size="sm" label="Small" image="demo/wallet.svg" imagePosition="bottom" />
-      <TileButton size="md" label="Medium" image="demo/wallet.svg" imagePosition="bottom" />
-      <TileButton size="lg" label="Large" image="demo/wallet.svg" imagePosition="bottom" />
+      <TileButton size="sm" label="Small" image="demo/plant.svg" imagePosition="bottom" />
+      <TileButton size="md" label="Medium" image="demo/plant.svg" imagePosition="bottom" />
+      <TileButton size="lg" label="Large" image="demo/plant.svg" imagePosition="bottom" />
     </div>
   ),
 };
@@ -94,50 +94,47 @@ export const Sizes: Story = {
 export const SingleLineLabels: Story = {
   render: () => (
     <div style={{ ...row, gap: 16 }}>
-      <TileButton label="All" image="demo/folder.svg" imagePosition="bottom" labelLines={1} />
-      {['Passport', 'International passport', "Driver's license", 'Mandatory insurance'].map(
-        (label) => (
-          <TileButton
-            key={label}
-            label={label}
-            image="demo/passport.svg"
-            imagePosition="bottom"
-            variant="outlined"
-            badge={<PlusIcon />}
-            labelLines={1}
-          />
-        ),
-      )}
+      <TileButton label="All recipes" image="demo/bowl.svg" imagePosition="bottom" labelLines={1} />
+      {[
+        { label: 'Breakfast', image: 'demo/bowl.svg' },
+        { label: 'Weekend workouts', image: 'demo/dumbbell.svg' },
+        { label: 'Reading list', image: 'demo/books.svg' },
+        { label: 'Trips to plan this year', image: 'demo/plane.svg' },
+      ].map(({ label, image }) => (
+        <TileButton
+          key={label}
+          label={label}
+          image={image}
+          imagePosition="bottom"
+          variant="outlined"
+          badge={<PlusIcon />}
+          labelLines={1}
+        />
+      ))}
     </div>
   ),
 };
 
+const trips = [
+  { label: 'Mountains', image: 'demo/mountains.svg' },
+  { label: 'Seaside', image: 'demo/beach.svg' },
+  { label: 'City break', image: 'demo/city.svg' },
+];
+
 export const Wide: Story = {
   render: () => (
     <div style={{ ...row, gap: 16 }}>
-      <TileButton
-        label="Home"
-        image="demo/map.svg"
-        imageFit="cover"
-        width={352}
-        aspectRatio={2.2}
-        badge={<PlusIcon />}
-      />
-      <TileButton
-        label="Work"
-        image="demo/map.svg"
-        imageFit="cover"
-        width={352}
-        aspectRatio={2.2}
-        badge={<PlusIcon />}
-      />
-      <TileButton
-        label="Other"
-        image="demo/map.svg"
-        imageFit="cover"
-        width={352}
-        aspectRatio={2.2}
-      />
+      {trips.map(({ label, image }, index) => (
+        <TileButton
+          key={label}
+          label={label}
+          image={image}
+          imageFit="cover"
+          width={352}
+          aspectRatio={2.2}
+          badge={index < 2 ? <PlusIcon /> : undefined}
+        />
+      ))}
     </div>
   ),
 };
@@ -145,11 +142,11 @@ export const Wide: Story = {
 export const FluidGrid: Story = {
   render: () => (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, maxWidth: 900 }}>
-      {['Home', 'Work', 'Other'].map((label) => (
+      {trips.map(({ label, image }) => (
         <TileButton
           key={label}
           label={label}
-          image="demo/map.svg"
+          image={image}
           imageFit="cover"
           aspectRatio={2.2}
           block
@@ -160,7 +157,7 @@ export const FluidGrid: Story = {
 };
 
 export const AsLink: Story = {
-  args: { href: '#', label: 'Payment history', image: 'demo/folder.svg' },
+  args: { href: '#', label: 'Reading list', image: 'demo/books.svg' },
 };
 
 export const Disabled: Story = {

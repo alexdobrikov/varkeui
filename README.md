@@ -22,14 +22,14 @@ import { TileButton, PlusIcon } from 'varkeui';
 export function Shortcuts() {
   return (
     <>
-      <TileButton label="Credit" image="/img/flamingo.png" imagePosition="bottom" />
+      <TileButton label="Music" image="/img/headphones.png" imagePosition="bottom" />
       <TileButton
-        label="Family card"
-        image="/img/card.png"
+        label="Quick note"
+        image="/img/notebook.png"
         imagePosition="bottom"
         variant="outlined"
         badge={<PlusIcon />}
-        onClick={() => openFamilyCard()}
+        onClick={() => createNote()}
       />
     </>
   );
@@ -104,16 +104,22 @@ export function Shortcuts() {
 </picture>
 
 ```tsx
-<TileButton label="Home" image="/img/home-map.jpg" imageFit="cover" width={352} aspectRatio={2.2} />
+<TileButton
+  label="Mountains"
+  image="/img/mountains.jpg"
+  imageFit="cover"
+  width={352}
+  aspectRatio={2.2}
+/>
 ```
 
 Резиновая сетка:
 
 ```tsx
 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-  <TileButton block aspectRatio={2.2} imageFit="cover" label="Home" image={home} />
-  <TileButton block aspectRatio={2.2} imageFit="cover" label="Work" image={work} />
-  <TileButton block aspectRatio={2.2} imageFit="cover" label="Other" image={other} />
+  <TileButton block aspectRatio={2.2} imageFit="cover" label="Mountains" image={mountains} />
+  <TileButton block aspectRatio={2.2} imageFit="cover" label="Seaside" image={seaside} />
+  <TileButton block aspectRatio={2.2} imageFit="cover" label="City break" image={city} />
 </div>
 ```
 
@@ -140,11 +146,11 @@ import { List, ListItem } from 'varkeui';
 <List>
   <ListItem
     size="lg"
-    icon="/img/shield.png"
-    title="Protect your data"
-    subtitle="Verified accounts with enabled face or fingerprint login can't be stolen"
+    icon="/img/bell.png"
+    title="Turn on reminders"
+    subtitle="We'll nudge you when it's time to water the plants or pack for a trip"
   />
-  <ListItem size="lg" icon="/img/heart.png" title="Add family members" subtitle="…" />
+  <ListItem size="lg" icon="/img/gift.png" title="Invite a friend" subtitle="…" />
 </List>;
 ```
 
@@ -159,12 +165,17 @@ import { List, ListItem } from 'varkeui';
 <List dividers>
   <ListItem
     icon={<UserIcon />}
-    title="Personal data"
-    subtitle="Name, phone number, email"
+    title="Profile"
+    subtitle="Name, avatar, interests"
     after={<ChevronRightIcon />}
     onClick={openProfile}
   />
-  <ListItem icon={<LockIcon />} title="Security" after={<ChevronRightIcon />} href="/security" />
+  <ListItem
+    icon={<BellIcon />}
+    title="Notifications"
+    after={<ChevronRightIcon />}
+    href="/notifications"
+  />
 </List>
 ```
 
@@ -197,7 +208,7 @@ import { List, ListItem } from 'varkeui';
 ```tsx
 import { Input } from 'varkeui';
 
-<Input label="Name" placeholder="Alexey" hint="As in your passport" />
+<Input label="Name" placeholder="Your name" hint="Shown on your profile" />
 <Input label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} error="Enter the full number" />
 ```
 
@@ -251,18 +262,18 @@ import { Input } from 'varkeui';
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/bento-dark.png" />
-  <img src="docs/images/bento-light.png" alt="BentoGrid: сервисы в сетке 2-3-2" />
+  <img src="docs/images/bento-light.png" alt="BentoGrid: сетка 2-3-2" />
 </picture>
 
 ```tsx
 import { BentoCard, BentoGrid } from 'varkeui';
 
 <BentoGrid columns={6} rowHeight={220}>
-  <BentoCard href="/cleaning" title="Dry cleaning of clothes" image={sweater} colSpan={2} />
-  <BentoCard href="/furniture" title="Furniture dry cleaning" image={sofa} colSpan={2} />
-  <BentoCard href="/water" title="Water delivery" image={bottle} colSpan={2} />
-  <BentoCard href="/medical" title="Medical tests" image={microscope} colSpan={3} />
-  <BentoCard href="/pcr" title="PCR tests" image={mask} colSpan={3} />
+  <BentoCard href="/music" title="Daily playlist" image={headphones} colSpan={2} />
+  <BentoCard href="/photos" title="Photo walks" image={camera} colSpan={2} />
+  <BentoCard href="/plants" title="Plant care" image={plant} colSpan={2} />
+  <BentoCard href="/recipes" title="Recipes for the week" image={bowl} colSpan={3} />
+  <BentoCard href="/workouts" title="Workouts" image={dumbbell} colSpan={3} />
 </BentoGrid>;
 ```
 
@@ -270,11 +281,11 @@ import { BentoCard, BentoGrid } from 'varkeui';
 
 ```tsx
 <BentoGrid columns={{ base: 2, sm: 6 }} rowHeight={{ base: 180, sm: 220 }}>
-  <BentoCard title="Medical tests" colSpan={{ base: 1, sm: 3 }} />
+  <BentoCard title="Workouts" colSpan={{ base: 1, sm: 3 }} />
 </BentoGrid>
 ```
 
-Большие карточки, градиенты, `dense`, чтобы короткие карточки заполняли дырки:
+Большие карточки, картинки на весь фон, `dense`, чтобы короткие карточки заполняли дырки:
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/bento-classic-dark.png" />
@@ -284,13 +295,14 @@ import { BentoCard, BentoGrid } from 'varkeui';
 ```tsx
 <BentoGrid columns={{ base: 1, sm: 2, lg: 4 }} rowHeight={200} dense>
   <BentoCard
-    href="/water"
-    title="Water delivery"
-    description="19 litres to your door tomorrow"
-    image={bottle}
+    href="/trips/mountains"
+    title="Weekend in the mountains"
+    description="Three trails, a cabin and a playlist for the road"
+    image={mountains}
+    imageFit="cover"
+    imageSize="100%"
     colSpan={{ sm: 2 }}
     rowSpan={2}
-    background="linear-gradient(160deg, #d9ecff, #a9cdf2)"
   />
   …
 </BentoGrid>
@@ -301,7 +313,7 @@ import { BentoCard, BentoGrid } from 'varkeui';
 ```tsx
 import { Link } from 'react-router';
 
-<BentoCard as={Link} to="/water" title="Water delivery" image={bottle} />;
+<BentoCard as={Link} to="/music" title="Music" image={headphones} />;
 ```
 
 `BentoGrid`:

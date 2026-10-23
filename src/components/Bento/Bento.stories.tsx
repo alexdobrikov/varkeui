@@ -20,28 +20,28 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const services = [
-  { title: 'Dry cleaning of clothes', image: 'demo/sweater.svg', span: 2 },
-  { title: 'Furniture dry cleaning', image: 'demo/sofa.svg', span: 2 },
-  { title: 'Water delivery', image: 'demo/bottle.svg', span: 2 },
-  { title: 'Medical tests', image: 'demo/microscope.svg', span: 3 },
-  { title: 'PCR tests', image: 'demo/mask.svg', span: 3 },
-  { title: 'Shoe repair', image: 'demo/boots.svg', span: 2 },
-  { title: 'Furniture repair', image: 'demo/dresser.svg', span: 2 },
-  { title: 'Electrics', image: 'demo/socket.svg', span: 2 },
+const hobbies = [
+  { title: 'Daily playlist', image: 'demo/headphones.svg', span: 2 },
+  { title: 'Photo walks', image: 'demo/camera.svg', span: 2 },
+  { title: 'Plant care', image: 'demo/plant.svg', span: 2 },
+  { title: 'Recipes for the week', image: 'demo/bowl.svg', span: 3 },
+  { title: 'Workouts', image: 'demo/dumbbell.svg', span: 3 },
+  { title: 'Reading list', image: 'demo/books.svg', span: 2 },
+  { title: 'Notes', image: 'demo/notebook.svg', span: 2 },
+  { title: 'Trips', image: 'demo/plane.svg', span: 2 },
 ];
 
-export const Services: Story = {
+export const Hobbies: Story = {
   render: () => (
     <div style={{ maxWidth: 760 }}>
       <BentoGrid columns={{ base: 2, sm: 6 }} rowHeight={{ base: 180, sm: 220 }}>
-        {services.map(({ title, image, span }) => (
+        {hobbies.map(({ title, image, span }) => (
           <BentoCard
             key={title}
             href="#"
             title={title}
             image={image}
-            imageSize="75%"
+            imageSize="70%"
             colSpan={{ base: 1, sm: span }}
           />
         ))}
@@ -55,27 +55,38 @@ export const Classic: Story = {
     <BentoGrid columns={{ base: 1, sm: 2, lg: 4 }} rowHeight={200} dense style={{ maxWidth: 1100 }}>
       <BentoCard
         href="#"
-        title="Water delivery"
-        description="19 litres to your door tomorrow"
-        image="demo/bottle.svg"
+        title="Weekend in the mountains"
+        description="Three trails, a cabin and a playlist for the road"
+        image="demo/mountains.svg"
+        imageFit="cover"
+        imageSize="100%"
         colSpan={{ sm: 2 }}
         rowSpan={2}
-        imageSize="80%"
-        background="linear-gradient(160deg, #d9ecff, #a9cdf2)"
-        style={{ color: '#1c1b20' }}
+        style={{ color: '#1e1b4b' }}
       />
-      <BentoCard href="#" title="Shoe repair" image="demo/boots.svg" />
-      <BentoCard href="#" title="Electrics" image="demo/socket.svg" />
+      <BentoCard href="#" title="Weather" image="demo/weather.svg" />
+      <BentoCard href="#" title="Calendar" image="demo/calendar.svg" />
       <BentoCard
         href="#"
-        title="Furniture repair"
-        description="Masters with their own tools"
-        image="demo/dresser.svg"
+        title="Recipes for the week"
+        description="Seven dinners, one shopping list"
+        image="demo/bowl.svg"
         colSpan={{ sm: 2 }}
         imageSize="60%"
+        background="linear-gradient(160deg, #fef3c7, #fed7aa)"
+        style={{ color: '#431407' }}
       />
-      <BentoCard href="#" title="PCR tests" image="demo/mask.svg" colSpan={{ sm: 2, lg: 3 }} />
-      <BentoCard href="#" title="Dry cleaning" image="demo/sweater.svg" />
+      <BentoCard
+        href="#"
+        title="City break"
+        image="demo/city.svg"
+        imageFit="cover"
+        imagePosition="center"
+        imageSize="100%"
+        colSpan={{ sm: 2, lg: 3 }}
+        style={{ color: '#fff' }}
+      />
+      <BentoCard href="#" title="Music" image="demo/headphones.svg" />
     </BentoGrid>
   ),
 };
@@ -88,7 +99,7 @@ export const ImagePositions: Story = {
           <BentoCard
             key={position}
             title={position}
-            image="demo/sofa.svg"
+            image="demo/camera.svg"
             imagePosition={position}
             imageSize="60%"
           />
@@ -114,15 +125,9 @@ function RouterLink({ to, ...props }: { to: string } & AnchorHTMLAttributes<HTML
 export const AsRouterLink: Story = {
   render: () => (
     <BentoGrid columns={3} rowHeight={180} style={{ maxWidth: 760 }}>
-      <BentoCard as={RouterLink} to="/cleaning" title="Dry cleaning" image="demo/sweater.svg" />
-      <BentoCard as={RouterLink} to="/water" title="Water delivery" image="demo/bottle.svg" />
-      <BentoCard
-        title="Electrics"
-        description="Coming soon"
-        image="demo/socket.svg"
-        href="#"
-        disabled
-      />
+      <BentoCard as={RouterLink} to="/music" title="Music" image="demo/headphones.svg" />
+      <BentoCard as={RouterLink} to="/plants" title="Plant care" image="demo/plant.svg" />
+      <BentoCard title="Trips" description="Coming soon" image="demo/plane.svg" href="#" disabled />
     </BentoGrid>
   ),
 };

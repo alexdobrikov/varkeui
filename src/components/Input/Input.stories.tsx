@@ -38,7 +38,7 @@ export const Playground: Story = {};
 export const Basic: Story = {
   render: () => (
     <div style={column}>
-      <Input block label="Name" placeholder="Alexey" hint="As in your passport" />
+      <Input block label="Name" placeholder="Your name" hint="Shown on your profile" />
       <Input block label="Email" placeholder="you@example.com" variant="outlined" />
       <Input block label="Phone" defaultValue="+7 999" error="Enter the full number" />
       <Input block label="Disabled" placeholder="Not available" disabled />
@@ -84,7 +84,7 @@ function PasswordInput() {
 }
 
 function ClearableSearch() {
-  const [value, setValue] = useState('Credit cards');
+  const [value, setValue] = useState('Summer playlist');
   return (
     <Input
       block

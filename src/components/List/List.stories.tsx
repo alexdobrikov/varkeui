@@ -16,9 +16,9 @@ const meta = {
     },
   },
   args: {
-    title: 'Protect your data',
-    subtitle: "Verified accounts with enabled face or fingerprint login can't be stolen",
-    icon: 'demo/shield.svg',
+    title: 'Turn on reminders',
+    subtitle: "We'll nudge you when it's time to water the plants or pack for a trip",
+    icon: 'demo/bell.svg',
     size: 'md',
   },
   argTypes: {
@@ -44,21 +44,21 @@ export const Onboarding: Story = {
     <List>
       <ListItem
         size="lg"
-        icon="demo/badge.svg"
-        title="Add your name and phone number"
-        subtitle="We'll know how to address you and notify you about important events"
+        icon="demo/star.svg"
+        title="Pick what you're into"
+        subtitle="Music, cooking, travel — we'll build the home screen around it"
       />
       <ListItem
         size="lg"
-        icon="demo/shield.svg"
-        title="Protect your data"
-        subtitle="Verified accounts with enabled face or fingerprint login can't be stolen"
+        icon="demo/bell.svg"
+        title="Turn on reminders"
+        subtitle="We'll nudge you when it's time to water the plants or pack for a trip"
       />
       <ListItem
         size="lg"
-        icon="demo/heart.svg"
-        title="Add family members"
-        subtitle="Maximize value across the services for everyone"
+        icon="demo/gift.svg"
+        title="Invite a friend"
+        subtitle="Share playlists and recipes with people you like"
       />
     </List>
   ),
@@ -71,9 +71,9 @@ export const Sizes: Story = {
         <ListItem
           key={size}
           size={size}
-          icon="demo/heart.svg"
+          icon="demo/star.svg"
           title={`Size ${size}`}
-          subtitle="Maximize value across the services for everyone"
+          subtitle="Music, cooking, travel — we'll build the home screen around it"
         />
       ))}
     </List>
@@ -84,22 +84,22 @@ export const Interactive: Story = {
   render: () => (
     <List dividers>
       <ListItem
-        icon="demo/badge.svg"
-        title="Personal data"
-        subtitle="Name, phone number, email"
+        icon="demo/user.svg"
+        title="Profile"
+        subtitle="Name, avatar, interests"
         after={<ChevronRightIcon />}
         onClick={() => {}}
       />
       <ListItem
-        icon="demo/shield.svg"
-        title="Security"
-        subtitle="Face and fingerprint login"
+        icon="demo/bell.svg"
+        title="Notifications"
+        subtitle="Reminders and weekly digest"
         after={<ChevronRightIcon />}
         href="#"
       />
       <ListItem
-        icon="demo/heart.svg"
-        title="Family"
+        icon="demo/cloud.svg"
+        title="Backup"
         subtitle="Coming soon"
         after={<ChevronRightIcon />}
         href="#"

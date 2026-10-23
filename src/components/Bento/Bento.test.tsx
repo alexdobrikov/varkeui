@@ -30,23 +30,23 @@ describe('BentoGrid', () => {
 
 describe('BentoCard', () => {
   it('is a plain block without href or onClick', () => {
-    const { container } = render(<BentoCard title="Electrics" />);
+    const { container } = render(<BentoCard title="Notes" />);
     expect(container.firstElementChild?.tagName).toBe('DIV');
     expect(container.firstElementChild).not.toHaveClass('vui-bento-card--interactive');
   });
 
   it('is a link with href', () => {
-    render(<BentoCard href="/water" title="Water delivery" image="/water.png" imageAlt="Bottle" />);
-    const link = screen.getByRole('link', { name: /Water delivery/ });
-    expect(link).toHaveAttribute('href', '/water');
+    render(<BentoCard href="/music" title="Music" image="/music.png" imageAlt="Headphones" />);
+    const link = screen.getByRole('link', { name: /Music/ });
+    expect(link).toHaveAttribute('href', '/music');
     expect(link).toHaveClass('vui-bento-card--interactive');
-    expect(screen.getByRole('img', { name: 'Bottle' })).toHaveAttribute('src', '/water.png');
+    expect(screen.getByRole('img', { name: 'Headphones' })).toHaveAttribute('src', '/music.png');
   });
 
   it('is a button with onClick', async () => {
     const onClick = vi.fn();
-    render(<BentoCard title="Shoe repair" onClick={onClick} />);
-    const button = screen.getByRole('button', { name: 'Shoe repair' });
+    render(<BentoCard title="Photo walks" onClick={onClick} />);
+    const button = screen.getByRole('button', { name: 'Photo walks' });
     expect(button).toHaveAttribute('type', 'button');
     await userEvent.click(button);
     expect(onClick).toHaveBeenCalledOnce();
@@ -59,9 +59,9 @@ describe('BentoCard', () => {
     }: { to: string } & AnchorHTMLAttributes<HTMLAnchorElement>) {
       return <a data-to={to} href={to} {...props} />;
     }
-    render(<BentoCard as={RouterLink} to="/cleaning" title="Dry cleaning" />);
-    const link = screen.getByRole('link', { name: 'Dry cleaning' });
-    expect(link).toHaveAttribute('data-to', '/cleaning');
+    render(<BentoCard as={RouterLink} to="/plants" title="Plant care" />);
+    const link = screen.getByRole('link', { name: 'Plant care' });
+    expect(link).toHaveAttribute('data-to', '/plants');
     expect(link).toHaveClass('vui-bento-card', 'vui-bento-card--interactive');
   });
 
@@ -75,7 +75,7 @@ describe('BentoCard', () => {
   it('maps spans, background and image settings to CSS variables', () => {
     const { container } = render(
       <BentoCard
-        title="PCR tests"
+        title="Workouts"
         colSpan={{ base: 1, md: 3 }}
         rowSpan={2}
         background="#fff"
@@ -96,11 +96,11 @@ describe('BentoCard', () => {
 
   it('renders description and extra children', () => {
     render(
-      <BentoCard title="Furniture repair" description="Own tools">
+      <BentoCard title="Reading list" description="Ten books for the summer">
         <span>Extra</span>
       </BentoCard>,
     );
-    expect(screen.getByText('Own tools')).toHaveClass('vui-bento-card__description');
+    expect(screen.getByText('Ten books for the summer')).toHaveClass('vui-bento-card__description');
     expect(screen.getByText('Extra')).toBeInTheDocument();
   });
 });

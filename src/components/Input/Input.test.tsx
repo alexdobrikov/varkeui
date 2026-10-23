@@ -23,8 +23,8 @@ describe('Input', () => {
   });
 
   it('describes the input with the hint', () => {
-    render(<Input label="Name" hint="As in your passport" />);
-    expect(screen.getByLabelText('Name')).toHaveAccessibleDescription('As in your passport');
+    render(<Input label="Name" hint="Shown on your profile" />);
+    expect(screen.getByLabelText('Name')).toHaveAccessibleDescription('Shown on your profile');
   });
 
   it('shows the error instead of the hint and marks the input invalid', () => {
