@@ -12,6 +12,9 @@ const shots = [
   { name: 'tile-button-wide', story: 'components-tilebutton--wide' },
   { name: 'list', story: 'components-list--onboarding' },
   { name: 'list-interactive', story: 'components-list--interactive' },
+  { name: 'input', story: 'components-input--basic' },
+  { name: 'input-icon', story: 'components-input--with-icon' },
+  { name: 'input-button', story: 'components-input--with-button' },
 ];
 const themes = ['dark', 'light'];
 const padding = 24;

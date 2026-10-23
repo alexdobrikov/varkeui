@@ -57,6 +57,10 @@ export function Shortcuts() {
   --vui-color-text: #ffffff;
   --vui-color-text-muted: #8e8d94;
   --vui-color-focus: #7aa0ff;
+  --vui-color-accent: #ffffff; /* фон primary-кнопок */
+  --vui-color-accent-hover: #e4e4e8;
+  --vui-color-accent-text: #1c1b20;
+  --vui-color-danger: #ff6369; /* ошибки */
   --vui-font-family: Inter, system-ui, sans-serif;
 }
 ```
@@ -181,9 +185,69 @@ import { List, ListItem } from 'varkeui';
 
 У `List` один собственный проп — `dividers`: тонкие линии между пунктами. Линия начинается от текста, а не от иконки, и прячется рядом с подсвеченным пунктом, чтобы не резать плашку наведения.
 
+### Input и InputButton
+
+Текстовое поле. Все нативные пропсы (`value`, `onChange`, `type`, `placeholder`, `name`…) и `ref` уходят на `<input>`, а `className` и `style` — на корневой элемент.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/input-dark.png" />
+  <img src="docs/images/input-light.png" alt="Input: подпись, подсказка, ошибка" />
+</picture>
+
+```tsx
+import { Input } from 'varkeui';
+
+<Input label="Name" placeholder="Alexey" hint="As in your passport" />
+<Input label="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} error="Enter the full number" />
+```
+
+С иконкой — `startIcon` и `endIcon`:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/input-icon-dark.png" />
+  <img src="docs/images/input-icon-light.png" alt="Input с иконкой" />
+</picture>
+
+```tsx
+<Input type="search" placeholder="Search" startIcon={<SearchIcon />} />
+```
+
+С кнопкой — `action` и `InputButton`. Вариант `primary` — контрастная кнопка, `ghost` — без фона, для иконок:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/input-button-dark.png" />
+  <img src="docs/images/input-button-light.png" alt="Input с кнопкой" />
+</picture>
+
+```tsx
+<Input placeholder="Promo code" action={<InputButton onClick={apply}>Apply</InputButton>} />
+
+<Input
+  type={visible ? 'text' : 'password'}
+  action={
+    <InputButton variant="ghost" aria-label="Show password" onClick={toggle}>
+      {visible ? <EyeOffIcon /> : <EyeIcon />}
+    </InputButton>
+  }
+/>
+```
+
+| Проп        | Тип                  | По умолчанию | Описание                                     |
+| ----------- | -------------------- | ------------ | -------------------------------------------- |
+| `label`     | `ReactNode`          | —            | Подпись над полем, связана с `<input>`       |
+| `hint`      | `ReactNode`          | —            | Подсказка под полем                          |
+| `error`     | `ReactNode`          | —            | Текст ошибки: красная рамка, заменяет `hint` |
+| `invalid`   | `boolean`            | `false`      | Красная рамка без текста                     |
+| `startIcon` | `ReactNode`          | —            | Иконка слева                                 |
+| `endIcon`   | `ReactNode`          | —            | Иконка справа                                |
+| `action`    | `ReactNode`          | —            | Кнопка внутри поля справа                    |
+| `size`      | `sm \| md \| lg`     | `md`         | Высота 40 / 48 / 56 px                       |
+| `variant`   | `filled \| outlined` | `filled`     | С фоном или с обводкой                       |
+| `block`     | `boolean`            | `false`      | Растянуть на ширину контейнера               |
+
 ### Иконки
 
-`PlusIcon`, `ChevronRightIcon` — простые SVG, берут цвет из `currentColor`.
+`PlusIcon`, `ChevronRightIcon`, `ArrowRightIcon`, `SearchIcon`, `CloseIcon`, `EyeIcon`, `EyeOffIcon` — простые SVG, берут цвет из `currentColor`.
 
 ## Разработка
 
