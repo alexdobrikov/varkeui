@@ -1,0 +1,150 @@
+.vui-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vui-list--dividers > .vui-list__row + .vui-list__row {
+  border-top: 1px solid var(--vui-color-border);
+}
+
+.vui-list-item {
+  --vui-list-item-icon-size: 48px;
+  --vui-list-item-gap: 16px;
+  --vui-list-item-padding-y: 12px;
+  --vui-list-item-padding-x: 0px;
+  --vui-list-item-radius: 16px;
+  --vui-list-item-title-size: 17px;
+  --vui-list-item-subtitle-size: 15px;
+  --vui-list-item-title-lines: 2;
+  --vui-list-item-subtitle-lines: 3;
+
+  display: flex;
+  align-items: center;
+  gap: var(--vui-list-item-gap);
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: var(--vui-list-item-padding-y) var(--vui-list-item-padding-x);
+  border: 0;
+  border-radius: var(--vui-list-item-radius);
+  background: none;
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+  text-align: left;
+  text-decoration: none;
+}
+
+.vui-list-item--sm {
+  --vui-list-item-icon-size: 32px;
+  --vui-list-item-gap: 12px;
+  --vui-list-item-padding-y: 8px;
+  --vui-list-item-title-size: 15px;
+  --vui-list-item-subtitle-size: 13px;
+}
+
+.vui-list-item--lg {
+  --vui-list-item-icon-size: 72px;
+  --vui-list-item-gap: 28px;
+  --vui-list-item-padding-y: 24px;
+  --vui-list-item-radius: 24px;
+  --vui-list-item-title-size: 24px;
+  --vui-list-item-subtitle-size: 20px;
+}
+
+.vui-list-item--align-start {
+  align-items: flex-start;
+}
+
+.vui-list-item__icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--vui-list-item-icon-size);
+  height: var(--vui-list-item-icon-size);
+}
+
+.vui-list-item__icon > img,
+.vui-list-item__icon > svg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.vui-list-item__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.vui-list-item__title,
+.vui-list-item__subtitle {
+  display: -webkit-box;
+  overflow: hidden;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+}
+
+.vui-list-item__title {
+  font-size: var(--vui-list-item-title-size);
+  font-weight: 500;
+  -webkit-line-clamp: var(--vui-list-item-title-lines);
+  line-clamp: var(--vui-list-item-title-lines);
+}
+
+.vui-list-item__subtitle {
+  color: var(--vui-color-text-muted);
+  font-size: var(--vui-list-item-subtitle-size);
+  -webkit-line-clamp: var(--vui-list-item-subtitle-lines);
+  line-clamp: var(--vui-list-item-subtitle-lines);
+}
+
+.vui-list-item__after {
+  display: flex;
+  flex: none;
+  align-items: center;
+  color: var(--vui-color-text-muted);
+}
+
+.vui-list-item--interactive {
+  --vui-list-item-padding-x: 12px;
+
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .vui-list-item--interactive:hover {
+    background: var(--vui-color-surface);
+  }
+}
+
+.vui-list-item--interactive:active {
+  background: var(--vui-color-surface-hover);
+}
+
+.vui-list-item--interactive:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+.vui-list-item:disabled,
+.vui-list-item[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-list-item--interactive {
+    transition: none;
+  }
+}
