@@ -14,8 +14,17 @@ export type InputSize = 'sm' | 'md' | 'lg';
 export type InputVariant = 'filled' | 'outlined';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  /**
+   * Высота поля: 40, 48 или 56 px.
+   * @default md
+   */
   size?: InputSize;
+  /**
+   * `filled` — с фоном, `outlined` — с обводкой.
+   * @default filled
+   */
   variant?: InputVariant;
+  /** Подпись над полем. Связана с `<input>` через `id`. */
   label?: ReactNode;
   /** Подсказка под полем. */
   hint?: ReactNode;
@@ -23,7 +32,9 @@ export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 
   error?: ReactNode;
   /** Подсветить поле как ошибочное без текста. */
   invalid?: boolean;
+  /** Иконка слева от текста. */
   startIcon?: ReactNode;
+  /** Иконка справа от текста. */
   endIcon?: ReactNode;
   /** Кнопка внутри поля справа, обычно `InputButton`. */
   action?: ReactNode;

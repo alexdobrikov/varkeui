@@ -19,23 +19,44 @@ interface TileButtonOwnProps {
   label?: ReactNode;
   /** URL картинки или любой React-узел (иконка, svg). */
   image?: ReactNode;
+  /** alt для картинки, если `image` — URL. По умолчанию пустой: подпись уже описывает кнопку. */
   imageAlt?: string;
+  /**
+   * К какому краю или углу прижать картинку.
+   * @default center
+   */
   imagePosition?: TileButtonImagePosition;
   /** Размер картинки относительно плитки, например `80%` или `96px`. */
   imageSize?: string | number;
+  /**
+   * `contain` — картинка целиком, `cover` — на всю плитку.
+   * @default contain
+   */
   imageFit?: 'contain' | 'cover';
+  /**
+   * `filled` — с фоном, `outlined` — с обводкой. Размер у обоих одинаковый.
+   * @default filled
+   */
   variant?: TileButtonVariant;
+  /**
+   * Ширина плитки: 96, 128 или 160 px.
+   * @default lg
+   */
   size?: TileButtonSize;
   /** Ширина плитки. Перебивает `size`. */
   width?: string | number;
   /** Соотношение сторон плитки: `1`, `2.2`, `'16 / 9'`. */
   aspectRatio?: string | number;
+  /** Скругление углов. По умолчанию зависит от `size`. */
   radius?: string | number;
   /** Растянуть на всю ширину контейнера. */
   block?: boolean;
   /** Элемент в правом верхнем углу, вырезанный «выемкой» цвета фона. */
   badge?: ReactNode;
-  /** Сколько строк подписи показывать до обрезки. */
+  /**
+   * Сколько строк подписи показывать до обрезки.
+   * @default 2
+   */
   labelLines?: number;
 }
 

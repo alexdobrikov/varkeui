@@ -78,6 +78,7 @@
     "puppeteer-core": "^25.16.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
+    "remark-gfm": "^4.0.1",
     "storybook": "^10.6.3",
     "tsup": "^9.0.0",
     "typescript": "^6.0.3",
@@ -90,5 +91,9 @@
   },
   "engines": {
     "node": ">=18"
+  },
+  "homepage": "https://alexdobrikov.github.io/varkeui/",
+  "bugs": {
+    "url": "https://github.com/alexdobrikov/varkeui/issues"
   }
 }

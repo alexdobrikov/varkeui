@@ -2,7 +2,10 @@ import { forwardRef, type ButtonHTMLAttributes } from 'react';
 import { cx } from '../../utils/cx';
 
 export interface InputButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  /** `primary` — контрастная кнопка, `ghost` — без фона, для иконок. */
+  /**
+   * `primary` — контрастная кнопка, `ghost` — без фона, для иконок.
+   * @default primary
+   */
   variant?: 'primary' | 'ghost';
 }
 

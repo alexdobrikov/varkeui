@@ -7,7 +7,6 @@ import { InputButton } from './InputButton';
 const meta = {
   title: 'Components/Input',
   component: Input,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

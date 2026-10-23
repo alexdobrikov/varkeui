@@ -6,7 +6,6 @@ import { ListItem } from './ListItem';
 const meta = {
   title: 'Components/List',
   component: ListItem,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

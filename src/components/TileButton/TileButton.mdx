@@ -1,0 +1,89 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './TileButton.stories';
+
+<Meta of={Stories} />
+
+# TileButton
+
+Плитка с картинкой внутри и подписью снизу. Подходит для быстрых действий, разделов приложения, коллекций и любых наборов «иконка + короткое название».
+
+```tsx
+import { TileButton, PlusIcon } from 'varkeui';
+```
+
+<Canvas of={Stories.Gallery} />
+
+## Варианты
+
+`filled` — плитка с фоном, `outlined` — с обводкой. Обводка внутренняя, поэтому обе плитки одного размера и встают в ряд без сдвигов. В `outlined` удобно показывать то, что пользователь ещё не добавил, — вместе с бейджем `PlusIcon`.
+
+<Canvas of={Stories.Outlined} />
+
+## Бейдж
+
+`badge` ставит элемент в правый верхний угол и вырезает под ним выемку цвета `--vui-color-bg`. Если плитка стоит не на фоне страницы, задайте цвет выемки через `--vui-tile-notch-color`:
+
+```css
+.promo .vui-tile {
+  --vui-tile-notch-color: #141317;
+}
+```
+
+## Картинка
+
+Картинку можно передать URL-ом или элементом. `imagePosition` прижимает её к краю или углу, `imageSize` задаёт размер области под неё, `imageFit="cover"` растягивает на всю плитку.
+
+<Canvas of={Stories.ImagePositions} />
+
+## Размеры
+
+Три готовых размера — 96, 128 и 160 px. Для своих размеров есть `width`, `aspectRatio` и `radius`.
+
+<Canvas of={Stories.Sizes} />
+
+## Подпись
+
+По умолчанию подпись занимает до двух строк. `labelLines={1}` обрезает её многоточием в одну строку — удобно для плотных рядов.
+
+<Canvas of={Stories.SingleLineLabels} />
+
+## Широкие плитки и сетки
+
+`aspectRatio` делает плитку прямоугольной, `imageFit="cover"` заполняет её картинкой целиком.
+
+<Canvas of={Stories.Wide} />
+
+С `block` плитка тянется на ширину ячейки — так её можно класть в CSS-грид.
+
+<Canvas of={Stories.FluidGrid} />
+
+## Ссылка или кнопка
+
+По умолчанию плитка — `<button type="button">`. С `href` она становится ссылкой `<a>`, остальные пропсы (`target`, `rel`, `onClick`) передаются как есть.
+
+<Canvas of={Stories.AsLink} />
+
+## Пропсы
+
+<ArgTypes of={Stories} />
+
+Остальные пропсы уходят на `<button>` или `<a>`.
+
+## Доступность
+
+- Подпись — доступное имя кнопки. Если подписи нет, передайте `aria-label`.
+- Картинка по умолчанию декоративная (`alt=""`), потому что подпись уже описывает действие.
+- `disabled` у ссылки превращается в `aria-disabled` и убирает её из порядка табуляции.
+
+## CSS-переменные
+
+| Переменная                             | По умолчанию                    |
+| -------------------------------------- | ------------------------------- |
+| `--vui-tile-width`                     | 160px / 128px / 96px по `size`  |
+| `--vui-tile-radius`                    | 40px / 34px / 26px              |
+| `--vui-tile-border-width`              | 3px / 2px / 2px                 |
+| `--vui-tile-gap`                       | Отступ между плиткой и подписью |
+| `--vui-tile-font-size`                 | 17px / 15px / 13px              |
+| `--vui-tile-bg`, `--vui-tile-bg-hover` | Фон и фон при наведении         |
+| `--vui-tile-border-color`              | Цвет обводки                    |
+| `--vui-tile-notch-color`               | Цвет выемки под бейджем         |

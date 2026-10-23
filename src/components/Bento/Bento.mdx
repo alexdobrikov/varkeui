@@ -1,0 +1,103 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Bento.stories';
+import { BentoCard } from './BentoCard';
+import { BentoGrid } from './BentoGrid';
+
+<Meta of={Stories} />
+
+# BentoGrid и BentoCard
+
+Бенто-сетка из карточек с заголовком и картинкой. Сетка задаёт колонки, высоту строки и отступы, карточка — сколько колонок и строк она занимает. Карточки обычно служат ссылками на разделы.
+
+```tsx
+import { BentoCard, BentoGrid } from 'varkeui';
+```
+
+<Canvas of={Stories.Hobbies} />
+
+## Раскладка
+
+Сетка из шести колонок даёт удобную раскладку: карточка на 2 колонки — треть ряда, на 3 — половина, на 6 — весь ряд.
+
+```tsx
+<BentoGrid columns={6} rowHeight={220}>
+  <BentoCard title="Daily playlist" colSpan={2} />
+  <BentoCard title="Photo walks" colSpan={2} />
+  <BentoCard title="Plant care" colSpan={2} />
+  <BentoCard title="Recipes for the week" colSpan={3} />
+  <BentoCard title="Workouts" colSpan={3} />
+</BentoGrid>
+```
+
+Большие карточки получаются из `colSpan` и `rowSpan`. С `dense` маленькие карточки заполняют пустые места, даже если идут в разметке позже.
+
+<Canvas of={Stories.Classic} />
+
+## Адаптивность
+
+`columns`, `rowHeight`, `colSpan` и `rowSpan` принимают либо число, либо объект по брейкпоинтам:
+
+```tsx
+<BentoGrid columns={{ base: 1, sm: 2, lg: 4 }} rowHeight={{ base: 160, md: 200 }}>
+  <BentoCard colSpan={{ sm: 2 }} rowSpan={2} />
+</BentoGrid>
+```
+
+| Брейкпоинт | Ширина сетки |
+| ---------- | ------------ |
+| `base`     | любая        |
+| `sm`       | от 640px     |
+| `md`       | от 768px     |
+| `lg`       | от 1024px    |
+
+Брейкпоинты считаются от ширины самой сетки (container queries), а не окна. Сетка в боковой колонке на десктопе ведёт себя как на телефоне. Значение, не заданное для брейкпоинта, берётся с предыдущего. Если `colSpan` больше числа колонок, карточка просто растягивается на всю ширину.
+
+## Картинка
+
+Картинка по умолчанию прижата к правому нижнему углу и занимает 70% карточки. `imagePosition` и `imageSize` это меняют, `imageFit="cover"` с `imageSize="100%"` кладёт картинку на весь фон.
+
+<Canvas of={Stories.ImagePositions} />
+
+## Клики и роутеры
+
+С `href` карточка — `<a>`, с `onClick` — `<button>`, без них — `<div>`. Для навигации без перезагрузки передайте компонент ссылки роутера в `as` — его пропсы типизируются:
+
+```tsx
+import { Link } from 'react-router';
+
+<BentoCard as={Link} to="/music" title="Music" image={headphones} />;
+```
+
+```tsx
+import Link from 'next/link';
+
+<BentoCard as={Link} href="/music" title="Music" image={headphones} />;
+```
+
+<Canvas of={Stories.AsRouterLink} />
+
+## Пропсы BentoGrid
+
+<ArgTypes of={BentoGrid} />
+
+## Пропсы BentoCard
+
+<ArgTypes of={BentoCard} exclude={['as']} />
+
+`as` — компонент для корня, например `Link` из роутера; пропсы этого компонента тоже принимаются и типизируются.
+
+`Responsive<T>` — это `T` или `{ base?: T; sm?: T; md?: T; lg?: T }`.
+
+## Доступность
+
+- Доступное имя карточки-ссылки складывается из заголовка и описания.
+- Картинка по умолчанию декоративная.
+- `disabled` у ссылки выставляет `aria-disabled` и убирает её из порядка табуляции.
+
+## CSS-переменные
+
+| Переменная                 | По умолчанию          |
+| -------------------------- | --------------------- |
+| `--vui-bento-card-padding` | 24px                  |
+| `--vui-bento-card-radius`  | 28px                  |
+| `--vui-bento-card-bg`      | `--vui-color-surface` |

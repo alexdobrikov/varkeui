@@ -5,7 +5,6 @@ import { TileButton } from './TileButton';
 const meta = {
   title: 'Components/TileButton',
   component: TileButton,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

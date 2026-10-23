@@ -13,14 +13,28 @@ import { responsiveVars, type Responsive } from '../../utils/responsive';
 import { toCssSize } from '../../utils/toCssSize';
 
 interface BentoCardOwnProps {
+  /** Заголовок в левом верхнем углу. */
   title?: ReactNode;
+  /** Текст под заголовком, приглушённым цветом. */
   description?: ReactNode;
   /** URL картинки или любой React-узел. */
   image?: ReactNode;
+  /** alt для картинки, если `image` — URL. По умолчанию пустой: картинка декоративная. */
   imageAlt?: string;
+  /**
+   * К какому краю или углу прижать картинку.
+   * @default bottom-right
+   */
   imagePosition?: ImagePosition;
-  /** Размер области под картинку относительно карточки: `'70%'`, `160`. */
+  /**
+   * Размер области под картинку относительно карточки: `'70%'`, `160`.
+   * @default 70%
+   */
   imageSize?: string | number;
+  /**
+   * `contain` — картинка целиком, `cover` — на весь фон карточки.
+   * @default contain
+   */
   imageFit?: 'contain' | 'cover';
   /** Сколько колонок занимает карточка. */
   colSpan?: Responsive<number>;
@@ -30,7 +44,9 @@ interface BentoCardOwnProps {
   background?: string;
   /** Компонент для корня, например `Link` из роутера. */
   as?: ElementType;
+  /** Неактивная карточка: не кликается и пропадает из порядка табуляции. */
   disabled?: boolean;
+  /** Любое содержимое после заголовка и описания: бейджи, кнопки, счётчики. */
   children?: ReactNode;
 }
 

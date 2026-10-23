@@ -1,0 +1,77 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Input.stories';
+import { InputButton } from './InputButton';
+
+<Meta of={Stories} />
+
+# Input и InputButton
+
+Текстовое поле с подписью, подсказкой и ошибкой, иконками по бокам и кнопкой внутри.
+
+```tsx
+import { Input, InputButton } from 'varkeui';
+```
+
+<Canvas of={Stories.Basic} />
+
+## Как обычный input
+
+Все нативные пропсы — `value`, `onChange`, `type`, `name`, `placeholder`, `autoComplete` — и `ref` уходят на сам `<input>`. Поэтому `Input` работает с react-hook-form, Formik и любыми контролируемыми формами без обёрток. `className` и `style` применяются к корневому элементу.
+
+```tsx
+const { register } = useForm();
+
+<Input label="Email" type="email" {...register('email')} />;
+```
+
+## Подсказка и ошибка
+
+`hint` выводится под полем. `error` подсвечивает поле красным и заменяет подсказку своим текстом. Если текст не нужен, достаточно `invalid`.
+
+## С иконкой
+
+`startIcon` и `endIcon` ставят иконку слева или справа от текста. Клик по иконке ставит курсор в поле.
+
+<Canvas of={Stories.WithIcon} />
+
+## С кнопкой
+
+`action` ставит элемент внутрь поля справа — обычно `InputButton`. У кнопки два варианта: `primary` — контрастная, для основного действия; `ghost` — без фона, для иконок вроде «показать пароль» или «очистить».
+
+<Canvas of={Stories.WithButton} />
+
+Нативные кнопки браузера — крестик у `type="search"` и глазик у пароля в Edge — скрыты, чтобы не дублировать ваши.
+
+## Размеры
+
+40, 48 и 56 px. Иконки и кнопка подстраиваются под размер поля.
+
+<Canvas of={Stories.Sizes} />
+
+## Пропсы Input
+
+<ArgTypes of={Stories} />
+
+## Пропсы InputButton
+
+<ArgTypes of={InputButton} />
+
+Остальные пропсы уходят на `<button>`. По умолчанию у кнопки `type="button"`, чтобы она не отправляла форму. Для отправки передайте `type="submit"`.
+
+## Доступность
+
+- `label` связан с полем, `hint` и `error` подключены через `aria-describedby`.
+- При ошибке у поля выставляется `aria-invalid`.
+- У `InputButton` с одной иконкой обязательно указывайте `aria-label`.
+
+## CSS-переменные
+
+| Переменная                                   | По умолчанию                 |
+| -------------------------------------------- | ---------------------------- |
+| `--vui-input-height`                         | 40px / 48px / 56px по `size` |
+| `--vui-input-radius`                         | 12px / 16px / 20px           |
+| `--vui-input-padding-x`                      | 12px / 16px / 20px           |
+| `--vui-input-font-size`                      | 15px / 16px / 17px           |
+| `--vui-input-icon-size`                      | 20px / 22px / 24px           |
+| `--vui-input-action-inset`                   | Отступ кнопки от края поля   |
+| `--vui-input-bg`, `--vui-input-border-color` | Фон и цвет рамки             |

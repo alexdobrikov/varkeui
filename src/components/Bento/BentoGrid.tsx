@@ -4,10 +4,20 @@ import { responsiveVars, type Responsive } from '../../utils/responsive';
 import { toCssSize } from '../../utils/toCssSize';
 
 export interface BentoGridProps extends HTMLAttributes<HTMLDivElement> {
-  /** Число колонок. Брейкпоинты sm / md / lg — 640 / 768 / 1024 px ширины самой сетки. */
+  /**
+   * Число колонок. Брейкпоинты sm / md / lg — 640 / 768 / 1024 px ширины самой сетки.
+   * @default 2
+   */
   columns?: Responsive<number>;
-  /** Высота одной строки: `200`, `'14rem'`, `'auto'`. */
+  /**
+   * Высота одной строки: `200`, `'14rem'`, `'auto'`.
+   * @default 200
+   */
   rowHeight?: Responsive<string | number>;
+  /**
+   * Расстояние между карточками.
+   * @default 16
+   */
   gap?: string | number;
   /** Заполнять дырки в сетке карточками, которые идут дальше по порядку. */
   dense?: boolean;

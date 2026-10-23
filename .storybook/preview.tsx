@@ -10,7 +10,7 @@ const withTheme: Decorator = (Story, context) => {
         background: 'var(--vui-color-bg)',
         color: 'var(--vui-color-text)',
         padding: 32,
-        minHeight: '100vh',
+        minHeight: context.viewMode === 'docs' ? undefined : '100vh',
         boxSizing: 'border-box',
       }}
     >
@@ -39,6 +39,9 @@ const preview: Preview = {
   parameters: {
     layout: 'fullscreen',
     controls: { expanded: true },
+    options: {
+      storySort: { order: ['Начало работы', 'Темы', 'Components'] },
+    },
   },
 };
 

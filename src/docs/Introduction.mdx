@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Начало работы" />
+
+# varkeui
+
+Библиотека React-компонентов: плитки, списки, поля ввода, бенто-сетки. Без рантайм-зависимостей, стили — один CSS-файл на CSS-переменных, поддерживает светлую и тёмную темы. Работает с React 18 и 19, поставляется в ESM и CommonJS с типами.
+
+## Установка
+
+```bash
+npm install varkeui
+```
+
+## Подключение
+
+Стили подключаются один раз в корне приложения, например в `main.tsx` или `app/layout.tsx`:
+
+```tsx
+import 'varkeui/styles.css';
+```
+
+Дальше компоненты импортируются напрямую:
+
+```tsx
+import { TileButton, PlusIcon } from 'varkeui';
+
+export function Shortcuts() {
+  return (
+    <TileButton
+      label="New playlist"
+      image="/img/headphones.png"
+      variant="outlined"
+      badge={<PlusIcon />}
+      onClick={createPlaylist}
+    />
+  );
+}
+```
+
+Тема по умолчанию светлая. Тёмная включается атрибутом `data-vui-theme="dark"` на `<html>` или любом контейнере — подробнее в разделе [Темы](?path=/docs/темы--docs).
+
+## Компоненты
+
+| Компонент                                                  | Для чего                                                                        |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [TileButton](?path=/docs/components-tilebutton--docs)      | Плитка с картинкой и подписью: быстрые действия, разделы, коллекции             |
+| [List, ListItem](?path=/docs/components-list--docs)        | Пункты списка с иконкой, заголовком и подзаголовком: онбординг, настройки, меню |
+| [Input, InputButton](?path=/docs/components-input--docs)   | Текстовое поле с подписью, ошибкой, иконками и кнопкой внутри                   |
+| [BentoGrid, BentoCard](?path=/docs/components-bento--docs) | Бенто-сетка из карточек-ссылок с адаптивной раскладкой                          |
+
+Иконки `PlusIcon`, `ChevronRightIcon`, `ArrowRightIcon`, `SearchIcon`, `CloseIcon`, `EyeIcon`, `EyeOffIcon` — простые SVG, берут цвет из `currentColor` и принимают любые SVG-пропсы.
+
+## Общие правила
+
+- Корневой элемент получает `className` и `style`, `ref` пробрасывается.
+- Если у компонента есть `href`, он рендерится ссылкой `<a>`, если `onClick` — кнопкой `<button type="button">`.
+- Картинки можно передавать строкой (URL) или элементом: `<img>`, SVG-компонент, `next/image`.
+- Размеры, переданные числом, считаются в пикселях: `width={352}` → `352px`.

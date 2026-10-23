@@ -6,7 +6,6 @@ import { BentoGrid } from './BentoGrid';
 const meta = {
   title: 'Components/Bento',
   component: BentoGrid,
-  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {

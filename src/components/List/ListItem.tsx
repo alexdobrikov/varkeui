@@ -13,19 +13,37 @@ import { toCssSize } from '../../utils/toCssSize';
 export type ListItemSize = 'sm' | 'md' | 'lg';
 
 interface ListItemOwnProps {
+  /** Заголовок пункта. */
   title?: ReactNode;
+  /** Подзаголовок, приглушённым цветом. */
   subtitle?: ReactNode;
   /** URL картинки или любой React-узел. */
   icon?: ReactNode;
+  /** alt для иконки, если `icon` — URL. */
   iconAlt?: string;
   /** Сторона квадрата под иконку. Перебивает `size`. */
   iconSize?: string | number;
   /** Слот справа: стрелка, переключатель, счётчик. */
   after?: ReactNode;
+  /**
+   * Размер иконки и текста: иконка 32, 48 или 72 px.
+   * @default md
+   */
   size?: ListItemSize;
-  /** Выравнивание иконки и правого слота по вертикали. */
+  /**
+   * Выравнивание иконки и правого слота по вертикали.
+   * @default center
+   */
   align?: 'center' | 'start';
+  /**
+   * Сколько строк заголовка показывать до многоточия.
+   * @default 2
+   */
   titleLines?: number;
+  /**
+   * Сколько строк подзаголовка показывать до многоточия.
+   * @default 3
+   */
   subtitleLines?: number;
 }
 

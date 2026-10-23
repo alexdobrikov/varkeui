@@ -1,0 +1,74 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Темы" />
+
+# Темы
+
+Все цвета и шрифт компонентов — CSS-переменные с префиксом `--vui-`. Тема переключается атрибутом, а любую переменную можно переопределить глобально или для отдельного блока.
+
+## Светлая и тёмная
+
+По умолчанию действует светлая тема. Тёмная включается атрибутом на любом элементе-предке:
+
+```html
+<html data-vui-theme="dark"></html>
+```
+
+Атрибут работает и на отдельном контейнере — например, тёмная карточка на светлой странице:
+
+```tsx
+<section data-vui-theme="dark">
+  <TileButton label="Music" image={headphones} />
+</section>
+```
+
+Чтобы следовать системной теме, выставляйте атрибут по `prefers-color-scheme`:
+
+```tsx
+const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+document.documentElement.dataset.vuiTheme = dark ? 'dark' : 'light';
+```
+
+## Переменные
+
+| Переменная                  | Где используется                                                  |
+| --------------------------- | ----------------------------------------------------------------- |
+| `--vui-color-bg`            | Фон страницы. Им же закрашивается выемка под бейджем `TileButton` |
+| `--vui-color-surface`       | Фон плиток, полей, карточек                                       |
+| `--vui-color-surface-hover` | Фон при наведении                                                 |
+| `--vui-color-border`        | Обводка outlined-вариантов и разделители списка                   |
+| `--vui-color-text`          | Основной текст                                                    |
+| `--vui-color-text-muted`    | Подзаголовки, подсказки, плейсхолдеры, иконки                     |
+| `--vui-color-focus`         | Рамка фокуса                                                      |
+| `--vui-color-accent`        | Фон `InputButton` variant="primary"                               |
+| `--vui-color-accent-hover`  | Он же при наведении                                               |
+| `--vui-color-accent-text`   | Текст на акцентном фоне                                           |
+| `--vui-color-danger`        | Ошибки в `Input`                                                  |
+| `--vui-font-family`         | Шрифт всех компонентов                                            |
+
+## Своя палитра
+
+```css
+:root {
+  --vui-color-focus: #ff7a00;
+  --vui-color-accent: #ff7a00;
+  --vui-color-accent-hover: #ff9533;
+  --vui-color-accent-text: #ffffff;
+  --vui-font-family: 'Manrope', sans-serif;
+}
+
+[data-vui-theme='dark'] {
+  --vui-color-bg: #101014;
+  --vui-color-surface: #1c1c22;
+}
+```
+
+Если страница не однотонная, а переменная `--vui-color-bg` с ней не совпадает, задайте фон явно там, где стоят компоненты:
+
+```css
+.promo-section {
+  --vui-color-bg: #141317;
+}
+```
+
+У каждого компонента есть и свои переменные — например, `--vui-tile-radius` или `--vui-bento-card-padding`. Они перечислены на странице компонента.
