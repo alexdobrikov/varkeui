@@ -11,6 +11,8 @@ permissions: {}
 jobs:
   select:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     outputs:
       mode: ${{ steps.mode.outputs.mode }}
     steps:
