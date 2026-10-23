@@ -1,0 +1,180 @@
+.vui-tile {
+  --vui-tile-width: 160px;
+  --vui-tile-ratio: 1;
+  --vui-tile-radius: 40px;
+  --vui-tile-border-width: 3px;
+  --vui-tile-gap: 12px;
+  --vui-tile-lines: 2;
+  --vui-tile-font-size: 17px;
+  --vui-tile-bg: var(--vui-color-surface);
+  --vui-tile-bg-hover: var(--vui-color-surface-hover);
+  --vui-tile-border-color: transparent;
+  --vui-tile-notch-color: var(--vui-color-bg);
+
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--vui-tile-gap);
+  width: var(--vui-tile-width);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  vertical-align: top;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-tile--sm {
+  --vui-tile-width: 96px;
+  --vui-tile-radius: 26px;
+  --vui-tile-border-width: 2px;
+  --vui-tile-gap: 8px;
+  --vui-tile-font-size: 13px;
+}
+
+.vui-tile--md {
+  --vui-tile-width: 128px;
+  --vui-tile-radius: 34px;
+  --vui-tile-border-width: 2px;
+  --vui-tile-gap: 10px;
+  --vui-tile-font-size: 15px;
+}
+
+.vui-tile--block {
+  --vui-tile-width: 100%;
+  display: flex;
+}
+
+.vui-tile--outlined {
+  --vui-tile-bg: transparent;
+  --vui-tile-bg-hover: var(--vui-color-surface);
+  --vui-tile-border-color: var(--vui-color-border);
+}
+
+.vui-tile__surface {
+  position: relative;
+  width: 100%;
+  aspect-ratio: var(--vui-tile-ratio);
+  border-radius: var(--vui-tile-radius);
+  background: var(--vui-tile-bg);
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.vui-tile__surface::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: var(--vui-tile-border-width) solid var(--vui-tile-border-color);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.vui-tile__media {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: var(--vui-tile-justify, center);
+  align-items: var(--vui-tile-align, center);
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.vui-tile__image {
+  flex: none;
+  width: var(--vui-tile-image-size, 100%);
+  height: var(--vui-tile-image-size, 100%);
+}
+
+.vui-tile__image > img,
+.vui-tile__image > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: var(--vui-tile-image-fit, contain);
+  object-position: var(--vui-tile-object-position, center);
+}
+
+.vui-tile__badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--vui-tile-notch-color);
+  color: var(--vui-color-text-muted);
+}
+
+.vui-tile--sm .vui-tile__badge {
+  width: 28px;
+  height: 28px;
+  top: -4px;
+  right: -4px;
+}
+
+.vui-tile__badge > svg {
+  width: 50%;
+  height: 50%;
+}
+
+.vui-tile__label {
+  display: -webkit-box;
+  width: 100%;
+  overflow: hidden;
+  font-size: var(--vui-tile-font-size);
+  font-weight: 500;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--vui-tile-lines);
+  line-clamp: var(--vui-tile-lines);
+}
+
+.vui-tile--single-line .vui-tile__label {
+  display: block;
+  white-space: nowrap;
+}
+
+@media (hover: hover) {
+  .vui-tile:hover .vui-tile__surface {
+    background: var(--vui-tile-bg-hover);
+  }
+}
+
+.vui-tile:active .vui-tile__surface {
+  transform: scale(0.96);
+}
+
+.vui-tile:focus-visible {
+  outline: none;
+}
+
+.vui-tile:focus-visible .vui-tile__surface {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 3px;
+}
+
+.vui-tile:disabled,
+.vui-tile[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-tile__surface {
+    transition: none;
+  }
+}
