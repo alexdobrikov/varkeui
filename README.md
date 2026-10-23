@@ -37,6 +37,15 @@ export function Shortcuts() {
 
 ## Компоненты
 
+### [Button и IconButton](https://alexdobrikov.github.io/varkeui/?path=/docs/components-button--docs)
+
+Кнопки действий: primary, secondary, outline, ghost и danger, с иконками, загрузкой и вариантом-ссылкой.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/button-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/button-light.png" alt="Button и IconButton" width="640" />
+</picture>
+
 ### [TileButton](https://alexdobrikov.github.io/varkeui/?path=/docs/components-tilebutton--docs)
 
 Плитка с картинкой и подписью: быстрые действия, разделы, коллекции.

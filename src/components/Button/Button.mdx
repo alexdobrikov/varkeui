@@ -1,0 +1,114 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Button.stories';
+import { Button } from './Button';
+import { IconButton } from './IconButton';
+
+<Meta of={Stories} />
+
+# Button и IconButton
+
+Кнопки для действий: от главного «Сохранить» до входа через сторонний аккаунт. `IconButton` — квадратная кнопка с одной иконкой.
+
+```tsx
+import { Button, IconButton } from 'varkeui';
+```
+
+<Canvas of={Stories.Variants} />
+
+## Варианты
+
+| Вариант     | Когда использовать                                                        |
+| ----------- | ------------------------------------------------------------------------- |
+| `primary`   | Главное действие на экране. Обычно одно                                   |
+| `secondary` | Второстепенные действия рядом с главным                                   |
+| `outline`   | Альтернатива `secondary`, когда кнопка стоит на цветном фоне или карточке |
+| `ghost`     | Действия низкого приоритета, тулбары, «Отмена»                            |
+| `danger`    | Удаление и другие необратимые действия                                    |
+
+## Иконки
+
+`startIcon` ставит иконку перед текстом, `endIcon` — после. Иконка берёт цвет текста кнопки и подстраивается под размер.
+
+<Canvas of={Stories.WithIcons} />
+
+## Размеры
+
+36, 44 и 56 px.
+
+<Canvas of={Stories.Sizes} />
+
+## Кнопки входа
+
+Кнопка на всю ширину (`block`) с логотипом сервиса в `startIcon`. Логотип можно передать SVG-компонентом или `<img>`.
+
+<Canvas of={Stories.SignIn} />
+
+```tsx
+<Button variant="secondary" size="lg" block startIcon={<img src={logo} alt="" />}>
+  Sign in with Orbit ID
+</Button>
+```
+
+## Загрузка
+
+`loading` показывает спиннер и блокирует кнопку. Текст остаётся в разметке, поэтому ширина кнопки не меняется, а скринридер продолжает читать подпись. Выставляется `aria-busy`.
+
+<Canvas of={Stories.Loading} />
+
+## IconButton
+
+Квадратная кнопка с одной иконкой. Текста на ней нет, поэтому `aria-label` обязателен — TypeScript не даст его забыть. По умолчанию вариант `secondary`.
+
+<Canvas of={Stories.IconButtons} />
+
+```tsx
+<IconButton aria-label="Delete" icon={<TrashIcon />} variant="danger" onClick={remove} />
+```
+
+## Ссылки
+
+С `href` кнопка рендерится ссылкой `<a>`. Для навигации без перезагрузки передайте компонент ссылки роутера в `as`:
+
+```tsx
+import { Link } from 'react-router';
+
+<Button as={Link} to="/settings" variant="secondary">
+  Settings
+</Button>;
+```
+
+<Canvas of={Stories.AsLink} />
+
+## Неактивное состояние
+
+<Canvas of={Stories.Disabled} />
+
+## Пропсы Button
+
+<ArgTypes of={Button} exclude={['as']} />
+
+Остальные пропсы уходят на `<button>`, `<a>` или компонент из `as`. По умолчанию у кнопки `type="button"`, чтобы она не отправляла форму. Для отправки передайте `type="submit"`.
+
+## Пропсы IconButton
+
+<ArgTypes of={IconButton} exclude={['as']} />
+
+## Доступность
+
+- Кнопки — настоящие `<button>`, ссылки — настоящие `<a>`: работают с клавиатуры и скринридерами без доработок.
+- `disabled` у ссылки превращается в `aria-disabled` и убирает её из порядка табуляции.
+- Иконки внутри кнопок декоративные: доступное имя берётся из текста или `aria-label`.
+
+## CSS-переменные
+
+| Переменная                                 | По умолчанию                 |
+| ------------------------------------------ | ---------------------------- |
+| `--vui-button-height`                      | 36px / 44px / 56px по `size` |
+| `--vui-button-padding-x`                   | 14px / 18px / 24px           |
+| `--vui-button-radius`                      | 12px / 14px / 18px           |
+| `--vui-button-gap`                         | 6px / 8px / 12px             |
+| `--vui-button-font-size`                   | 14px / 16px / 17px           |
+| `--vui-button-icon-size`                   | 18px / 20px / 24px           |
+| `--vui-button-bg`, `--vui-button-bg-hover` | Фон и фон при наведении      |
+| `--vui-button-color`                       | Цвет текста и иконок         |
+| `--vui-button-border-color`                | Цвет обводки                 |

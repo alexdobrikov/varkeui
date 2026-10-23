@@ -11,6 +11,8 @@
   --vui-color-accent-hover: #34333a;
   --vui-color-accent-text: #ffffff;
   --vui-color-danger: #e5484d;
+  --vui-color-danger-solid: #dc3e42;
+  --vui-color-danger-solid-hover: #c4363a;
   --vui-font-family:
     'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
@@ -27,4 +29,6 @@
   --vui-color-accent-hover: #e4e4e8;
   --vui-color-accent-text: #1c1b20;
   --vui-color-danger: #ff6369;
+  --vui-color-danger-solid: #d93a3f;
+  --vui-color-danger-solid-hover: #e5484d;
 }
