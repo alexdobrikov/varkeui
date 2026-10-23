@@ -5,6 +5,15 @@ import { TileButton } from './TileButton';
 const meta = {
   title: 'Components/TileButton',
   component: TileButton,
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component:
+          'Плитка с картинкой внутри и подписью снизу. `filled` и `outlined` одного размера — обводка внутренняя. Бейдж в углу вырезает выемку цвета `--vui-color-bg`.',
+      },
+    },
+  },
   args: {
     label: 'Family card',
     image: 'demo/card.svg',

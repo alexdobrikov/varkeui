@@ -67,6 +67,11 @@ export function Shortcuts() {
 
 Квадратная (или любая другая) плитка с картинкой внутри и подписью снизу. Подходит для быстрых действий, разделов, документов, адресов.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/tile-button-dark.png" />
+  <img src="docs/images/tile-button-light.png" alt="TileButton: варианты с фоном и с обводкой" />
+</picture>
+
 | Проп            | Тип                                                       | По умолчанию | Описание                                                               |
 | --------------- | --------------------------------------------------------- | ------------ | ---------------------------------------------------------------------- |
 | `label`         | `ReactNode`                                               | —            | Подпись под плиткой                                                    |
@@ -88,6 +93,11 @@ export function Shortcuts() {
 Остальные пропсы (`onClick`, `disabled`, `aria-*`, `className`, `style` и т. д.) уходят на корневой `<button>` или `<a>`. `ref` тоже пробрасывается.
 
 Широкие плитки с картинкой на весь фон:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/tile-button-wide-dark.png" />
+  <img src="docs/images/tile-button-wide-light.png" alt="Широкие TileButton" />
+</picture>
 
 ```tsx
 <TileButton label="Home" image="/img/home-map.jpg" imageFit="cover" width={352} aspectRatio={2.2} />
@@ -111,6 +121,70 @@ export function Shortcuts() {
 }
 ```
 
+### List и ListItem
+
+Пункт списка: иконка слева, заголовок и подзаголовок, справа — необязательный слот. `List` собирает пункты в `<ul>`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/list-dark.png" />
+  <img src="docs/images/list-light.png" alt="ListItem: иконка, заголовок и подзаголовок" />
+</picture>
+
+```tsx
+import { List, ListItem } from 'varkeui';
+
+<List>
+  <ListItem
+    size="lg"
+    icon="/img/shield.png"
+    title="Protect your data"
+    subtitle="Verified accounts with enabled face or fingerprint login can't be stolen"
+  />
+  <ListItem size="lg" icon="/img/heart.png" title="Add family members" subtitle="…" />
+</List>;
+```
+
+Без `onClick` и `href` пункт — обычный блок. С `onClick` он становится кнопкой, с `href` — ссылкой, и подсвечивается при наведении:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/list-interactive-dark.png" />
+  <img src="docs/images/list-interactive-light.png" alt="Кликабельные ListItem с разделителями" />
+</picture>
+
+```tsx
+<List dividers>
+  <ListItem
+    icon={<UserIcon />}
+    title="Personal data"
+    subtitle="Name, phone number, email"
+    after={<ChevronRightIcon />}
+    onClick={openProfile}
+  />
+  <ListItem icon={<LockIcon />} title="Security" after={<ChevronRightIcon />} href="/security" />
+</List>
+```
+
+| Проп            | Тип                   | По умолчанию | Описание                                                |
+| --------------- | --------------------- | ------------ | ------------------------------------------------------- |
+| `title`         | `ReactNode`           | —            | Заголовок                                               |
+| `subtitle`      | `ReactNode`           | —            | Подзаголовок, приглушённым цветом                       |
+| `icon`          | `string \| ReactNode` | —            | URL картинки или любой элемент                          |
+| `iconSize`      | `string \| number`    | по `size`    | Сторона квадрата под иконку                             |
+| `after`         | `ReactNode`           | —            | Правый слот: стрелка, переключатель, счётчик            |
+| `size`          | `sm \| md \| lg`      | `md`         | Иконка 32 / 48 / 72 px и соответствующие размеры текста |
+| `align`         | `center \| start`     | `center`     | Выравнивание иконки и правого слота по вертикали        |
+| `titleLines`    | `number`              | `2`          | Максимум строк заголовка                                |
+| `subtitleLines` | `number`              | `3`          | Максимум строк подзаголовка                             |
+| `onClick`       | `function`            | —            | Делает пункт кнопкой                                    |
+| `href`          | `string`              | —            | Делает пункт ссылкой                                    |
+| `disabled`      | `boolean`             | `false`      | Для кликабельного пункта                                |
+
+У `List` один собственный проп — `dividers`: тонкие линии между пунктами.
+
+### Иконки
+
+`PlusIcon`, `ChevronRightIcon` — простые SVG, берут цвет из `currentColor`.
+
 ## Разработка
 
 Нужен Node.js 24 (версия лежит в `.nvmrc`).
@@ -120,22 +194,25 @@ npm install
 npm run dev          # Storybook на http://localhost:6006
 ```
 
-| Команда                   | Что делает                              |
-| ------------------------- | --------------------------------------- |
-| `npm run dev`             | Storybook с живой перезагрузкой         |
-| `npm test`                | Тесты (Vitest + Testing Library)        |
-| `npm run test:watch`      | Тесты в watch-режиме                    |
-| `npm run lint`            | ESLint                                  |
-| `npm run format`          | Prettier по всему проекту               |
-| `npm run typecheck`       | Проверка типов                          |
-| `npm run build`           | Сборка библиотеки в `dist/`             |
-| `npm run build:storybook` | Статическая сборка Storybook            |
-| `npm run check`           | Всё сразу — то же, что гоняет CI        |
-| `npm run changeset`       | Описать изменение для следующего релиза |
+| Команда                   | Что делает                                       |
+| ------------------------- | ------------------------------------------------ |
+| `npm run dev`             | Storybook с живой перезагрузкой                  |
+| `npm test`                | Тесты (Vitest + Testing Library)                 |
+| `npm run test:watch`      | Тесты в watch-режиме                             |
+| `npm run lint`            | ESLint                                           |
+| `npm run format`          | Prettier по всему проекту                        |
+| `npm run typecheck`       | Проверка типов                                   |
+| `npm run build`           | Сборка библиотеки в `dist/`                      |
+| `npm run build:storybook` | Статическая сборка Storybook                     |
+| `npm run screenshots`     | Пересобрать картинки для README в `docs/images/` |
+| `npm run check`           | Всё сразу — то же, что гоняет CI                 |
+| `npm run changeset`       | Описать изменение для следующего релиза          |
 
 ### Структура
 
 ```
+scripts/screenshots.mjs      снимает скриншоты сторис для README
+docs/images/                 эти скриншоты
 src/
   components/
     TileButton/
@@ -157,7 +234,8 @@ src/
 2. Классы — с префиксом `vui-`, цвета — только через переменные из `tokens.css`.
 3. Подключить CSS в `src/styles/index.css`, экспорт — в `src/index.ts`.
 4. Написать сторис и тесты.
-5. `npm run changeset` — выбрать `minor` для нового компонента, `patch` для фикса.
+5. Добавить историю в `scripts/screenshots.mjs`, запустить `npm run screenshots` и вставить картинку в README.
+6. `npm run changeset` — выбрать `minor` для нового компонента, `patch` для фикса.
 
 ### Релизы
 
