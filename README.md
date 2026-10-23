@@ -245,6 +245,93 @@ import { Input } from 'varkeui';
 | `variant`   | `filled \| outlined` | `filled`     | С фоном или с обводкой                       |
 | `block`     | `boolean`            | `false`      | Растянуть на ширину контейнера               |
 
+### BentoGrid и BentoCard
+
+Бенто-сетка из карточек с заголовком и картинкой. Сетка задаёт колонки, карточка — сколько колонок и строк она занимает.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/bento-dark.png" />
+  <img src="docs/images/bento-light.png" alt="BentoGrid: сервисы в сетке 2-3-2" />
+</picture>
+
+```tsx
+import { BentoCard, BentoGrid } from 'varkeui';
+
+<BentoGrid columns={6} rowHeight={220}>
+  <BentoCard href="/cleaning" title="Dry cleaning of clothes" image={sweater} colSpan={2} />
+  <BentoCard href="/furniture" title="Furniture dry cleaning" image={sofa} colSpan={2} />
+  <BentoCard href="/water" title="Water delivery" image={bottle} colSpan={2} />
+  <BentoCard href="/medical" title="Medical tests" image={microscope} colSpan={3} />
+  <BentoCard href="/pcr" title="PCR tests" image={mask} colSpan={3} />
+</BentoGrid>;
+```
+
+**Адаптивность.** `columns`, `rowHeight`, `colSpan` и `rowSpan` принимают число или объект по брейкпоинтам. Брейкпоинты `sm` / `md` / `lg` — 640 / 768 / 1024 px, и считаются они от ширины самой сетки, а не окна: сетка в узкой боковой колонке ведёт себя как на телефоне. Если `colSpan` больше числа колонок, карточка просто растягивается на всю ширину.
+
+```tsx
+<BentoGrid columns={{ base: 2, sm: 6 }} rowHeight={{ base: 180, sm: 220 }}>
+  <BentoCard title="Medical tests" colSpan={{ base: 1, sm: 3 }} />
+</BentoGrid>
+```
+
+Большие карточки, градиенты, `dense`, чтобы короткие карточки заполняли дырки:
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/bento-classic-dark.png" />
+  <img src="docs/images/bento-classic-light.png" alt="Классическое бенто с большой карточкой" />
+</picture>
+
+```tsx
+<BentoGrid columns={{ base: 1, sm: 2, lg: 4 }} rowHeight={200} dense>
+  <BentoCard
+    href="/water"
+    title="Water delivery"
+    description="19 litres to your door tomorrow"
+    image={bottle}
+    colSpan={{ sm: 2 }}
+    rowSpan={2}
+    background="linear-gradient(160deg, #d9ecff, #a9cdf2)"
+  />
+  …
+</BentoGrid>
+```
+
+**Клики и ссылки.** С `href` карточка — `<a>`, с `onClick` — `<button>`, без них — просто блок. Для роутеров передай компонент ссылки в `as`, его пропсы типизируются:
+
+```tsx
+import { Link } from 'react-router';
+
+<BentoCard as={Link} to="/water" title="Water delivery" image={bottle} />;
+```
+
+`BentoGrid`:
+
+| Проп        | Тип                            | По умолчанию | Описание                                   |
+| ----------- | ------------------------------ | ------------ | ------------------------------------------ |
+| `columns`   | `Responsive<number>`           | `2`          | Число колонок                              |
+| `rowHeight` | `Responsive<string \| number>` | `200`        | Высота строки, можно `'auto'`              |
+| `gap`       | `string \| number`             | `16`         | Отступ между карточками                    |
+| `dense`     | `boolean`                      | `false`      | Заполнять дырки карточками, идущими дальше |
+
+`BentoCard`:
+
+| Проп               | Тип                   | По умолчанию   | Описание                                  |
+| ------------------ | --------------------- | -------------- | ----------------------------------------- |
+| `title`            | `ReactNode`           | —              | Заголовок в левом верхнем углу            |
+| `description`      | `ReactNode`           | —              | Текст под заголовком                      |
+| `image`            | `string \| ReactNode` | —              | URL картинки или любой элемент            |
+| `imagePosition`    | как у `TileButton`    | `bottom-right` | К какому краю или углу прижать картинку   |
+| `imageSize`        | `string \| number`    | `70%`          | Размер области под картинку               |
+| `imageFit`         | `contain \| cover`    | `contain`      | `cover` — картинка на весь фон            |
+| `colSpan`          | `Responsive<number>`  | `1`            | Сколько колонок занимает                  |
+| `rowSpan`          | `Responsive<number>`  | `1`            | Сколько строк занимает                    |
+| `background`       | `string`              | —              | Цвет, градиент или `url(...)`             |
+| `href` / `onClick` |                       | —              | Ссылка или кнопка                         |
+| `as`               | `ElementType`         | —              | Свой компонент для корня, например `Link` |
+| `disabled`         | `boolean`             | `false`        | Неактивная карточка                       |
+
+`Responsive<T>` — это `T` или `{ base?: T; sm?: T; md?: T; lg?: T }`.
+
 ### Иконки
 
 `PlusIcon`, `ChevronRightIcon`, `ArrowRightIcon`, `SearchIcon`, `CloseIcon`, `EyeIcon`, `EyeOffIcon` — простые SVG, берут цвет из `currentColor`.

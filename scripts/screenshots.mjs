@@ -15,6 +15,8 @@ const shots = [
   { name: 'input', story: 'components-input--basic' },
   { name: 'input-icon', story: 'components-input--with-icon' },
   { name: 'input-button', story: 'components-input--with-button' },
+  { name: 'bento', story: 'components-bento--services' },
+  { name: 'bento-classic', story: 'components-bento--classic' },
 ];
 const themes = ['dark', 'light'];
 const padding = 24;
