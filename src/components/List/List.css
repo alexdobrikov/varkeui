@@ -6,8 +6,34 @@
   list-style: none;
 }
 
-.vui-list--dividers > .vui-list__row + .vui-list__row {
-  border-top: 1px solid var(--vui-color-border);
+.vui-list--dividers > .vui-list__row + .vui-list__row > .vui-list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: var(--vui-list-item-padding-x);
+  left: calc(
+    var(--vui-list-item-padding-x) + var(--vui-list-item-icon-size) + var(--vui-list-item-gap)
+  );
+  height: 1px;
+  background: var(--vui-color-border);
+  transition: opacity 0.15s ease;
+}
+
+.vui-list--dividers
+  > .vui-list__row
+  + .vui-list__row
+  > .vui-list-item:not(:has(.vui-list-item__icon))::before {
+  left: var(--vui-list-item-padding-x);
+}
+
+.vui-list--dividers
+  > .vui-list__row
+  > .vui-list-item--interactive:is(:hover, :active, :focus-visible)::before,
+.vui-list--dividers
+  > .vui-list__row:has(> .vui-list-item--interactive:is(:hover, :active, :focus-visible))
+  + .vui-list__row
+  > .vui-list-item::before {
+  opacity: 0;
 }
 
 .vui-list-item {
@@ -21,6 +47,7 @@
   --vui-list-item-title-lines: 2;
   --vui-list-item-subtitle-lines: 3;
 
+  position: relative;
   display: flex;
   align-items: center;
   gap: var(--vui-list-item-gap);
@@ -144,7 +171,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .vui-list-item--interactive {
+  .vui-list-item--interactive,
+  .vui-list-item::before {
     transition: none;
   }
 }
