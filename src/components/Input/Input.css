@@ -102,6 +102,19 @@
   font-size: var(--vui-input-font-size);
 }
 
+.vui-input__control::-webkit-search-decoration,
+.vui-input__control::-webkit-search-cancel-button,
+.vui-input__control::-webkit-search-results-button,
+.vui-input__control::-webkit-search-results-decoration {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.vui-input__control::-ms-clear,
+.vui-input__control::-ms-reveal {
+  display: none;
+}
+
 .vui-input__control::placeholder {
   color: var(--vui-color-text-muted);
   opacity: 1;
