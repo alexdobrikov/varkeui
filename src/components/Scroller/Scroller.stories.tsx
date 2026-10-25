@@ -115,19 +115,23 @@ export const FullBleed: Story = {
 
 export const AlwaysVisibleControls: Story = {
   render: () => (
-    <div style={{ maxWidth: 700 }}>
-      <Scroller aria-label="Trips" controls="always" snap={false} gap={12}>
-        {trips.map(({ label, image }) => (
-          <TileButton
-            key={label}
-            label={label}
-            image={image}
-            imageFit="cover"
-            width={280}
-            aspectRatio={2}
-          />
-        ))}
-      </Scroller>
-    </div>
+    <Scroller
+      aria-label="Trips"
+      controls="always"
+      snap={false}
+      gap={12}
+      style={{ '--vui-scroller-button-top': '70px' } as never}
+    >
+      {[...trips, ...trips].map(({ label, image }, index) => (
+        <TileButton
+          key={index}
+          label={label}
+          image={image}
+          imageFit="cover"
+          width={280}
+          aspectRatio={2}
+        />
+      ))}
+    </Scroller>
   ),
 };
