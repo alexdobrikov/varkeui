@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.5.0
+
+### Minor Changes
+
+- ed2c66c: Новые компоненты форм: `SegmentedControl`, `CodeInput` для кодов подтверждения со вставкой и автоподстановкой из СМС, `Checkbox`, `Radio` с `RadioGroup` и `Textarea`, которая растёт с текстом. Токен `--vui-color-surface-raised`.
+
 ## 0.4.0
 
 ### Minor Changes
