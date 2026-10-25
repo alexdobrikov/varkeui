@@ -65,6 +65,20 @@ export const InContext: Story = {
         badge={<Badge tone="danger" count={5} />}
       />
       <TileButton
+        label="Notifications"
+        image="demo/bell.svg"
+        imagePosition="center"
+        imageSize="70%"
+        badge={<Badge tone="danger" count={128} />}
+      />
+      <TileButton
+        label="Small"
+        size="sm"
+        image="demo/notebook.svg"
+        imagePosition="bottom"
+        badge={<Badge tone="danger" size="sm" count={2} />}
+      />
+      <TileButton
         label="New list"
         image="demo/books.svg"
         imagePosition="bottom"

@@ -123,6 +123,16 @@
   right: -4px;
 }
 
+/* Счётчик в углу: выемка обтягивает его тонким кольцом и тянется вместе с числом. */
+.vui-tile__badge:has(> .vui-badge) {
+  top: -3px;
+  right: -3px;
+  width: auto;
+  height: auto;
+  padding: var(--vui-tile-badge-ring, 3px);
+  border-radius: 999px;
+}
+
 .vui-tile__badge > svg {
   width: 50%;
   height: 50%;
