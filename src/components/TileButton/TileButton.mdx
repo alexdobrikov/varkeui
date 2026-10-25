@@ -29,6 +29,12 @@ import { TileButton, PlusIcon } from 'varkeui';
 }
 ```
 
+Если в угол положить счётчик `Badge`, выемка обтягивает его тонким кольцом и растягивается вместе с числом:
+
+```tsx
+<TileButton label="Inbox" image={inbox} badge={<Badge tone="danger" count={5} />} />
+```
+
 ## Картинка
 
 Картинку можно передать URL-ом или элементом. `imagePosition` прижимает её к краю или углу, `imageSize` задаёт размер области под неё, `imageFit="cover"` растягивает на всю плитку.
@@ -77,13 +83,14 @@ import { TileButton, PlusIcon } from 'varkeui';
 
 ## CSS-переменные
 
-| Переменная                             | По умолчанию                    |
-| -------------------------------------- | ------------------------------- |
-| `--vui-tile-width`                     | 160px / 128px / 96px по `size`  |
-| `--vui-tile-radius`                    | 40px / 34px / 26px              |
-| `--vui-tile-border-width`              | 3px / 2px / 2px                 |
-| `--vui-tile-gap`                       | Отступ между плиткой и подписью |
-| `--vui-tile-font-size`                 | 17px / 15px / 13px              |
-| `--vui-tile-bg`, `--vui-tile-bg-hover` | Фон и фон при наведении         |
-| `--vui-tile-border-color`              | Цвет обводки                    |
-| `--vui-tile-notch-color`               | Цвет выемки под бейджем         |
+| Переменная                             | По умолчанию                               |
+| -------------------------------------- | ------------------------------------------ |
+| `--vui-tile-width`                     | 160px / 128px / 96px по `size`             |
+| `--vui-tile-radius`                    | 40px / 34px / 26px                         |
+| `--vui-tile-border-width`              | 3px / 2px / 2px                            |
+| `--vui-tile-gap`                       | Отступ между плиткой и подписью            |
+| `--vui-tile-font-size`                 | 17px / 15px / 13px                         |
+| `--vui-tile-bg`, `--vui-tile-bg-hover` | Фон и фон при наведении                    |
+| `--vui-tile-border-color`              | Цвет обводки                               |
+| `--vui-tile-notch-color`               | Цвет выемки под бейджем                    |
+| `--vui-tile-badge-ring`                | 3px — толщина кольца вокруг `Badge` в углу |
