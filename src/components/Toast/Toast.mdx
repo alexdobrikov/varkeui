@@ -1,0 +1,75 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Toast.stories';
+import { Toaster } from './Toaster';
+
+<Meta of={Stories} />
+
+# Toast
+
+Короткие всплывающие уведомления: «Сохранено», «Нет соединения», «Заметка удалена — Отменить». Исчезают сами через несколько секунд.
+
+```tsx
+import { Toaster, toast } from 'varkeui';
+```
+
+## Подключение
+
+Поставьте `Toaster` один раз в корне приложения, а `toast()` вызывайте откуда угодно — из обработчиков, запросов, хуков. Провайдеров и контекста не нужно.
+
+```tsx
+// app/layout.tsx или main.tsx
+<Toaster />;
+
+// где угодно
+toast('Saved to favourites');
+toast.success('Playlist downloaded');
+toast.error('No connection');
+```
+
+<Canvas of={Stories.Playground} />
+
+## Возможности
+
+```tsx
+toast('Note deleted', {
+  description: 'From the “Ideas” folder',
+  action: { label: 'Undo', onClick: restore },
+  duration: 6000,
+});
+
+// Обновить уведомление вместо нового
+toast('Uploading…', { id: 'upload', duration: Infinity });
+toast.success('Uploaded', { id: 'upload' });
+
+// Закрыть одно или все
+const id = toast('Hello');
+toast.dismiss(id);
+toast.dismiss();
+```
+
+- Пока курсор или фокус на уведомлении, таймер стоит.
+- Видно не больше `max` уведомлений (по умолчанию 3), остальные ждут.
+- Уведомления контрастны к теме: тёмные на светлой странице и светлые на тёмной.
+
+## Позиция
+
+По умолчанию — снизу по центру, как в мобильных приложениях. `position` переносит их наверх или в правый угол.
+
+<Canvas of={Stories.TopRight} />
+
+## Пропсы Toaster
+
+<ArgTypes of={Toaster} />
+
+## Доступность
+
+- Обычные уведомления — `role="status"`, их озвучивают без прерывания. Ошибки — `role="alert"`, их озвучивают сразу.
+- У каждого уведомления есть кнопка закрытия с подписью, таймер замирает на время фокуса.
+- Не кладите в тост единственный путь к важному действию: он исчезает. Дублируйте такие действия на странице.
+
+## CSS-переменные
+
+| Переменная             | По умолчанию                                       |
+| ---------------------- | -------------------------------------------------- |
+| `--vui-toaster-offset` | 16px от края экрана                                |
+| `--vui-toast-width`    | 400px, на узких экранах — вся ширина минус отступы |

@@ -1,0 +1,174 @@
+.vui-toaster {
+  --vui-toaster-offset: 16px;
+  --vui-toast-width: 400px;
+
+  position: fixed;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: min(var(--vui-toast-width), calc(100vw - var(--vui-toaster-offset) * 2));
+  pointer-events: none;
+}
+
+.vui-toaster--bottom-center {
+  bottom: calc(var(--vui-toaster-offset) + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vui-toaster--top-center {
+  top: calc(var(--vui-toaster-offset) + env(safe-area-inset-top));
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vui-toaster--bottom-right {
+  right: var(--vui-toaster-offset);
+  bottom: calc(var(--vui-toaster-offset) + env(safe-area-inset-bottom));
+}
+
+.vui-toaster--top-right {
+  top: calc(var(--vui-toaster-offset) + env(safe-area-inset-top));
+  right: var(--vui-toaster-offset);
+}
+
+/* Тост контрастный к теме: тёмный на светлой странице, светлый на тёмной. */
+.vui-toast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  min-height: 52px;
+  padding: 12px 8px 12px 16px;
+  border-radius: 18px;
+  background: var(--vui-color-accent);
+  box-shadow: 0 8px 28px rgb(0 0 0 / 0.22);
+  color: var(--vui-color-accent-text);
+  font-family: var(--vui-font-family);
+  font-size: 15px;
+  line-height: 1.35;
+  pointer-events: auto;
+  animation: vui-toast-in 0.25s cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.vui-toaster--top-center .vui-toast,
+.vui-toaster--top-right .vui-toast {
+  animation-name: vui-toast-in-top;
+}
+
+.vui-toast--closing {
+  animation: vui-toast-out 0.2s ease forwards;
+}
+
+.vui-toast__icon {
+  display: flex;
+  flex: none;
+}
+
+.vui-toast__icon > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.vui-toast--success .vui-toast__icon {
+  color: var(--vui-color-success-solid);
+}
+
+.vui-toast--danger .vui-toast__icon {
+  color: var(--vui-color-danger);
+}
+
+.vui-toast__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.vui-toast__message {
+  font-weight: 500;
+}
+
+.vui-toast__description {
+  opacity: 0.7;
+  font-size: 14px;
+}
+
+.vui-toast__action {
+  flex: none;
+  height: 32px;
+  margin: 0;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: color-mix(in srgb, currentColor 14%, transparent);
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.vui-toast__close {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.vui-toast__close > svg {
+  width: 18px;
+  height: 18px;
+}
+
+@media (hover: hover) {
+  .vui-toast__action:hover {
+    background: color-mix(in srgb, currentColor 22%, transparent);
+  }
+
+  .vui-toast__close:hover {
+    opacity: 1;
+  }
+}
+
+.vui-toast__action:focus-visible,
+.vui-toast__close:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+@keyframes vui-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+}
+
+@keyframes vui-toast-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-16px) scale(0.96);
+  }
+}
+
+@keyframes vui-toast-out {
+  to {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-toast,
+  .vui-toast--closing {
+    animation-duration: 0.01ms;
+  }
+}

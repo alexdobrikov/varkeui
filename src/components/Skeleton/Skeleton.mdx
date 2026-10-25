@@ -1,0 +1,48 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Skeleton.stories';
+import { Skeleton } from './Skeleton';
+
+<Meta of={Stories} />
+
+# Skeleton
+
+Заглушки на время загрузки. Повторяют форму будущего контента, чтобы страница не прыгала, когда данные придут.
+
+```tsx
+import { Skeleton } from 'varkeui';
+```
+
+<Canvas of={Stories.WhileLoading} />
+
+## Варианты
+
+`rect` — блок любого размера, `circle` — аватар или иконка, `text` — строки текста. Высота строки по умолчанию зависит от размера шрифта, а у многострочного текста последняя строка короче.
+
+<Canvas of={Stories.Variants} />
+
+```tsx
+<div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+  <Skeleton variant="circle" width={48} />
+  <div style={{ flex: 1 }}>
+    <Skeleton variant="text" width="40%" />
+    <Skeleton variant="text" width="70%" />
+  </div>
+</div>
+```
+
+Перелив синхронизирован по всей странице: все заглушки переливаются одной волной, а не каждая сама по себе. `animated={false}` его выключает, `prefers-reduced-motion` — тоже.
+
+## Пропсы
+
+<ArgTypes of={Skeleton} />
+
+## Доступность
+
+Заглушки скрыты от скринридеров (`aria-hidden`). Пометьте контейнер, который грузится, атрибутом `aria-busy="true"`, а когда данные придут — уберите его.
+
+## CSS-переменные
+
+| Переменная             | По умолчанию                |
+| ---------------------- | --------------------------- |
+| `--vui-skeleton-base`  | `--vui-color-surface`       |
+| `--vui-skeleton-shine` | `--vui-color-surface-hover` |

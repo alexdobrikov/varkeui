@@ -1,9 +1,13 @@
 export { ArrowRightIcon } from './ArrowRightIcon';
+export { CheckCircleIcon } from './CheckCircleIcon';
 export { ChevronLeftIcon } from './ChevronLeftIcon';
 export { ChevronRightIcon } from './ChevronRightIcon';
 export { CloseIcon } from './CloseIcon';
+export { ErrorIcon } from './ErrorIcon';
 export { EyeIcon } from './EyeIcon';
 export { EyeOffIcon } from './EyeOffIcon';
+export { InfoIcon } from './InfoIcon';
 export { PlusIcon } from './PlusIcon';
 export { SearchIcon } from './SearchIcon';
 export { TrashIcon } from './TrashIcon';
+export { WarningIcon } from './WarningIcon';

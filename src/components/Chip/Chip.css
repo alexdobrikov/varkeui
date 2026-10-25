@@ -1,0 +1,121 @@
+.vui-chip {
+  --vui-chip-height: 40px;
+  --vui-chip-padding-x: 16px;
+  --vui-chip-font-size: 15px;
+  --vui-chip-icon-size: 18px;
+  --vui-chip-bg: var(--vui-color-surface);
+  --vui-chip-bg-hover: var(--vui-color-surface-hover);
+  --vui-chip-color: var(--vui-color-text);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--vui-chip-height);
+  border-radius: 999px;
+  background: var(--vui-chip-bg);
+  color: var(--vui-chip-color);
+  font-family: var(--vui-font-family);
+  font-size: var(--vui-chip-font-size);
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: middle;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.vui-chip--sm {
+  --vui-chip-height: 32px;
+  --vui-chip-padding-x: 12px;
+  --vui-chip-font-size: 14px;
+  --vui-chip-icon-size: 16px;
+}
+
+.vui-chip--selected {
+  --vui-chip-bg: var(--vui-color-accent);
+  --vui-chip-bg-hover: var(--vui-color-accent-hover);
+  --vui-chip-color: var(--vui-color-accent-text);
+}
+
+.vui-chip__main {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  margin: 0;
+  padding: 0 var(--vui-chip-padding-x);
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  color: inherit;
+  font: inherit;
+  white-space: inherit;
+}
+
+.vui-chip--removable .vui-chip__main {
+  padding-right: 4px;
+}
+
+button.vui-chip__main {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-chip__icon {
+  display: flex;
+  margin-left: -2px;
+}
+
+.vui-chip__icon > svg,
+.vui-chip__icon > img {
+  width: var(--vui-chip-icon-size);
+  height: var(--vui-chip-icon-size);
+  border-radius: 50%;
+}
+
+.vui-chip__remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(var(--vui-chip-height) - 8px);
+  height: calc(var(--vui-chip-height) - 8px);
+  margin: 0 4px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.vui-chip__remove > svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (hover: hover) {
+  .vui-chip--interactive:has(.vui-chip__main:hover) {
+    background: var(--vui-chip-bg-hover);
+  }
+
+  .vui-chip__remove:hover {
+    background: color-mix(in srgb, currentColor 12%, transparent);
+    opacity: 1;
+  }
+}
+
+.vui-chip__main:focus-visible,
+.vui-chip__remove:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+.vui-chip--disabled {
+  opacity: 0.45;
+}
+
+.vui-chip--disabled button {
+  cursor: default;
+}

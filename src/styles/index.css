@@ -12,3 +12,7 @@
 @import '../components/SegmentedControl/SegmentedControl.css';
 @import '../components/CodeInput/CodeInput.css';
 @import '../components/Textarea/Textarea.css';
+@import '../components/Banner/Banner.css';
+@import '../components/Skeleton/Skeleton.css';
+@import '../components/Chip/Chip.css';
+@import '../components/Toast/Toast.css';

@@ -1,0 +1,53 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Banner.stories';
+import { Banner } from './Banner';
+
+<Meta of={Stories} />
+
+# Banner
+
+Плашка с сообщением внутри страницы: подсказка, успех, предупреждение или ошибка. В отличие от [Toast](?path=/docs/components-toast--docs), остаётся на месте, пока ситуация актуальна.
+
+```tsx
+import { Banner } from 'varkeui';
+```
+
+<Canvas of={Stories.Tones} />
+
+## Тоны
+
+`tone` задаёт цвет и иконку: `info`, `success`, `warning`, `danger` и спокойный `neutral`. Фон — цвет тона, смешанный с фоном страницы, поэтому плашки не кричат ни в светлой, ни в тёмной теме. Иконку можно заменить через `icon` или убрать — `icon={null}`.
+
+## Действия и закрытие
+
+`action` выводит кнопки под текстом. `onClose` добавляет крестик; скрывать баннер решаете вы — например, запомнив выбор в `localStorage`.
+
+<Canvas of={Stories.WithActions} />
+
+```tsx
+<Banner
+  tone="warning"
+  title="Storage almost full"
+  onClose={hide}
+  action={<Button size="sm">Free up space</Button>}
+>
+  Free up space to keep backing up photos.
+</Banner>
+```
+
+## Пропсы
+
+<ArgTypes of={Banner} />
+
+## Доступность
+
+- По умолчанию у баннера нет live-роли: он часть страницы, а не событие. Если он появляется в ответ на действие и о нём нужно сообщить сразу, передайте `role="status"`, а для срочных ошибок — `role="alert"`.
+- Иконка декоративная, смысл передаёт заголовок.
+
+## CSS-переменные
+
+| Переменная            | По умолчанию                                                                                      |
+| --------------------- | ------------------------------------------------------------------------------------------------- |
+| `--vui-banner-tone`   | Цвет тона: `--vui-color-info`, `--vui-color-success`, `--vui-color-warning`, `--vui-color-danger` |
+| `--vui-banner-bg`     | 12% тона на фоне страницы                                                                         |
+| `--vui-banner-radius` | 20px                                                                                              |

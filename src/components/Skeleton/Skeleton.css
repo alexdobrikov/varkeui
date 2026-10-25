@@ -1,0 +1,67 @@
+.vui-skeleton {
+  --vui-skeleton-base: var(--vui-color-surface);
+  --vui-skeleton-shine: var(--vui-color-surface-hover);
+
+  display: block;
+  flex: none;
+  width: var(--vui-skeleton-width, 100%);
+  height: var(--vui-skeleton-height, 16px);
+  border-radius: var(--vui-skeleton-radius, 12px);
+  background: var(--vui-skeleton-base);
+}
+
+.vui-skeleton--circle {
+  width: var(--vui-skeleton-width, 48px);
+  height: var(--vui-skeleton-height, var(--vui-skeleton-width, 48px));
+  border-radius: 50%;
+}
+
+.vui-skeleton--text {
+  height: var(--vui-skeleton-height, 0.9em);
+  margin-block: 0.25em;
+  border-radius: var(--vui-skeleton-radius, 6px);
+}
+
+.vui-skeleton-lines {
+  display: flex;
+  flex-direction: column;
+  width: var(--vui-skeleton-width, 100%);
+}
+
+.vui-skeleton-lines > .vui-skeleton {
+  width: 100%;
+}
+
+.vui-skeleton-lines > .vui-skeleton--last-line {
+  width: 60%;
+}
+
+.vui-skeleton--animated {
+  background: linear-gradient(
+      100deg,
+      transparent 30%,
+      var(--vui-skeleton-shine) 50%,
+      transparent 70%
+    )
+    var(--vui-skeleton-base);
+  background-attachment: fixed;
+  background-size: 200vw 100%;
+  animation: vui-skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+@keyframes vui-skeleton-shimmer {
+  from {
+    background-position: 100vw 0;
+  }
+
+  to {
+    background-position: -100vw 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-skeleton--animated {
+    animation: none;
+    background: var(--vui-skeleton-base);
+  }
+}

@@ -3,6 +3,8 @@ import '../src/styles/index.css';
 
 const withTheme: Decorator = (Story, context) => {
   const theme = context.globals.theme ?? 'dark';
+  // Порталы вроде Toaster рендерятся в body, поэтому тема нужна и на корне документа.
+  document.documentElement.dataset.vuiTheme = theme;
   return (
     <div
       data-vui-theme={theme}

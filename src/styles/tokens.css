@@ -15,6 +15,9 @@
   --vui-color-danger-solid: #dc3e42;
   --vui-color-danger-solid-hover: #c4363a;
   --vui-color-success-solid: #1f9d55;
+  --vui-color-info: #3b6ff5;
+  --vui-color-success: #1a8a4a;
+  --vui-color-warning: #c27c0e;
   --vui-font-family:
     'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
@@ -35,4 +38,7 @@
   --vui-color-danger-solid: #d93a3f;
   --vui-color-danger-solid-hover: #e5484d;
   --vui-color-success-solid: #2a9d5c;
+  --vui-color-info: #7aa0ff;
+  --vui-color-success: #4cc884;
+  --vui-color-warning: #f2b544;
 }

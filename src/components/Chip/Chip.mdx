@@ -1,0 +1,68 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Chip.stories';
+import { Chip } from './Chip';
+
+<Meta of={Stories} />
+
+# Chip
+
+Компактные «таблетки»: фильтры, категории, теги. Бывают статичными, выбираемыми и удаляемыми.
+
+```tsx
+import { Chip } from 'varkeui';
+```
+
+<Canvas of={Stories.MultipleChoice} />
+
+## Выбор
+
+С `selected` чип становится переключателем: выбранный инвертируется, скринридер слышит «нажато». Состоянием управляете вы — так один и тот же чип подходит и для выбора одного варианта, и для нескольких.
+
+```tsx
+const [active, setActive] = useState('All');
+
+{
+  categories.map((category) => (
+    <Chip
+      key={category}
+      selected={active === category}
+      onSelectedChange={() => setActive(category)}
+    >
+      {category}
+    </Chip>
+  ));
+}
+```
+
+Длинный ряд кладите в [Scroller](?path=/docs/components-scroller--docs) — на телефоне он листается пальцем.
+
+<Canvas of={Stories.SingleChoice} />
+
+## Удаление
+
+`onRemove` добавляет крестик. Его подпись для скринридеров собирается из `removeLabel` и текста чипа: «Remove Kazan».
+
+<Canvas of={Stories.Removable} />
+
+## Размеры
+
+32 и 40 px.
+
+<Canvas of={Stories.Sizes} />
+
+## Пропсы
+
+<ArgTypes of={Chip} />
+
+## Доступность
+
+- Выбираемый чип — `<button aria-pressed>`, кнопка-действие — обычный `<button>`, статичный — просто текст.
+- Крестик — отдельная кнопка со своей подписью, поэтому его можно нажать с клавиатуры, не выбирая сам чип.
+
+## CSS-переменные
+
+| Переменная                                                 | По умолчанию                       |
+| ---------------------------------------------------------- | ---------------------------------- |
+| `--vui-chip-height`                                        | 32px / 40px по `size`              |
+| `--vui-chip-padding-x`                                     | 12px / 16px                        |
+| `--vui-chip-bg`, `--vui-chip-bg-hover`, `--vui-chip-color` | Поверхность, у выбранного — акцент |
