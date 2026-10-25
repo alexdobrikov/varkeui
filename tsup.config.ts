@@ -9,6 +9,8 @@ export default defineConfig([
     clean: true,
     target: 'es2020',
     external: ['react', 'react-dom'],
+    // Компоненты с хуками нельзя рендерить в серверных компонентах Next.js без этой директивы.
+    banner: { js: '"use client";' },
   },
   {
     entry: { styles: 'src/styles/index.css' },
