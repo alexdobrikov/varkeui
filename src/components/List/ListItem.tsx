@@ -3,6 +3,7 @@ import {
   type AnchorHTMLAttributes,
   type ButtonHTMLAttributes,
   type CSSProperties,
+  type ElementType,
   type HTMLAttributes,
   type ReactNode,
   type Ref,
@@ -45,6 +46,11 @@ interface ListItemOwnProps {
    * @default 3
    */
   subtitleLines?: number;
+  /**
+   * Свой элемент для корня: `label` — чтобы клик по строке переключал `Switch` в `after`,
+   * или `Link` из роутера.
+   */
+  as?: ElementType;
 }
 
 export type ListItemProps = ListItemOwnProps &
@@ -67,6 +73,7 @@ export const ListItem = forwardRef<HTMLElement, ListItemProps>(function ListItem
     titleLines,
     subtitleLines,
     disabled,
+    as,
     className,
     style,
     ...rest
@@ -78,7 +85,7 @@ export const ListItem = forwardRef<HTMLElement, ListItemProps>(function ListItem
     '--vui-list-item-subtitle-lines': subtitleLines,
   } as CSSProperties;
 
-  const interactive = rest.href !== undefined || rest.onClick !== undefined;
+  const interactive = as !== undefined || rest.href !== undefined || rest.onClick !== undefined;
 
   const classes = cx(
     'vui-list-item',
@@ -102,6 +109,21 @@ export const ListItem = forwardRef<HTMLElement, ListItemProps>(function ListItem
       {after != null && <span className="vui-list-item__after">{after}</span>}
     </>
   );
+
+  if (as !== undefined) {
+    const Component = as;
+    return (
+      <Component
+        ref={ref}
+        {...rest}
+        className={classes}
+        style={{ ...vars, ...style }}
+        aria-disabled={disabled || undefined}
+      >
+        {content}
+      </Component>
+    );
+  }
 
   if (rest.href !== undefined) {
     return (
