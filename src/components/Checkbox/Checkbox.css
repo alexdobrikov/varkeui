@@ -1,0 +1,168 @@
+.vui-check {
+  --vui-check-size: 22px;
+  --vui-check-radius: 7px;
+  --vui-check-gap: 12px;
+  --vui-check-font-size: 16px;
+
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--vui-check-gap);
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+  font-size: var(--vui-check-font-size);
+  line-height: 1.35;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-check--sm {
+  --vui-check-size: 18px;
+  --vui-check-radius: 6px;
+  --vui-check-gap: 10px;
+  --vui-check-font-size: 15px;
+}
+
+.vui-check--radio {
+  --vui-check-radius: 50%;
+}
+
+.vui-check__control {
+  position: relative;
+  display: flex;
+  flex: none;
+  width: var(--vui-check-size);
+  height: var(--vui-check-size);
+  /* Выравнивает квадрат по первой строке подписи. */
+  margin-top: calc((var(--vui-check-font-size) * 1.35 - var(--vui-check-size)) / 2);
+}
+
+.vui-check__input {
+  position: absolute;
+  inset: -6px;
+  z-index: 1;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.vui-check__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--vui-color-border);
+  border-radius: var(--vui-check-radius);
+  background: var(--vui-color-bg);
+  color: var(--vui-color-accent-text);
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.vui-check__mark,
+.vui-check__dash {
+  display: none;
+  width: 80%;
+  height: 80%;
+}
+
+.vui-check__dot {
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: currentColor;
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+.vui-check__input:checked + .vui-check__box,
+.vui-check__input:indeterminate + .vui-check__box {
+  border-color: var(--vui-color-accent);
+  background: var(--vui-color-accent);
+}
+
+.vui-check__input:checked + .vui-check__box .vui-check__mark {
+  display: block;
+}
+
+.vui-check__input:indeterminate + .vui-check__box .vui-check__dash {
+  display: block;
+}
+
+.vui-check__input:indeterminate + .vui-check__box .vui-check__mark {
+  display: none;
+}
+
+.vui-check__input:checked + .vui-check__box .vui-check__dot {
+  transform: scale(1);
+}
+
+@media (hover: hover) {
+  .vui-check:not(.vui-check--disabled):hover
+    .vui-check__input:not(:checked, :indeterminate)
+    + .vui-check__box {
+    border-color: var(--vui-color-text-muted);
+  }
+}
+
+.vui-check__input:focus-visible + .vui-check__box {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+.vui-check--invalid .vui-check__input:not(:checked) + .vui-check__box {
+  border-color: var(--vui-color-danger);
+}
+
+.vui-check__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.vui-check__description {
+  color: var(--vui-color-text-muted);
+  font-size: calc(var(--vui-check-font-size) - 2px);
+}
+
+.vui-check--disabled {
+  cursor: default;
+  opacity: 0.45;
+}
+
+.vui-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: var(--vui-font-family);
+}
+
+.vui-radio-group__label {
+  color: var(--vui-color-text);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.vui-radio-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.vui-radio-group--horizontal .vui-radio-group__items {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-check__box,
+  .vui-check__dot {
+    transition: none;
+  }
+}

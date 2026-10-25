@@ -1,0 +1,48 @@
+.vui-textarea:not(.vui-input--block) {
+  width: 420px;
+}
+
+.vui-textarea__field {
+  align-items: stretch;
+  height: auto;
+  padding: 0;
+}
+
+.vui-textarea__control {
+  flex: 1;
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  padding: 12px calc(var(--vui-input-padding-x) - var(--vui-input-border-width));
+  border: 0;
+  outline: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: var(--vui-input-font-size);
+  line-height: 1.45;
+  resize: none;
+}
+
+.vui-textarea--resizable .vui-textarea__control {
+  resize: vertical;
+}
+
+.vui-textarea__control::placeholder {
+  color: var(--vui-color-text-muted);
+  opacity: 1;
+}
+
+.vui-textarea__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.vui-textarea__count {
+  flex: none;
+  margin-left: auto;
+  color: var(--vui-color-text-muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}

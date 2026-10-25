@@ -40,7 +40,7 @@ const preview: Preview = {
     layout: 'fullscreen',
     controls: { expanded: true },
     options: {
-      storySort: { order: ['Начало работы', 'Темы', 'Components'] },
+      storySort: { order: ['Начало работы', 'Темы', 'Components', 'Examples'] },
     },
   },
 };

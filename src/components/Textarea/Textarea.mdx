@@ -1,0 +1,34 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Textarea.stories';
+import { Textarea } from './Textarea';
+
+<Meta of={Stories} />
+
+# Textarea
+
+Многострочное поле: отзывы, комментарии, заметки. Выглядит как [Input](?path=/docs/components-input--docs) и растёт по высоте вместе с текстом.
+
+```tsx
+import { Textarea } from 'varkeui';
+```
+
+<Canvas of={Stories.Variants} />
+
+## Высота
+
+По умолчанию поле занимает `minRows` строк (3) и растёт с текстом. `maxRows` ограничивает рост — дальше появляется прокрутка. С `autoResize={false}` высота фиксирована, а пользователь может тянуть угол.
+
+## Счётчик
+
+`showCount` выводит число символов справа под полем, с `maxLength` — в виде `42 / 160`.
+
+## Пропсы
+
+<ArgTypes of={Textarea} />
+
+Остальные пропсы, включая `value`, `onChange` и `ref`, уходят на `<textarea>`, `className` и `style` — на корневой элемент.
+
+## Доступность
+
+- `label` связан с полем, `hint` и `error` подключены через `aria-describedby`.
+- При ошибке выставляется `aria-invalid`.

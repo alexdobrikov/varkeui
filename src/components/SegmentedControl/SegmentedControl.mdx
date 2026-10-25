@@ -1,0 +1,71 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './SegmentedControl.stories';
+import { SegmentedControl } from './SegmentedControl';
+
+<Meta of={Stories} />
+
+# SegmentedControl
+
+Переключатель-«таблетка» на два-пять коротких вариантов: период графика, способ передвижения, вид списка. Выбранный сегмент подсвечивается плашкой, которая плавно переезжает.
+
+```tsx
+import { SegmentedControl } from 'varkeui';
+```
+
+<Canvas of={Stories.Controlled} />
+
+```tsx
+const [period, setPeriod] = useState('month');
+
+<SegmentedControl
+  aria-label="Period"
+  value={period}
+  onValueChange={setPeriod}
+  options={[
+    { value: 'week', label: 'Week' },
+    { value: 'month', label: 'Month' },
+    { value: 'year', label: 'Year' },
+  ]}
+/>;
+```
+
+Без `value` и `defaultValue` выбран первый сегмент.
+
+## Размеры
+
+32, 40 и 48 px.
+
+<Canvas of={Stories.Sizes} />
+
+## На всю ширину
+
+С `block` сегменты делят ширину поровну. Отдельные сегменты можно выключить через `disabled` в опции.
+
+<Canvas of={Stories.Block} />
+
+## С иконками
+
+У опции может быть `icon`. Если подписи нет, передайте опции `aria-label`.
+
+<Canvas of={Stories.WithIcons} />
+
+## Пропсы
+
+<ArgTypes of={SegmentedControl} />
+
+## Доступность
+
+- Это группа радиокнопок: `role="radiogroup"` и настоящие `<input type="radio">` внутри. Стрелки переключают сегменты, Tab уходит к следующему элементу.
+- Дайте группе `aria-label` — иначе скринридер не скажет, что именно переключается.
+- При серверном рендере выбранный сегмент подсвечивается сразу, без JavaScript; анимация плашки подключается после загрузки.
+
+## CSS-переменные
+
+| Переменная                  | По умолчанию                             |
+| --------------------------- | ---------------------------------------- |
+| `--vui-segmented-height`    | 32px / 40px / 48px по `size`             |
+| `--vui-segmented-padding`   | Отступ плашки от края                    |
+| `--vui-segmented-radius`    | 11px / 14px / 16px                       |
+| `--vui-segmented-font-size` | 13px / 15px / 16px                       |
+| `--vui-segmented-track`     | Фон дорожки, `--vui-color-surface`       |
+| `--vui-segmented-thumb`     | Фон плашки, `--vui-color-surface-raised` |

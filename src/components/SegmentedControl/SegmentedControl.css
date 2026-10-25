@@ -1,0 +1,140 @@
+.vui-segmented {
+  --vui-segmented-height: 40px;
+  --vui-segmented-padding: 4px;
+  --vui-segmented-radius: 14px;
+  --vui-segmented-font-size: 15px;
+  --vui-segmented-item-padding-x: 16px;
+  --vui-segmented-track: var(--vui-color-surface);
+  --vui-segmented-thumb: var(--vui-color-surface-raised);
+
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  width: fit-content;
+  height: var(--vui-segmented-height);
+  padding: var(--vui-segmented-padding);
+  border-radius: var(--vui-segmented-radius);
+  background: var(--vui-segmented-track);
+  font-family: var(--vui-font-family);
+  isolation: isolate;
+}
+
+.vui-segmented--sm {
+  --vui-segmented-height: 32px;
+  --vui-segmented-padding: 3px;
+  --vui-segmented-radius: 11px;
+  --vui-segmented-font-size: 13px;
+  --vui-segmented-item-padding-x: 12px;
+}
+
+.vui-segmented--lg {
+  --vui-segmented-height: 48px;
+  --vui-segmented-radius: 16px;
+  --vui-segmented-font-size: 16px;
+  --vui-segmented-item-padding-x: 20px;
+}
+
+.vui-segmented--block {
+  display: flex;
+  width: 100%;
+}
+
+.vui-segmented--block .vui-segmented__item {
+  flex: 1 1 0;
+}
+
+.vui-segmented__indicator {
+  position: absolute;
+  top: var(--vui-segmented-padding);
+  bottom: var(--vui-segmented-padding);
+  left: 0;
+  z-index: -1;
+  width: 0;
+  border-radius: calc(var(--vui-segmented-radius) - var(--vui-segmented-padding));
+  background: var(--vui-segmented-thumb);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.12);
+  opacity: 0;
+  transition:
+    transform 0.25s cubic-bezier(0.3, 0.7, 0.4, 1),
+    width 0.25s cubic-bezier(0.3, 0.7, 0.4, 1);
+}
+
+.vui-segmented--measured .vui-segmented__indicator {
+  opacity: 1;
+}
+
+.vui-segmented__item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 var(--vui-segmented-item-padding-x);
+  border-radius: calc(var(--vui-segmented-radius) - var(--vui-segmented-padding));
+  color: var(--vui-color-text-muted);
+  font-size: var(--vui-segmented-font-size);
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Пока плашка не измерена — при серверном рендере — выбранный сегмент подсвечивается сам. */
+.vui-segmented:not(.vui-segmented--measured) .vui-segmented__item--checked {
+  background: var(--vui-segmented-thumb);
+}
+
+.vui-segmented__item--checked {
+  color: var(--vui-color-text);
+}
+
+@media (hover: hover) {
+  .vui-segmented__item:not(.vui-segmented__item--checked, .vui-segmented__item--disabled):hover {
+    color: var(--vui-color-text);
+  }
+}
+
+.vui-segmented__input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.vui-segmented__item:has(.vui-segmented__input:focus-visible) {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 1px;
+}
+
+.vui-segmented__label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vui-segmented__icon {
+  display: flex;
+}
+
+.vui-segmented__icon > svg {
+  width: 18px;
+  height: 18px;
+}
+
+.vui-segmented__item--disabled,
+.vui-segmented--disabled .vui-segmented__item {
+  cursor: default;
+  opacity: 0.45;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-segmented__indicator,
+  .vui-segmented__item {
+    transition: none;
+  }
+}

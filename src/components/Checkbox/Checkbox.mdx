@@ -1,0 +1,46 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Checkbox.stories';
+import { Checkbox } from './Checkbox';
+
+<Meta of={Stories} />
+
+# Checkbox
+
+Флажок для независимых вариантов: согласие с условиями, подписки, выбор нескольких пунктов из списка.
+
+```tsx
+import { Checkbox } from 'varkeui';
+```
+
+<Canvas of={Stories.States} />
+
+## Как обычный checkbox
+
+Внутри настоящий `<input type="checkbox">`: работают `checked` и `onChange`, `defaultChecked`, `name`, `required`, `ref` и react-hook-form. `onCheckedChange` получает сразу `true` или `false`. Кликабельна вся строка с подписью, а область нажатия у самого квадрата чуть больше видимой — так по нему легче попасть пальцем.
+
+## Выбрано частично
+
+`indeterminate` показывает прочерк — обычно у флажка «Выбрать все», когда выбраны не все пункты. Это только вид: значение `checked` при этом не меняется.
+
+<Canvas of={Stories.SelectAll} />
+
+## Пропсы
+
+<ArgTypes of={Checkbox} />
+
+Остальные пропсы уходят на `<input>`, `className` и `style` — на корневой `<label>`.
+
+## Доступность
+
+- Подпись связана с флажком: скринридер читает её как имя. Без `label` передайте `aria-label`.
+- `invalid` выставляет `aria-invalid`.
+- Переключается пробелом, фокус виден с клавиатуры.
+
+## CSS-переменные
+
+| Переменная              | По умолчанию        |
+| ----------------------- | ------------------- |
+| `--vui-check-size`      | 22px, у `sm` — 18px |
+| `--vui-check-radius`    | 7px, у `sm` — 6px   |
+| `--vui-check-gap`       | Отступ до подписи   |
+| `--vui-check-font-size` | 16px, у `sm` — 15px |

@@ -3,6 +3,7 @@
   --vui-color-bg: #ffffff;
   --vui-color-surface: #f1f1f4;
   --vui-color-surface-hover: #e8e8ec;
+  --vui-color-surface-raised: #ffffff;
   --vui-color-border: #dcdce2;
   --vui-color-text: #1c1b20;
   --vui-color-text-muted: #8a8a93;
@@ -22,6 +23,7 @@
   --vui-color-bg: #1f1e23;
   --vui-color-surface: #2d2c32;
   --vui-color-surface-hover: #36353b;
+  --vui-color-surface-raised: #47464d;
   --vui-color-border: #3b3a40;
   --vui-color-text: #ffffff;
   --vui-color-text-muted: #8e8d94;

@@ -1,0 +1,48 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Radio.stories';
+import { Radio } from './Radio';
+import { RadioGroup } from './RadioGroup';
+
+<Meta of={Stories} />
+
+# Radio и RadioGroup
+
+Выбор одного варианта из нескольких. Если вариантов два-четыре и они короткие, посмотрите ещё на [SegmentedControl](?path=/docs/components-segmentedcontrol--docs).
+
+```tsx
+import { Radio, RadioGroup } from 'varkeui';
+```
+
+<Canvas of={Stories.Playground} />
+
+## Группа
+
+`RadioGroup` раздаёт пунктам общее имя и выбранное значение, поэтому самим `Radio` достаточно `value` и подписи. Работает и как неконтролируемая группа с `defaultValue`, и как контролируемая с `value` и `onValueChange`.
+
+<Canvas of={Stories.Controlled} />
+
+```tsx
+const [plan, setPlan] = useState('month');
+
+<RadioGroup label="Plan" value={plan} onValueChange={setPlan}>
+  <Radio value="month" label="Monthly" />
+  <Radio value="year" label="Yearly" description="Two months free" />
+</RadioGroup>;
+```
+
+## Горизонтально
+
+<Canvas of={Stories.Horizontal} />
+
+## Пропсы RadioGroup
+
+<ArgTypes of={RadioGroup} />
+
+## Пропсы Radio
+
+<ArgTypes of={Radio} />
+
+## Доступность
+
+- Группа — `role="radiogroup"`, её имя берётся из `label` или `aria-label`.
+- Внутри настоящие `<input type="radio">` с общим именем: стрелки переключают выбор, Tab переходит к следующему полю формы — как ждут пользователи клавиатуры и скринридеров.

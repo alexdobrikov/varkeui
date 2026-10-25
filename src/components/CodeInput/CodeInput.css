@@ -1,0 +1,108 @@
+.vui-code {
+  --vui-code-cell-size: 48px;
+  --vui-code-gap: 8px;
+  --vui-code-radius: 14px;
+  --vui-code-font-size: 22px;
+
+  position: relative;
+  display: inline-flex;
+  gap: var(--vui-code-gap);
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+}
+
+.vui-code--lg {
+  --vui-code-cell-size: 56px;
+  --vui-code-gap: 10px;
+  --vui-code-radius: 16px;
+  --vui-code-font-size: 26px;
+}
+
+.vui-code__input {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: transparent;
+  caret-color: transparent;
+  /* 16px не даёт iOS приближать страницу при фокусе. */
+  font-size: 16px;
+  letter-spacing: 0;
+  cursor: text;
+}
+
+.vui-code__input::selection {
+  background: transparent;
+}
+
+.vui-code__cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--vui-code-cell-size);
+  height: calc(var(--vui-code-cell-size) * 1.15);
+  border: 2px solid transparent;
+  border-radius: var(--vui-code-radius);
+  background: var(--vui-color-surface);
+  font-size: var(--vui-code-font-size);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.vui-code__cell--active {
+  border-color: var(--vui-color-focus);
+}
+
+.vui-code--invalid .vui-code__cell {
+  border-color: var(--vui-color-danger);
+}
+
+.vui-code__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.vui-code__caret {
+  width: 2px;
+  height: 45%;
+  border-radius: 1px;
+  background: var(--vui-color-text);
+  animation: vui-code-blink 1s steps(1) infinite;
+}
+
+@keyframes vui-code-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.vui-code--disabled {
+  opacity: 0.45;
+}
+
+.vui-code--disabled .vui-code__input {
+  cursor: default;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-code__cell {
+    transition: none;
+  }
+
+  .vui-code__caret {
+    animation: none;
+  }
+}

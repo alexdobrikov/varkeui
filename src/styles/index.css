@@ -8,3 +8,7 @@
 @import '../components/Switch/Switch.css';
 @import '../components/SectionHeader/SectionHeader.css';
 @import '../components/Scroller/Scroller.css';
+@import '../components/Checkbox/Checkbox.css';
+@import '../components/SegmentedControl/SegmentedControl.css';
+@import '../components/CodeInput/CodeInput.css';
+@import '../components/Textarea/Textarea.css';

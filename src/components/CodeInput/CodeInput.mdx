@@ -1,0 +1,47 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './CodeInput.stories';
+import { CodeInput } from './CodeInput';
+
+<Meta of={Stories} />
+
+# CodeInput
+
+Ввод кода подтверждения из письма или СМС по ячейкам.
+
+```tsx
+import { CodeInput } from 'varkeui';
+```
+
+<Canvas of={Stories.Verification} />
+
+```tsx
+<CodeInput aria-label="Verification code" length={6} onComplete={verify} invalid={wrongCode} />
+```
+
+## Как устроен
+
+Внутри одно настоящее поле ввода поверх ячеек, а не по полю на символ. Поэтому:
+
+- код можно вставить целиком — пробелы, дефисы и лишние символы отбрасываются: «123 456», «123-456» и «code: 123456» дают `123456`;
+- iOS и Android предлагают код из пришедшей СМС прямо над клавиатурой (`autocomplete="one-time-code"`);
+- Backspace просто стирает последний символ, фокус никуда не прыгает;
+- на телефоне открывается цифровая клавиатура.
+
+`onComplete` вызывается, когда введены все символы, — удобно сразу отправлять код без кнопки.
+
+## Варианты
+
+Длина, ошибка, маска точками, буквенно-цифровые коды через `mode="text"`, размер 48 или 56 px.
+
+<Canvas of={Stories.Variants} />
+
+## Пропсы
+
+<ArgTypes of={CodeInput} />
+
+Остальные пропсы — `name`, `autoFocus`, `onBlur`, `required` и т. п. — уходят на `<input>`.
+
+## Доступность
+
+- Обязательно передайте `aria-label` или свяжите поле с подписью через `id`: скринридер видит одно поле, а не ячейки.
+- `invalid` выставляет `aria-invalid`. Текст ошибки выведите рядом и свяжите через `aria-describedby`.
