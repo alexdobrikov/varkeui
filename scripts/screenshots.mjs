@@ -8,6 +8,7 @@ const root = resolve('storybook-static');
 const outDir = resolve('docs/images');
 
 const shots = [
+  { name: 'feedback', story: 'examples-feedback--readme' },
   { name: 'form', story: 'examples-form--readme' },
   { name: 'hub', story: 'components-scroller--hub' },
   { name: 'settings', story: 'components-switch--settings-list' },

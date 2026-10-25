@@ -100,6 +100,15 @@ export function Shortcuts() {
   <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/form-light.png" alt="Элементы форм varkeui" width="480" />
 </picture>
 
+### Обратная связь
+
+[Banner](https://alexdobrikov.github.io/varkeui/?path=/docs/components-banner--docs), [Toast](https://alexdobrikov.github.io/varkeui/?path=/docs/components-toast--docs) с вызовом `toast()` из любого места кода, [Chip](https://alexdobrikov.github.io/varkeui/?path=/docs/components-chip--docs) для фильтров и тегов, [Skeleton](https://alexdobrikov.github.io/varkeui/?path=/docs/components-skeleton--docs) на время загрузки.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/feedback-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/feedback-light.png" alt="Banner, Chip, Skeleton и Toast" width="500" />
+</picture>
+
 ### [BentoGrid и BentoCard](https://alexdobrikov.github.io/varkeui/?path=/docs/components-bento--docs)
 
 Бенто-сетка из карточек-ссылок с адаптивной раскладкой и поддержкой `Link` из роутеров.
