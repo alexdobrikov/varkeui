@@ -1,6 +1,6 @@
 {
   "name": "varkeui",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "React UI components: tiles, lists, inputs and bento grids with light and dark themes",
   "license": "MIT",
   "author": "Alexey Dobrikov",
