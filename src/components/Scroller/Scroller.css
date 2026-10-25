@@ -1,0 +1,133 @@
+.vui-scroller {
+  --vui-scroller-gap: 16px;
+  --vui-scroller-inset: 0px;
+  --vui-scroller-bleed-y: 8px;
+  --vui-scroller-fade: 48px;
+  --vui-scroller-button-size: 40px;
+  --vui-scroller-button-top: 50%;
+
+  position: relative;
+  min-width: 0;
+}
+
+.vui-scroller__viewport {
+  display: flex;
+  gap: var(--vui-scroller-gap);
+  margin-block: calc(var(--vui-scroller-bleed-y) * -1);
+  padding-block: var(--vui-scroller-bleed-y);
+  padding-inline: var(--vui-scroller-inset);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--vui-scroller-inset);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vui-scroller__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.vui-scroller__viewport:focus-visible {
+  border-radius: 8px;
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+.vui-scroller--snap .vui-scroller__viewport {
+  scroll-snap-type: x mandatory;
+}
+
+.vui-scroller__item {
+  display: flex;
+  flex: none;
+  scroll-snap-align: start;
+}
+
+.vui-scroller--fade-start .vui-scroller__viewport {
+  mask-image: linear-gradient(to right, transparent, #000 var(--vui-scroller-fade));
+}
+
+.vui-scroller--fade-end .vui-scroller__viewport {
+  mask-image: linear-gradient(to left, transparent, #000 var(--vui-scroller-fade));
+}
+
+.vui-scroller--fade-start.vui-scroller--fade-end .vui-scroller__viewport {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--vui-scroller-fade),
+    #000 calc(100% - var(--vui-scroller-fade)),
+    transparent
+  );
+}
+
+.vui-scroller__button {
+  position: absolute;
+  top: var(--vui-scroller-button-top);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--vui-scroller-button-size);
+  height: var(--vui-scroller-button-size);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--vui-color-bg);
+  box-shadow:
+    0 0 0 1px var(--vui-color-border),
+    0 4px 16px rgb(0 0 0 / 0.16);
+  color: var(--vui-color-text);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition:
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.vui-scroller__button[hidden] {
+  display: none;
+}
+
+.vui-scroller__button > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.vui-scroller__button--previous {
+  left: max(4px, calc(var(--vui-scroller-inset) - var(--vui-scroller-button-size) / 2));
+}
+
+.vui-scroller__button--next {
+  right: max(4px, calc(var(--vui-scroller-inset) - var(--vui-scroller-button-size) / 2));
+}
+
+.vui-scroller--controls-always .vui-scroller__button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vui-scroller--controls-auto:hover .vui-scroller__button {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .vui-scroller__button:hover {
+    background: var(--vui-color-surface);
+  }
+}
+
+.vui-scroller__button:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-scroller__button {
+    transition: none;
+  }
+}

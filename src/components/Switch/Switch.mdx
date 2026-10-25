@@ -1,0 +1,68 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Switch.stories';
+import { Switch } from './Switch';
+
+<Meta of={Stories} />
+
+# Switch
+
+Переключатель «включено / выключено» для настроек, которые применяются сразу, без кнопки «Сохранить».
+
+```tsx
+import { Switch } from 'varkeui';
+```
+
+<Canvas of={Stories.States} />
+
+## Как обычный checkbox
+
+Внутри настоящий `<input type="checkbox" role="switch">`. Работают `checked` и `onChange`, `defaultChecked`, `name`, `ref` — значит, `Switch` дружит с формами и react-hook-form. Для удобства есть `onCheckedChange`: он получает сразу `true` или `false`.
+
+```tsx
+const [enabled, setEnabled] = useState(false);
+
+<Switch aria-label="Reminders" checked={enabled} onCheckedChange={setEnabled} />;
+```
+
+## С подписью
+
+`label` выводит подпись рядом, клик по ней тоже переключает.
+
+<Canvas of={Stories.WithLabel} />
+
+## В списке настроек
+
+Чтобы переключала вся строка, а не только ползунок, рендерьте `ListItem` как `label`. Заголовок строки заодно станет доступным именем переключателя.
+
+<Canvas of={Stories.SettingsList} />
+
+```tsx
+<List dividers>
+  <ListItem
+    as="label"
+    icon={bell}
+    title="Reminders"
+    after={<Switch checked={on} onCheckedChange={setOn} />}
+  />
+</List>
+```
+
+## Пропсы
+
+<ArgTypes of={Switch} />
+
+Остальные пропсы уходят на `<input>`, `className` и `style` — на корневой элемент.
+
+## Доступность
+
+- Без `label` передайте `aria-label` или оберните в `<label>`.
+- Скринридер объявляет его как переключатель со состоянием «вкл./выкл.».
+- Переключается пробелом, фокус виден с клавиатуры.
+
+## CSS-переменные
+
+| Переменная                                         | По умолчанию                   |
+| -------------------------------------------------- | ------------------------------ |
+| `--vui-switch-width`, `--vui-switch-height`        | 52×32 px, у `sm` — 40×24 px    |
+| `--vui-switch-track`, `--vui-switch-track-checked` | Фон выключенного и включённого |
+| `--vui-switch-thumb`, `--vui-switch-thumb-checked` | Цвет ползунка                  |

@@ -4,3 +4,7 @@
 @import '../components/Input/Input.css';
 @import '../components/Bento/Bento.css';
 @import '../components/Button/Button.css';
+@import '../components/Badge/Badge.css';
+@import '../components/Switch/Switch.css';
+@import '../components/SectionHeader/SectionHeader.css';
+@import '../components/Scroller/Scroller.css';

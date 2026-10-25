@@ -73,6 +73,24 @@ export function Shortcuts() {
   <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/input-button-light.png" alt="Input и InputButton" width="440" />
 </picture>
 
+### [SectionHeader](https://alexdobrikov.github.io/varkeui/?path=/docs/components-sectionheader--docs) и [Scroller](https://alexdobrikov.github.io/varkeui/?path=/docs/components-scroller--docs)
+
+Заголовки секций со стрелкой-ссылкой и горизонтальные ленты: листаются пальцем с прилипанием, на десктопе — стрелками и клавиатурой.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/hub-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/hub-light.png" alt="SectionHeader и Scroller" width="640" />
+</picture>
+
+### [Switch](https://alexdobrikov.github.io/varkeui/?path=/docs/components-switch--docs) и [Badge](https://alexdobrikov.github.io/varkeui/?path=/docs/components-badge--docs)
+
+Переключатели для настроек — в том числе целой строкой списка — и счётчики.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/settings-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/settings-light.png" alt="Switch и Badge в списке настроек" width="480" />
+</picture>
+
 ### [BentoGrid и BentoCard](https://alexdobrikov.github.io/varkeui/?path=/docs/components-bento--docs)
 
 Бенто-сетка из карточек-ссылок с адаптивной раскладкой и поддержкой `Link` из роутеров.

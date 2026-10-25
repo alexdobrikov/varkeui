@@ -1,0 +1,36 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Badge.stories';
+import { Badge } from './Badge';
+
+<Meta of={Stories} />
+
+# Badge
+
+Короткая метка или счётчик: «New», число непрочитанных, точка-индикатор.
+
+```tsx
+import { Badge } from 'varkeui';
+```
+
+<Canvas of={Stories.Tones} />
+
+## Счётчик
+
+`count` показывает число. Больше `max` (по умолчанию 99) выводится как `99+`. Ноль скрывает бейдж целиком, `showZero` оставляет его. `dot` рисует точку без текста.
+
+<Canvas of={Stories.Counters} />
+
+## Рядом с другими компонентами
+
+Бейдж вписывается в выемку `TileButton`, в слот `after` у `ListItem` и `action` у `SectionHeader`, в `endIcon` кнопки.
+
+<Canvas of={Stories.InContext} />
+
+## Пропсы
+
+<ArgTypes of={Badge} />
+
+## Доступность
+
+- Число само по себе мало что говорит скринридеру. Если оно не очевидно из контекста, добавьте `aria-label`: `<Badge count={5} aria-label="5 unread" />`.
+- У точки текста нет, `aria-label` для неё обязателен, если она несёт смысл.

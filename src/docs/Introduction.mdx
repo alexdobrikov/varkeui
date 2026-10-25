@@ -42,19 +42,24 @@ export function Shortcuts() {
 
 ## Компоненты
 
-| Компонент                                                  | Для чего                                                                            |
-| ---------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [Button, IconButton](?path=/docs/components-button--docs)  | Кнопки действий: primary, secondary, outline, ghost, danger, с иконками и загрузкой |
-| [TileButton](?path=/docs/components-tilebutton--docs)      | Плитка с картинкой и подписью: быстрые действия, разделы, коллекции                 |
-| [List, ListItem](?path=/docs/components-list--docs)        | Пункты списка с иконкой, заголовком и подзаголовком: онбординг, настройки, меню     |
-| [Input, InputButton](?path=/docs/components-input--docs)   | Текстовое поле с подписью, ошибкой, иконками и кнопкой внутри                       |
-| [BentoGrid, BentoCard](?path=/docs/components-bento--docs) | Бенто-сетка из карточек-ссылок с адаптивной раскладкой                              |
+| Компонент                                                   | Для чего                                                                            |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [Button, IconButton](?path=/docs/components-button--docs)   | Кнопки действий: primary, secondary, outline, ghost, danger, с иконками и загрузкой |
+| [SectionHeader](?path=/docs/components-sectionheader--docs) | Заголовок секции со стрелкой-ссылкой и действием справа                             |
+| [Scroller](?path=/docs/components-scroller--docs)           | Горизонтальная лента с прилипанием, стрелками на десктопе и затуханием по краям     |
+| [Switch](?path=/docs/components-switch--docs)               | Переключатель для настроек, в том числе целой строкой списка                        |
+| [Badge](?path=/docs/components-badge--docs)                 | Метки, счётчики и точки-индикаторы                                                  |
+| [TileButton](?path=/docs/components-tilebutton--docs)       | Плитка с картинкой и подписью: быстрые действия, разделы, коллекции                 |
+| [List, ListItem](?path=/docs/components-list--docs)         | Пункты списка с иконкой, заголовком и подзаголовком: онбординг, настройки, меню     |
+| [Input, InputButton](?path=/docs/components-input--docs)    | Текстовое поле с подписью, ошибкой, иконками и кнопкой внутри                       |
+| [BentoGrid, BentoCard](?path=/docs/components-bento--docs)  | Бенто-сетка из карточек-ссылок с адаптивной раскладкой                              |
 
-Иконки `PlusIcon`, `ChevronRightIcon`, `ArrowRightIcon`, `SearchIcon`, `CloseIcon`, `EyeIcon`, `EyeOffIcon`, `TrashIcon` — простые SVG, берут цвет из `currentColor` и принимают любые SVG-пропсы.
+Иконки `PlusIcon`, `ChevronLeftIcon`, `ChevronRightIcon`, `ArrowRightIcon`, `SearchIcon`, `CloseIcon`, `EyeIcon`, `EyeOffIcon`, `TrashIcon` — простые SVG, берут цвет из `currentColor` и принимают любые SVG-пропсы.
 
 ## Общие правила
 
 - Корневой элемент получает `className` и `style`, `ref` пробрасывается.
 - Если у компонента есть `href`, он рендерится ссылкой `<a>`, если `onClick` — кнопкой `<button type="button">`.
+- Компоненты помечены `"use client"`, их можно импортировать в серверные компоненты Next.js.
 - Картинки можно передавать строкой (URL) или элементом: `<img>`, SVG-компонент, `next/image`.
 - Размеры, переданные числом, считаются в пикселях: `width={352}` → `352px`.

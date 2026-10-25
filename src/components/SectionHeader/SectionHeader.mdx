@@ -1,0 +1,52 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './SectionHeader.stories';
+import { SectionHeader } from './SectionHeader';
+
+<Meta of={Stories} />
+
+# SectionHeader
+
+Заголовок секции. Со ссылкой получает стрелку «›» и ведёт на полный список раздела, справа можно поставить действие или счётчик.
+
+```tsx
+import { SectionHeader } from 'varkeui';
+```
+
+<Canvas of={Stories.Variants} />
+
+## Ссылка
+
+`href` делает заголовок ссылкой, `onClick` — кнопкой. Стрелка при наведении слегка сдвигается вправо. Сам тег заголовка остаётся на месте, поэтому структура страницы для скринридеров не меняется.
+
+Для роутеров передайте компонент ссылки в `linkAs`, а его пропсы — в `linkProps`:
+
+```tsx
+import { Link } from 'react-router';
+
+<SectionHeader title="Collections" linkAs={Link} linkProps={{ to: '/collections' }} />;
+```
+
+```tsx
+import Link from 'next/link';
+
+<SectionHeader title="Collections" linkAs={Link} href="/collections" />;
+```
+
+<Canvas of={Stories.WithRouterLink} />
+
+## Размеры и уровень заголовка
+
+20, 24 и 32 px. Размер не связан с тегом: `headingAs` выбирает уровень `h1`–`h6` под структуру страницы, по умолчанию `h2`.
+
+<Canvas of={Stories.Sizes} />
+
+## Пропсы
+
+<ArgTypes of={SectionHeader} />
+
+## CSS-переменные
+
+| Переменная                          | По умолчанию                 |
+| ----------------------------------- | ---------------------------- |
+| `--vui-section-header-font-size`    | 20px / 24px / 32px по `size` |
+| `--vui-section-header-chevron-size` | 18px / 22px / 28px           |

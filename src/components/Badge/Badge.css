@@ -1,0 +1,59 @@
+.vui-badge {
+  --vui-badge-height: 24px;
+  --vui-badge-padding-x: 8px;
+  --vui-badge-font-size: 13px;
+  --vui-badge-bg: var(--vui-color-surface-hover);
+  --vui-badge-color: var(--vui-color-text);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-width: var(--vui-badge-height);
+  height: var(--vui-badge-height);
+  padding: 0 var(--vui-badge-padding-x);
+  border-radius: 999px;
+  background: var(--vui-badge-bg);
+  color: var(--vui-badge-color);
+  font-family: var(--vui-font-family);
+  font-size: var(--vui-badge-font-size);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.vui-badge--sm {
+  --vui-badge-height: 20px;
+  --vui-badge-padding-x: 6px;
+  --vui-badge-font-size: 12px;
+}
+
+.vui-badge--accent {
+  --vui-badge-bg: var(--vui-color-accent);
+  --vui-badge-color: var(--vui-color-accent-text);
+}
+
+.vui-badge--danger {
+  --vui-badge-bg: var(--vui-color-danger-solid);
+  --vui-badge-color: #ffffff;
+}
+
+.vui-badge--success {
+  --vui-badge-bg: var(--vui-color-success-solid);
+  --vui-badge-color: #ffffff;
+}
+
+.vui-badge--dot {
+  min-width: 0;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+}
+
+.vui-badge--dot.vui-badge--sm {
+  width: 8px;
+  height: 8px;
+}
