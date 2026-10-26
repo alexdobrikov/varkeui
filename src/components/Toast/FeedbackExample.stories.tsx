@@ -15,7 +15,7 @@ export const Readme: StoryObj = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 20, width: 460 }}>
       <Banner tone="warning" title="Storage almost full">
-        Free up space to keep backing up photos.
+        Free up space to keep backing up photos
       </Banner>
       <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
         <Chip selected>All</Chip>

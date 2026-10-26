@@ -2,6 +2,7 @@
   --vui-banner-tone: var(--vui-color-info);
   --vui-banner-bg: color-mix(in srgb, var(--vui-banner-tone) 12%, var(--vui-color-bg));
   --vui-banner-radius: 24px;
+  --vui-banner-icon-size: 28px;
 
   display: flex;
   align-items: flex-start;
@@ -41,8 +42,8 @@
 
 .vui-banner__icon > svg,
 .vui-banner__icon > img {
-  width: 24px;
-  height: 24px;
+  width: var(--vui-banner-icon-size);
+  height: var(--vui-banner-icon-size);
 }
 
 .vui-banner__body {
@@ -51,6 +52,8 @@
   flex-direction: column;
   gap: 4px;
   min-width: 0;
+  /* Центрирует первую строку по иконке: строка заголовка ниже иконки на 4px. */
+  padding-top: 2px;
 }
 
 .vui-banner__title {

@@ -26,7 +26,7 @@ export const States: Story = {
       <Checkbox label="Disabled and checked" disabled defaultChecked />
       <Checkbox
         label="With a description"
-        description="We send one email on Sunday morning, nothing else."
+        description="We send one email on Sunday morning, nothing else"
         defaultChecked
       />
       <Checkbox size="sm" label="Small" defaultChecked />

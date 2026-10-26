@@ -42,7 +42,7 @@ function VerifyDemo() {
         Enter the code
       </div>
       <div style={{ color: 'var(--vui-color-text-muted)', fontSize: 15 }}>
-        We sent it to you@example.com. Try 123456.
+        Sent to you@example.com — try 123456
       </div>
       <CodeInput
         aria-label="Verification code"

@@ -30,7 +30,7 @@ export const Variants: Story = {
         variant="outlined"
         maxLength={160}
         showCount
-        defaultValue="Plant person, weekend hiker, amateur cook."
+        defaultValue="Plant person, weekend hiker, amateur cook"
       />
       <Textarea block label="Comment" error="Write at least 10 characters" defaultValue="Nice" />
       <Textarea block label="Disabled" disabled defaultValue="Read only for now" minRows={2} />
