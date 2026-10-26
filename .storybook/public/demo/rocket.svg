@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#e9e9ef"/>
+      <stop offset="1" stop-color="#a9a9b6"/>
+    </linearGradient>
+    <linearGradient id="fin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8a5c"/>
+      <stop offset="1" stop-color="#e2452a"/>
+    </linearGradient>
+    <linearGradient id="flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe27a"/>
+      <stop offset="0.6" stop-color="#ff9f43"/>
+      <stop offset="1" stop-color="#ff6b3d" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="glass" cx="0.35" cy="0.35" r="0.7">
+      <stop offset="0" stop-color="#bfe3ff"/>
+      <stop offset="1" stop-color="#3b6ff5"/>
+    </radialGradient>
+  </defs>
+  <g transform="rotate(40 80 80)">
+    <path d="M80 118c-10 14-8 30 0 40 8-10 10-26 0-40z" fill="url(#flame)"/>
+    <path d="M62 92 44 112c-2 3 0 6 3 5l21-6zM98 92l18 20c2 3 0 6-3 5l-21-6z" fill="url(#fin)"/>
+    <path d="M80 6c-20 18-26 46-24 76 1 14 4 26 8 36h32c4-10 7-22 8-36 2-30-4-58-24-76z" fill="url(#body)"/>
+    <path d="M80 6c-9 8-15 18-19 29h38c-4-11-10-21-19-29z" fill="url(#fin)"/>
+    <circle cx="80" cy="62" r="13" fill="#d8d8e0"/>
+    <circle cx="80" cy="62" r="9.5" fill="url(#glass)"/>
+    <path d="M74 118h12v6c0 3-2 5-6 5s-6-2-6-5z" fill="#6e6e7a"/>
+  </g>
+  <g fill="#ffd166">
+    <path d="M24 30l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z"/>
+    <path d="M132 112l2 4.5 4.5 2-4.5 2-2 4.5-2-4.5-4.5-2 4.5-2z"/>
+  </g>
+</svg>

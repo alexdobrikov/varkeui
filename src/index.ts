@@ -7,6 +7,7 @@ export * from './components/Chip';
 export * from './components/CodeInput';
 export * from './components/Input';
 export * from './components/List';
+export * from './components/PromoCard';
 export * from './components/Radio';
 export * from './components/Scroller';
 export * from './components/SectionHeader';

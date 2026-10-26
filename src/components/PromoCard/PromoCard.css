@@ -1,0 +1,210 @@
+.vui-promo {
+  --vui-promo-padding: 24px;
+  --vui-promo-radius: 28px;
+  --vui-promo-title-size: 28px;
+  --vui-promo-description-size: 16px;
+  --vui-promo-gap: 16px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: var(--vui-promo-padding);
+  overflow: hidden;
+  border-radius: var(--vui-promo-radius);
+  background: var(--vui-promo-bg, var(--vui-promo-tone-bg));
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+  container-type: inline-size;
+  isolation: isolate;
+}
+
+.vui-promo--dark {
+  --vui-promo-tone-bg: linear-gradient(135deg, #4a4950 0%, #141317 55%, #000000 100%);
+}
+
+.vui-promo--light {
+  --vui-promo-tone-bg: linear-gradient(135deg, #f8f8fa 0%, #e7e7ec 100%);
+}
+
+.vui-promo--neutral {
+  --vui-promo-tone-bg: var(--vui-color-surface);
+}
+
+.vui-promo--sm {
+  --vui-promo-padding: 20px;
+  --vui-promo-radius: 24px;
+  --vui-promo-title-size: 22px;
+  --vui-promo-description-size: 15px;
+  --vui-promo-gap: 12px;
+}
+
+.vui-promo--lg {
+  --vui-promo-padding: 32px;
+  --vui-promo-radius: 32px;
+  --vui-promo-title-size: 36px;
+  --vui-promo-description-size: 18px;
+  --vui-promo-gap: 24px;
+}
+
+.vui-promo--bleed {
+  overflow: visible;
+}
+
+/* Строка с текстом забирает лишнюю высоту, поэтому в карусели кнопки всех слайдов стоят на одном уровне. */
+.vui-promo__layout {
+  display: grid;
+  flex: 1;
+  grid-template-areas:
+    'body'
+    'action';
+  grid-template-rows: 1fr auto;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--vui-promo-gap);
+}
+
+.vui-promo--with-image .vui-promo__layout {
+  grid-template-areas:
+    'body media'
+    'action action';
+  grid-template-columns: minmax(0, 1fr) var(--vui-promo-image-size, 42%);
+}
+
+.vui-promo__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  grid-area: body;
+  min-width: 0;
+}
+
+.vui-promo--closable:not(.vui-promo--with-image) .vui-promo__body {
+  padding-right: 40px;
+}
+
+.vui-promo__title {
+  font-size: var(--vui-promo-title-size);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
+}
+
+.vui-promo__description {
+  font-size: var(--vui-promo-description-size);
+  line-height: 1.4;
+  opacity: 0.7;
+}
+
+.vui-promo__media {
+  position: relative;
+  grid-area: media;
+}
+
+/* Высота колонки не меньше её ширины, даже если текст короткий. */
+.vui-promo__media::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
+}
+
+.vui-promo--bleed .vui-promo__media {
+  margin-top: calc(-1 * (var(--vui-promo-padding) + var(--vui-promo-image-bleed, 24px)));
+}
+
+.vui-promo__image {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: var(--vui-promo-image-align, flex-start);
+  justify-content: var(--vui-promo-image-justify, flex-end);
+  pointer-events: none;
+  user-select: none;
+}
+
+.vui-promo__image > img,
+.vui-promo__image > svg {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: var(--vui-promo-image-position, right top);
+}
+
+.vui-promo__action {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  grid-area: action;
+  margin-top: calc(var(--vui-promo-gap) + 8px);
+}
+
+.vui-promo__close {
+  position: absolute;
+  top: calc(var(--vui-promo-padding) - 8px);
+  right: calc(var(--vui-promo-padding) - 8px);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--vui-color-text);
+  opacity: 0.7;
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-promo__close > svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (hover: hover) {
+  .vui-promo__close:hover {
+    background: color-mix(in srgb, var(--vui-color-text) 10%, transparent);
+    opacity: 1;
+  }
+}
+
+.vui-promo__close:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+/* Широкая карточка: кнопки под текстом в своей ширине, картинка на всю высоту справа. */
+@container (min-width: 560px) {
+  .vui-promo--with-image .vui-promo__layout {
+    grid-template-areas:
+      'body media'
+      'action media';
+    grid-template-rows: auto 1fr;
+    grid-template-columns: minmax(0, 1fr) var(--vui-promo-image-size, 36%);
+  }
+
+  .vui-promo__action {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-self: end;
+  }
+
+  .vui-promo__media::before {
+    padding-top: 60%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-promo__close {
+    transition: none;
+  }
+}

@@ -1,0 +1,82 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './PromoCard.stories';
+import { PromoCard } from './PromoCard';
+
+<Meta of={Stories} />
+
+# PromoCard
+
+Промо-карточка: крупный заголовок, иллюстрация и кнопка действия. Для анонсов функций, акций и приглашений. Служебные сообщения вроде «сохранено» или «нет сети» — это [Banner](?path=/docs/components-banner--docs).
+
+```tsx
+import { Button, PromoCard } from 'varkeui';
+```
+
+<Canvas of={Stories.Playground} />
+
+```tsx
+<PromoCard
+  title="Reach more readers"
+  description="Boost your posts and find a new audience"
+  image="/img/rocket.png"
+  imageBleed
+  action={<Button>Try it</Button>}
+  onClose={hide}
+/>
+```
+
+## Тоны
+
+`tone="dark"` — тёмная карточка в любой теме, `light` — светлая, `neutral` — фон `surface` текущей темы. Тон переключает тему внутри карточки, поэтому обычный `Button` сам становится контрастным: белым на тёмной карточке и чёрным на светлой.
+
+<Canvas of={Stories.Tones} />
+
+## Свой фон
+
+`background` принимает цвет, градиент или `url(...)`. Цвет текста и кнопок по-прежнему задаёт `tone`: на насыщенном фоне берите `dark`, на светлом — `light`.
+
+<Canvas of={Stories.CustomBackground} />
+
+## Картинка
+
+Картинка стоит в своей колонке справа, поэтому текст под неё не заезжает. Ширину колонки задаёт `imageSize`, угол — `imagePosition`. `imageBleed` выпускает картинку за верхний край карточки: `true` — на 24 px, число — на сколько пикселей. Оставьте над карточкой столько же свободного места.
+
+## На мобильном и на десктопе
+
+Раскладка зависит от ширины самой карточки, а не экрана (container queries). В узкой карточке кнопки растягиваются на всю ширину под текстом и картинкой. Начиная с 560 px кнопки встают под текст в своей ширине, а картинка занимает всю высоту справа.
+
+<Canvas of={Stories.Wide} />
+
+## Размеры
+
+`size` меняет заголовок (22 / 28 / 36 px), отступы и скругление. Размер кнопок задаётся отдельно — берите тот же.
+
+<Canvas of={Stories.Sizes} />
+
+## Закрытие
+
+`onClose` добавляет крестик в правом верхнем углу. Скрывать карточку решаете вы — например, запомнив выбор в `localStorage`.
+
+<Canvas of={Stories.Dismissible} />
+
+## Пропсы
+
+<ArgTypes of={PromoCard} />
+
+## Доступность
+
+- Кликабельны только кнопки, а не вся карточка: внутри нет вложенных интерактивных элементов.
+- Картинка по умолчанию декоративная (`alt=""`). Если она несёт смысл, передайте `imageAlt`.
+- У крестика есть подпись для скринридеров — `closeLabel`, по умолчанию `Close`.
+
+## CSS-переменные
+
+| Переменная                     | По умолчанию                            |
+| ------------------------------ | --------------------------------------- |
+| `--vui-promo-bg`               | Градиент тона или `--vui-color-surface` |
+| `--vui-promo-padding`          | 20 / 24 / 32px                          |
+| `--vui-promo-radius`           | 24 / 28 / 32px                          |
+| `--vui-promo-title-size`       | 22 / 28 / 36px                          |
+| `--vui-promo-description-size` | 15 / 16 / 18px                          |
+| `--vui-promo-image-size`       | 42%, в широкой карточке 36%             |
+| `--vui-promo-image-bleed`      | 24px при `imageBleed`                   |

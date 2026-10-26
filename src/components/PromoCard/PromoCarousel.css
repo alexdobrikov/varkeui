@@ -1,0 +1,204 @@
+.vui-carousel {
+  --vui-carousel-gap: 16px;
+  --vui-carousel-arrow-width: 40px;
+  --vui-carousel-arrow-height: 56px;
+  --vui-carousel-deck-inset: 24px;
+  --vui-carousel-deck-radius: 24px;
+
+  position: relative;
+  min-width: 0;
+  font-family: var(--vui-font-family);
+}
+
+.vui-carousel__stage {
+  position: relative;
+  z-index: 1;
+}
+
+.vui-carousel__viewport {
+  display: flex;
+  gap: var(--vui-carousel-gap);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.vui-carousel__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.vui-carousel__slide {
+  display: flex;
+  flex: none;
+  width: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.vui-carousel__slide > * {
+  flex: 1;
+  min-width: 0;
+}
+
+.vui-carousel__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--vui-carousel-arrow-width);
+  height: var(--vui-carousel-arrow-height);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: var(--vui-color-bg);
+  box-shadow:
+    0 0 0 1px var(--vui-color-border),
+    0 4px 16px rgb(0 0 0 / 0.16);
+  color: var(--vui-color-text);
+  cursor: pointer;
+  user-select: none;
+  transform: translateY(-50%);
+  transition: background-color 0.15s ease;
+}
+
+.vui-carousel__arrow > svg {
+  width: 22px;
+  height: 22px;
+}
+
+.vui-carousel__arrow--previous {
+  left: calc(var(--vui-carousel-arrow-width) / -2);
+}
+
+.vui-carousel__arrow--next {
+  right: calc(var(--vui-carousel-arrow-width) / -2);
+}
+
+.vui-carousel__arrow:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+.vui-carousel__arrow:active {
+  transform: translateY(-50%) scale(0.94);
+}
+
+/* Стрелки — только там, где есть мышь; на телефоне листают свайпом. */
+@media (hover: hover) and (pointer: fine) {
+  .vui-carousel__arrow {
+    display: flex;
+  }
+
+  .vui-carousel__arrow:hover {
+    background: var(--vui-color-surface);
+  }
+}
+
+.vui-carousel__dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding-top: 8px;
+}
+
+.vui-carousel--stacked .vui-carousel__dots {
+  margin: calc(var(--vui-carousel-deck-radius) * -1) var(--vui-carousel-deck-inset) 0;
+  padding-top: var(--vui-carousel-deck-radius);
+  border-radius: 0 0 var(--vui-carousel-deck-radius) var(--vui-carousel-deck-radius);
+  background: var(--vui-color-surface);
+}
+
+.vui-carousel__dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  margin: 0;
+  padding: 0 4px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-carousel__dot::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--vui-color-text) 30%, transparent);
+  transition:
+    width 0.25s ease,
+    background-color 0.15s ease;
+}
+
+.vui-carousel__dot--active {
+  position: relative;
+}
+
+.vui-carousel__dot--active::before {
+  width: 40px;
+  background: color-mix(in srgb, var(--vui-color-text) 15%, transparent);
+}
+
+.vui-carousel__dot:focus-visible {
+  border-radius: 8px;
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: -2px;
+}
+
+.vui-carousel__progress {
+  position: absolute;
+  top: 50%;
+  left: 4px;
+  width: 40px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 3px;
+  background: var(--vui-color-text);
+  transform-origin: left center;
+}
+
+.vui-carousel--playing .vui-carousel__progress {
+  animation: vui-carousel-progress var(--vui-carousel-interval, 6000ms) linear forwards;
+}
+
+.vui-carousel--hidden .vui-carousel__progress,
+.vui-carousel:has(:focus-visible) .vui-carousel__progress {
+  animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .vui-carousel:hover .vui-carousel__progress {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes vui-carousel-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-carousel--playing .vui-carousel__progress {
+    animation: none;
+  }
+
+  .vui-carousel__dot::before,
+  .vui-carousel__arrow {
+    transition: none;
+  }
+}

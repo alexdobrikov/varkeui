@@ -109,6 +109,15 @@ export function Shortcuts() {
   <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/feedback-light.png" alt="Banner, Chip, Skeleton и Toast" width="500" />
 </picture>
 
+### [PromoCard](https://alexdobrikov.github.io/varkeui/?path=/docs/components-promocard--docs) и [PromoCarousel](https://alexdobrikov.github.io/varkeui/?path=/docs/components-promocarousel--docs)
+
+Промо-карточки с крупным заголовком, иллюстрацией и кнопкой, а также карусель, которая листает их по таймеру. На телефоне — свайп, на компьютере — стрелки.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/promo-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/promo-light.png" alt="PromoCard и PromoCarousel" width="640" />
+</picture>
+
 ### [BentoGrid и BentoCard](https://alexdobrikov.github.io/varkeui/?path=/docs/components-bento--docs)
 
 Бенто-сетка из карточек-ссылок с адаптивной раскладкой и поддержкой `Link` из роутеров.
