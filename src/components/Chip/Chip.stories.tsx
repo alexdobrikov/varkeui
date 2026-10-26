@@ -22,19 +22,17 @@ const categories = ['All', 'Breakfast', 'Lunch', 'Dinner', 'Desserts', 'Drinks',
 function SingleChoiceDemo() {
   const [active, setActive] = useState('All');
   return (
-    <div style={{ maxWidth: 560 }}>
-      <Scroller aria-label="Categories" gap={8} controls="never" fade>
-        {categories.map((category) => (
-          <Chip
-            key={category}
-            selected={active === category}
-            onSelectedChange={() => setActive(category)}
-          >
-            {category}
-          </Chip>
-        ))}
-      </Scroller>
-    </div>
+    <Scroller aria-label="Categories" gap={8} fade>
+      {categories.map((category) => (
+        <Chip
+          key={category}
+          selected={active === category}
+          onSelectedChange={() => setActive(category)}
+        >
+          {category}
+        </Chip>
+      ))}
+    </Scroller>
   );
 }
 

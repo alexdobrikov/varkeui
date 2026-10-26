@@ -39,26 +39,24 @@ const trips = [
 export const Playground: Story = {
   args: { 'aria-label': 'Shortcuts' },
   render: (args) => (
-    <div style={{ maxWidth: 900 }}>
-      <Scroller {...args}>
-        {shortcuts.map(({ label, image, add }) => (
-          <TileButton
-            key={label}
-            label={label}
-            image={image}
-            imagePosition="bottom"
-            variant={add ? 'outlined' : 'filled'}
-            badge={add ? <PlusIcon /> : undefined}
-          />
-        ))}
-      </Scroller>
-    </div>
+    <Scroller {...args}>
+      {shortcuts.map(({ label, image, add }) => (
+        <TileButton
+          key={label}
+          label={label}
+          image={image}
+          imagePosition="bottom"
+          variant={add ? 'outlined' : 'filled'}
+          badge={add ? <PlusIcon /> : undefined}
+        />
+      ))}
+    </Scroller>
   ),
 };
 
 export const Hub: Story = {
   render: () => (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 40, maxWidth: 960 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
       <section style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         <SectionHeader title="Shortcuts" href="#" />
         <Scroller aria-label="Shortcuts" style={{ '--vui-scroller-button-top': '80px' } as never}>

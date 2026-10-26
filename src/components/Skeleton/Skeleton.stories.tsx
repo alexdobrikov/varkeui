@@ -59,13 +59,19 @@ function LoadingDemo() {
   }, []);
 
   return (
-    <div
-      style={{ display: 'flex', flexDirection: 'column', gap: 32, maxWidth: 560 }}
-      aria-busy={!loaded}
-    >
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32 }} aria-busy={!loaded}>
       <Scroller aria-label="Shortcuts" controls="never">
         {loaded
-          ? ['headphones', 'camera', 'notebook', 'weather'].map((name) => (
+          ? [
+              'headphones',
+              'camera',
+              'notebook',
+              'weather',
+              'plant',
+              'calendar',
+              'bowl',
+              'books',
+            ].map((name) => (
               <TileButton
                 key={name}
                 label={name[0].toUpperCase() + name.slice(1)}
@@ -73,7 +79,7 @@ function LoadingDemo() {
                 imagePosition="bottom"
               />
             ))
-          : Array.from({ length: 4 }, (_, index) => (
+          : Array.from({ length: 8 }, (_, index) => (
               <div
                 key={index}
                 style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'center' }}
@@ -84,7 +90,7 @@ function LoadingDemo() {
             ))}
       </Scroller>
       {loaded ? (
-        <List>
+        <List style={{ maxWidth: 560 }}>
           <ListItem
             icon="demo/star.svg"
             title="Pick what you're into"
@@ -98,7 +104,9 @@ function LoadingDemo() {
           <ListItem icon="demo/gift.svg" title="Invite a friend" subtitle="Share playlists" />
         </List>
       ) : (
-        <ListSkeleton />
+        <div style={{ maxWidth: 560 }}>
+          <ListSkeleton />
+        </div>
       )}
     </div>
   );
