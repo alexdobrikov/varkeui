@@ -1,19 +1,19 @@
 .vui-banner {
   --vui-banner-tone: var(--vui-color-info);
   --vui-banner-bg: color-mix(in srgb, var(--vui-banner-tone) 12%, var(--vui-color-bg));
-  --vui-banner-radius: 20px;
+  --vui-banner-radius: 24px;
 
   display: flex;
   align-items: flex-start;
-  gap: 12px;
+  gap: 14px;
   box-sizing: border-box;
-  padding: 16px;
+  padding: 20px;
   border-radius: var(--vui-banner-radius);
   background: var(--vui-banner-bg);
   color: var(--vui-color-text);
   font-family: var(--vui-font-family);
-  font-size: 15px;
-  line-height: 1.4;
+  font-size: 16px;
+  line-height: 1.45;
 }
 
 .vui-banner--neutral {
@@ -41,22 +41,22 @@
 
 .vui-banner__icon > svg,
 .vui-banner__icon > img {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 
 .vui-banner__body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
   min-width: 0;
-  /* Выравнивает первую строку текста по центру иконки. */
-  padding-top: 1px;
 }
 
 .vui-banner__title {
+  font-size: 17px;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .vui-banner__text {
@@ -68,7 +68,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .vui-banner__close {
@@ -76,9 +76,9 @@
   flex: none;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  margin: -3px -4px -3px 0;
+  width: 32px;
+  height: 32px;
+  margin: -4px -6px -4px 0;
   padding: 0;
   border: 0;
   border-radius: 50%;
