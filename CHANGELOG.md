@@ -1,5 +1,18 @@
 # varkeui
 
+## 0.6.0
+
+### Minor Changes
+
+- 97cab89: Новые компоненты: `Banner` для сообщений на странице, `Toast` с функцией `toast()` и `Toaster`, `Chip` для фильтров и тегов, `Skeleton` для загрузки. Иконки `InfoIcon`, `CheckCircleIcon`, `WarningIcon`, `ErrorIcon`, токены `--vui-color-info`, `--vui-color-success`, `--vui-color-warning`.
+- 21012d3: Единая шкала размеров. `Button`, `IconButton` и `SegmentedControl` теперь 40 / 48 / 56 px со скруглением 12 / 16 / 20 px — как `Input`, поэтому поле и кнопка одного размера стоят в ряд ровно. Раньше кнопка `md` была 44 px, переключатель — 40 px. Ячейки `CodeInput` — 56 и 64 px в высоту, мелкий вторичный текст поднят до 14–15 px, скругление `Skeleton` по умолчанию — 16 px.
+
+### Patch Changes
+
+- 72d0a94: `Banner`: иконка увеличена до 28 px и выровнена по первой строке. Размер можно поменять переменной `--vui-banner-icon-size`.
+- 1fc0e13: `Chip`, `Badge`, `TileButton`, кликабельные `ListItem` и `BentoCard` больше не выделяют текст при клике и не показывают текстовый курсор: это цельные элементы, а не текст.
+- 1aecc66: `Banner` и `Toast` стали просторнее, в ритме остальных компонентов: больше отступы и скругления, текст 16 px, иконки 24 px.
+
 ## 0.5.0
 
 ### Minor Changes
