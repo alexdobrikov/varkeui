@@ -1,7 +1,8 @@
 .vui-code {
   --vui-code-cell-size: 48px;
+  --vui-code-cell-height: 56px;
   --vui-code-gap: 8px;
-  --vui-code-radius: 14px;
+  --vui-code-radius: 16px;
   --vui-code-font-size: 22px;
 
   position: relative;
@@ -13,8 +14,9 @@
 
 .vui-code--lg {
   --vui-code-cell-size: 56px;
+  --vui-code-cell-height: 64px;
   --vui-code-gap: 10px;
-  --vui-code-radius: 16px;
+  --vui-code-radius: 20px;
   --vui-code-font-size: 26px;
 }
 
@@ -48,7 +50,7 @@
   justify-content: center;
   box-sizing: border-box;
   width: var(--vui-code-cell-size);
-  height: calc(var(--vui-code-cell-size) * 1.15);
+  height: var(--vui-code-cell-height);
   border: 2px solid transparent;
   border-radius: var(--vui-code-radius);
   background: var(--vui-color-surface);

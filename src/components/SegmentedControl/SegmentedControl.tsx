@@ -35,7 +35,7 @@ export interface SegmentedControlProps extends Omit<
   /** Имя для форм. По умолчанию генерируется. */
   name?: string;
   /**
-   * Высота: 32, 40 или 48 px.
+   * Высота: 40, 48 или 56 px.
    * @default md
    */
   size?: 'sm' | 'md' | 'lg';

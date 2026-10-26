@@ -1,9 +1,9 @@
 .vui-segmented {
-  --vui-segmented-height: 40px;
+  --vui-segmented-height: 48px;
   --vui-segmented-padding: 4px;
-  --vui-segmented-radius: 14px;
+  --vui-segmented-radius: 16px;
   --vui-segmented-font-size: 15px;
-  --vui-segmented-item-padding-x: 16px;
+  --vui-segmented-item-padding-x: 18px;
   --vui-segmented-track: var(--vui-color-surface);
   --vui-segmented-thumb: var(--vui-color-surface-raised);
 
@@ -20,18 +20,17 @@
 }
 
 .vui-segmented--sm {
-  --vui-segmented-height: 32px;
-  --vui-segmented-padding: 3px;
-  --vui-segmented-radius: 11px;
-  --vui-segmented-font-size: 13px;
-  --vui-segmented-item-padding-x: 12px;
+  --vui-segmented-height: 40px;
+  --vui-segmented-radius: 12px;
+  --vui-segmented-font-size: 14px;
+  --vui-segmented-item-padding-x: 14px;
 }
 
 .vui-segmented--lg {
-  --vui-segmented-height: 48px;
-  --vui-segmented-radius: 16px;
+  --vui-segmented-height: 56px;
+  --vui-segmented-radius: 20px;
   --vui-segmented-font-size: 16px;
-  --vui-segmented-item-padding-x: 20px;
+  --vui-segmented-item-padding-x: 22px;
 }
 
 .vui-segmented--block {

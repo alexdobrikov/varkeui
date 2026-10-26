@@ -1,10 +1,10 @@
 .vui-button {
-  --vui-button-height: 44px;
-  --vui-button-padding-x: 18px;
-  --vui-button-radius: 14px;
+  --vui-button-height: 48px;
+  --vui-button-padding-x: 20px;
+  --vui-button-radius: 16px;
   --vui-button-gap: 8px;
   --vui-button-font-size: 16px;
-  --vui-button-icon-size: 20px;
+  --vui-button-icon-size: 22px;
   --vui-button-bg: var(--vui-color-accent);
   --vui-button-bg-hover: var(--vui-color-accent-hover);
   --vui-button-color: var(--vui-color-accent-text);
@@ -41,19 +41,19 @@
 }
 
 .vui-button--sm {
-  --vui-button-height: 36px;
-  --vui-button-padding-x: 14px;
+  --vui-button-height: 40px;
+  --vui-button-padding-x: 16px;
   --vui-button-radius: 12px;
   --vui-button-gap: 6px;
-  --vui-button-font-size: 14px;
-  --vui-button-icon-size: 18px;
+  --vui-button-font-size: 15px;
+  --vui-button-icon-size: 20px;
 }
 
 .vui-button--lg {
   --vui-button-height: 56px;
   --vui-button-padding-x: 24px;
-  --vui-button-radius: 18px;
-  --vui-button-gap: 12px;
+  --vui-button-radius: 20px;
+  --vui-button-gap: 10px;
   --vui-button-font-size: 17px;
   --vui-button-icon-size: 24px;
 }

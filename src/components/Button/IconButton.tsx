@@ -21,7 +21,7 @@ interface IconButtonOwnProps {
    */
   variant?: ButtonVariant;
   /**
-   * Сторона квадрата: 36, 44 или 56 px.
+   * Сторона квадрата: 40, 48 или 56 px.
    * @default md
    */
   size?: ButtonSize;

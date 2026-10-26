@@ -127,7 +127,7 @@
 
 .vui-check__description {
   color: var(--vui-color-text-muted);
-  font-size: calc(var(--vui-check-font-size) - 2px);
+  font-size: calc(var(--vui-check-font-size) - 1px);
 }
 
 .vui-check--disabled {

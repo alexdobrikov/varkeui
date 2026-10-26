@@ -20,7 +20,7 @@ interface ButtonOwnProps {
    */
   variant?: ButtonVariant;
   /**
-   * Высота: 36, 44 или 56 px.
+   * Высота: 40, 48 или 56 px.
    * @default md
    */
   size?: ButtonSize;

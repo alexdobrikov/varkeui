@@ -6,7 +6,7 @@
   flex: none;
   width: var(--vui-skeleton-width, 100%);
   height: var(--vui-skeleton-height, 16px);
-  border-radius: var(--vui-skeleton-radius, 12px);
+  border-radius: var(--vui-skeleton-radius, 16px);
   background: var(--vui-skeleton-base);
 }
 
