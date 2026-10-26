@@ -23,6 +23,7 @@
   line-height: 1;
   white-space: nowrap;
   vertical-align: middle;
+  user-select: none;
 }
 
 .vui-badge--sm {

@@ -91,18 +91,34 @@ export const Removable: Story = {
   render: () => <RemovableDemo />,
 };
 
-export const Sizes: Story = {
-  render: () => (
+function SizesDemo() {
+  const [selected, setSelected] = useState(['Small selected', 'Medium selected']);
+  const toggle = (label: string) => (on: boolean) =>
+    setSelected((prev) => (on ? [...prev, label] : prev.filter((item) => item !== label)));
+  return (
     <div style={row}>
-      <Chip size="sm">Small</Chip>
-      <Chip size="sm" selected>
-        Small selected
-      </Chip>
-      <Chip>Medium</Chip>
-      <Chip selected>Medium selected</Chip>
-      <Chip disabled onClick={() => {}}>
+      {(['sm', 'md'] as const).map((size) =>
+        [
+          size === 'sm' ? 'Small' : 'Medium',
+          size === 'sm' ? 'Small selected' : 'Medium selected',
+        ].map((label) => (
+          <Chip
+            key={label}
+            size={size}
+            selected={selected.includes(label)}
+            onSelectedChange={toggle(label)}
+          >
+            {label}
+          </Chip>
+        )),
+      )}
+      <Chip disabled selected={false}>
         Disabled
       </Chip>
     </div>
-  ),
+  );
+}
+
+export const Sizes: Story = {
+  render: () => <SizesDemo />,
 };

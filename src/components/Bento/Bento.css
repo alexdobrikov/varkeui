@@ -152,6 +152,7 @@
 
 .vui-bento-card--interactive {
   cursor: pointer;
+  user-select: none;
 }
 
 @media (hover: hover) {

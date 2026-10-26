@@ -144,6 +144,7 @@
   --vui-list-item-padding-x: 12px;
 
   cursor: pointer;
+  user-select: none;
   transition: background-color 0.15s ease;
   -webkit-tap-highlight-color: transparent;
 }
