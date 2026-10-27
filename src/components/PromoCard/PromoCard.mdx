@@ -20,7 +20,7 @@ import { Button, PromoCard } from 'varkeui';
   description="Boost your posts and find a new audience"
   image="/img/rocket.png"
   imageBleed
-  action={<Button>Try it</Button>}
+  action={<Button size="lg">Try it</Button>}
   onClose={hide}
 />
 ```
@@ -49,7 +49,7 @@ import { Button, PromoCard } from 'varkeui';
 
 ## Размеры
 
-`size` меняет заголовок (22 / 28 / 36 px), отступы и скругление. Размер кнопок задаётся отдельно — берите тот же.
+`size` меняет заголовок (22 / 28 / 36 px), отступы и скругление. Кнопки в промо крупнее обычных: в карточках `md` и `lg` берите `Button size="lg"` (56 px), в `sm` — `md` (48 px).
 
 <Canvas of={Stories.Sizes} />
 

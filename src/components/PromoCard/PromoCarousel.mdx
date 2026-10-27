@@ -20,9 +20,9 @@ import { Button, PromoCard, PromoCarousel } from 'varkeui';
     title="Reach more readers"
     description="Boost your posts and find a new audience"
     image="/img/rocket.png"
-    action={<Button>Try it</Button>}
+    action={<Button size="lg">Try it</Button>}
   />
-  <PromoCard tone="light" title="Weekend sale" action={<Button>See deals</Button>} />
+  <PromoCard tone="light" title="Weekend sale" action={<Button size="lg">See deals</Button>} />
 </PromoCarousel>
 ```
 
@@ -48,7 +48,7 @@ import { Button, PromoCard, PromoCarousel } from 'varkeui';
 
 ## На десктопе
 
-Стрелки показываются только на устройствах с мышью и наполовину выходят за края карусели. Оставьте по бокам 20 px свободного места. Ширина карточки внутри меняет и её раскладку: в широкой карусели кнопки встают под текст.
+Стрелки показываются только на устройствах с мышью и наполовину выходят за края карусели. Оставьте по бокам 22 px свободного места. Ширина карточки внутри меняет и её раскладку: в широкой карусели кнопки встают под текст.
 
 <Canvas of={Stories.Wide} />
 
@@ -66,10 +66,9 @@ import { Button, PromoCard, PromoCarousel } from 'varkeui';
 
 ## CSS-переменные
 
-| Переменная                    | По умолчанию                                 |
-| ----------------------------- | -------------------------------------------- |
-| `--vui-carousel-gap`          | 16px — между слайдами при прокрутке          |
-| `--vui-carousel-arrow-width`  | 40px                                         |
-| `--vui-carousel-arrow-height` | 56px                                         |
-| `--vui-carousel-deck-inset`   | 24px — насколько стопка уже карусели с боков |
-| `--vui-carousel-deck-radius`  | 24px                                         |
+| Переменная                   | По умолчанию                                 |
+| ---------------------------- | -------------------------------------------- |
+| `--vui-carousel-gap`         | 16px — между слайдами при прокрутке          |
+| `--vui-carousel-arrow-size`  | 44px                                         |
+| `--vui-carousel-deck-inset`  | 24px — насколько стопка уже карусели с боков |
+| `--vui-carousel-deck-radius` | 24px                                         |

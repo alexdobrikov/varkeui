@@ -10,11 +10,11 @@ const meta = {
   args: {
     title: 'Reach more readers',
     description: 'Boost your posts and find a new audience',
-    image: '/demo/rocket.svg',
+    image: 'demo/rocket.svg',
     imageBleed: true,
     tone: 'dark',
     size: 'md',
-    action: <Button>Try it</Button>,
+    action: <Button size="lg">Try it</Button>,
     onClose: () => {},
   },
   argTypes: {
@@ -53,22 +53,22 @@ export const Tones: Story = {
         tone="dark"
         title="Reach more readers"
         description="Boost your posts and find a new audience"
-        image="/demo/rocket.svg"
-        action={<Button>Try it</Button>}
+        image="demo/rocket.svg"
+        action={<Button size="lg">Try it</Button>}
       />
       <PromoCard
         tone="light"
         title="Invite a friend"
         description="You both get a month of premium"
-        image="/demo/gift.svg"
-        action={<Button>Share link</Button>}
+        image="demo/gift.svg"
+        action={<Button size="lg">Share link</Button>}
       />
       <PromoCard
         tone="neutral"
         title="Plan your trip"
         description="Tickets, hotels and routes in one place"
-        image="/demo/plane.svg"
-        action={<Button>Open planner</Button>}
+        image="demo/plane.svg"
+        action={<Button size="lg">Open planner</Button>}
       />
     </div>
   ),
@@ -88,16 +88,16 @@ export const CustomBackground: Story = {
         background="linear-gradient(135deg, #ff8a5c 0%, #c2185b 100%)"
         title="Weekend sale"
         description="Up to 40% off on headphones"
-        image="/demo/headphones.svg"
-        action={<Button>See deals</Button>}
+        image="demo/headphones.svg"
+        action={<Button size="lg">See deals</Button>}
       />
       <PromoCard
         tone="light"
         background="linear-gradient(135deg, #d9f99d 0%, #67e8f9 100%)"
         title="Grow a garden"
         description="Daily reminders to water your plants"
-        image="/demo/plant.svg"
-        action={<Button>Turn on</Button>}
+        image="demo/plant.svg"
+        action={<Button size="lg">Turn on</Button>}
       />
     </div>
   ),
@@ -109,7 +109,7 @@ export const Wide: Story = {
       size="lg"
       title="Reach more readers"
       description="Boost your posts and find a new audience in a couple of clicks"
-      image="/demo/rocket.svg"
+      image="demo/rocket.svg"
       action={
         <>
           <Button size="lg">Try it</Button>
@@ -139,8 +139,8 @@ export const Sizes: Story = {
           size={size}
           title="Reach more readers"
           description={`size="${size}"`}
-          image="/demo/rocket.svg"
-          action={<Button size={size}>Try it</Button>}
+          image="demo/rocket.svg"
+          action={<Button size={size === 'sm' ? 'md' : 'lg'}>Try it</Button>}
         />
       ))}
     </div>
@@ -160,9 +160,9 @@ function DismissDemo() {
       <PromoCard
         title="Reach more readers"
         description="Boost your posts and find a new audience"
-        image="/demo/rocket.svg"
+        image="demo/rocket.svg"
         imageBleed
-        action={<Button>Try it</Button>}
+        action={<Button size="lg">Try it</Button>}
         onClose={() => setVisible(false)}
       />
     </div>
@@ -181,9 +181,9 @@ export const Readme: Story = {
         <PromoCard
           title="Reach more readers"
           description="Boost your posts and find a new audience"
-          image="/demo/rocket.svg"
+          image="demo/rocket.svg"
           imageBleed
-          action={<Button>Try it</Button>}
+          action={<Button size="lg">Try it</Button>}
           onClose={() => {}}
         />
       </div>
@@ -194,10 +194,10 @@ export const Readme: Story = {
             background="linear-gradient(160deg, #ffd9b8 0%, #f08a5d 100%)"
             title="Weekend sale"
             description="Up to 40% off on headphones"
-            image="/demo/headphones.svg"
-            action={<Button>See deals</Button>}
+            image="demo/headphones.svg"
+            action={<Button size="lg">See deals</Button>}
           />
-          <PromoCard title="Invite a friend" action={<Button>Share link</Button>} />
+          <PromoCard title="Invite a friend" action={<Button size="lg">Share link</Button>} />
         </PromoCarousel>
       </div>
     </div>

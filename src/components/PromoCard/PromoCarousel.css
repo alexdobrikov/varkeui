@@ -1,7 +1,6 @@
 .vui-carousel {
   --vui-carousel-gap: 16px;
-  --vui-carousel-arrow-width: 40px;
-  --vui-carousel-arrow-height: 56px;
+  --vui-carousel-arrow-size: 44px;
   --vui-carousel-deck-inset: 24px;
   --vui-carousel-deck-radius: 24px;
 
@@ -50,21 +49,23 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: var(--vui-carousel-arrow-width);
-  height: var(--vui-carousel-arrow-height);
+  width: var(--vui-carousel-arrow-size);
+  height: var(--vui-carousel-arrow-size);
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 14px;
-  background: var(--vui-color-bg);
-  box-shadow:
-    0 0 0 1px var(--vui-color-border),
-    0 4px 16px rgb(0 0 0 / 0.16);
+  border-radius: 50%;
+  background: var(--vui-color-surface-raised);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.18);
   color: var(--vui-color-text);
   cursor: pointer;
   user-select: none;
   transform: translateY(-50%);
-  transition: background-color 0.15s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .vui-carousel__arrow > svg {
@@ -73,11 +74,11 @@
 }
 
 .vui-carousel__arrow--previous {
-  left: calc(var(--vui-carousel-arrow-width) / -2);
+  left: calc(var(--vui-carousel-arrow-size) / -2);
 }
 
 .vui-carousel__arrow--next {
-  right: calc(var(--vui-carousel-arrow-width) / -2);
+  right: calc(var(--vui-carousel-arrow-size) / -2);
 }
 
 .vui-carousel__arrow:focus-visible {
@@ -86,7 +87,7 @@
 }
 
 .vui-carousel__arrow:active {
-  transform: translateY(-50%) scale(0.94);
+  transform: translateY(-50%) scale(0.92);
 }
 
 /* Стрелки — только там, где есть мышь; на телефоне листают свайпом. */
@@ -96,7 +97,12 @@
   }
 
   .vui-carousel__arrow:hover {
-    background: var(--vui-color-surface);
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.24);
+    transform: translateY(-50%) scale(1.06);
+  }
+
+  .vui-carousel__arrow:hover:active {
+    transform: translateY(-50%) scale(0.94);
   }
 }
 

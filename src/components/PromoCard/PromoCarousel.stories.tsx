@@ -8,8 +8,8 @@ const slides = [
     key="boost"
     title="Reach more readers"
     description="Boost your posts and find a new audience"
-    image="/demo/rocket.svg"
-    action={<Button>Try it</Button>}
+    image="demo/rocket.svg"
+    action={<Button size="lg">Try it</Button>}
   />,
   <PromoCard
     key="sale"
@@ -17,16 +17,16 @@ const slides = [
     tone="light"
     title="Weekend sale"
     description="Up to 40% off on headphones and speakers"
-    image="/demo/headphones.svg"
-    action={<Button>See deals</Button>}
+    image="demo/headphones.svg"
+    action={<Button size="lg">See deals</Button>}
   />,
   <PromoCard
     key="invite"
     background="linear-gradient(180deg, #0b1023 0%, #2f6bff 100%)"
     title="Invite a friend"
     description="You both get a month of premium"
-    image="/demo/gift.svg"
-    action={<Button>Share link</Button>}
+    image="demo/gift.svg"
+    action={<Button size="lg">Share link</Button>}
   />,
 ];
 
