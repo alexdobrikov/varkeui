@@ -46,4 +46,12 @@ describe('SectionHeader', () => {
     expect(screen.getByText('Three new')).toHaveClass('vui-section-header__subtitle');
     expect(screen.getByRole('button', { name: 'All' })).toBeInTheDocument();
   });
+
+  it('shows a muted count inside the heading and the link', () => {
+    const { rerender } = render(<SectionHeader title="Notifications" count={30} />);
+    expect(screen.getByRole('heading')).toHaveTextContent('Notifications30');
+    expect(screen.getByText('30')).toHaveClass('vui-section-header__count');
+    rerender(<SectionHeader title="Notifications" count={0} href="/n" />);
+    expect(screen.getByRole('link')).toContainElement(screen.getByText('0'));
+  });
 });

@@ -37,6 +37,25 @@ export const Variants: Story = {
   ),
 };
 
+export const WithCount: Story = {
+  render: () => (
+    <div style={column}>
+      <SectionHeader title="Notifications" count={30} />
+      <SectionHeader title="Saved places" count={128} href="#" />
+      <SectionHeader
+        title="Comments"
+        count="1.2K"
+        action={
+          <Button variant="ghost" size="sm">
+            Newest first
+          </Button>
+        }
+      />
+      <SectionHeader size="lg" title="Photos" count={4096} headingAs="h1" />
+    </div>
+  ),
+};
+
 export const Sizes: Story = {
   render: () => (
     <div style={column}>

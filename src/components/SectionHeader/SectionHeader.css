@@ -52,6 +52,16 @@
   cursor: pointer;
 }
 
+.vui-section-header__count {
+  margin-left: 0.3em;
+  color: var(--vui-color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.vui-section-header__link .vui-section-header__count {
+  margin-left: 0.1em;
+}
+
 .vui-section-header__chevron {
   flex: none;
   width: var(--vui-section-header-chevron-size);

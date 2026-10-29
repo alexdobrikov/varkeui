@@ -13,6 +13,8 @@ export interface SectionHeaderProps extends Omit<
   'title' | 'onClick'
 > {
   title: ReactNode;
+  /** Число рядом с заголовком приглушённым цветом: «Notifications 30». */
+  count?: ReactNode;
   /** Текст под заголовком. */
   subtitle?: ReactNode;
   /**
@@ -40,6 +42,7 @@ export interface SectionHeaderProps extends Omit<
 export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(function SectionHeader(
   {
     title,
+    count,
     subtitle,
     headingAs: Heading = 'h2',
     size = 'md',
@@ -56,6 +59,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
   const linked = linkAs !== undefined || href !== undefined || onClick !== undefined;
   const Link: ElementType = linkAs ?? (href !== undefined ? 'a' : 'button');
   const buttonProps = Link === 'button' ? { type: 'button' } : {};
+  const counter = count != null && <span className="vui-section-header__count">{count}</span>;
 
   return (
     <div
@@ -74,10 +78,14 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
               className="vui-section-header__link"
             >
               <span>{title}</span>
+              {counter}
               <ChevronRightIcon className="vui-section-header__chevron" />
             </Link>
           ) : (
-            title
+            <>
+              {title}
+              {counter}
+            </>
           )}
         </Heading>
         {subtitle != null && <p className="vui-section-header__subtitle">{subtitle}</p>}
