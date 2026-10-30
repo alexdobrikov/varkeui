@@ -1,0 +1,219 @@
+.vui-stat {
+  --vui-stat-padding: 24px;
+  --vui-stat-radius: 28px;
+  --vui-stat-min-height: 128px;
+  --vui-stat-value-size: 36px;
+  --vui-stat-bg: var(--vui-color-surface);
+  --vui-stat-tag-bg: color-mix(in srgb, var(--vui-color-text) 12%, transparent);
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  box-sizing: border-box;
+  min-width: 0;
+  min-height: var(--vui-stat-min-height);
+  margin: 0;
+  padding: var(--vui-stat-padding);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--vui-stat-radius);
+  background: var(--vui-stat-bg);
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+  text-align: left;
+  text-decoration: none;
+  container-type: inline-size;
+  transition: transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-stat--featured {
+  --vui-stat-min-height: 176px;
+  --vui-stat-value-size: 48px;
+}
+
+.vui-stat--tinted {
+  --vui-stat-bg: color-mix(in srgb, var(--vui-stat-color) 25%, transparent);
+  --vui-stat-tag-bg: color-mix(in srgb, var(--vui-stat-color) 70%, transparent);
+}
+
+.vui-stat--tinted.vui-stat--featured {
+  --vui-stat-bg: color-mix(in srgb, var(--vui-stat-color) 55%, transparent);
+  --vui-stat-tag-bg: color-mix(in srgb, var(--vui-color-text) 15%, transparent);
+}
+
+/* Плашка стоит в углу ближе к краю, чем текст: тянем строку на 12px вверх и вправо. */
+.vui-stat__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  min-height: 32px;
+  margin: -12px -12px 0 0;
+}
+
+.vui-stat__label {
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.vui-stat__tag {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  height: 32px;
+  margin-left: auto;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--vui-stat-tag-bg);
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.vui-stat__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.vui-stat--end .vui-stat__body {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.vui-stat--featured .vui-stat__body {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+
+.vui-stat__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.vui-stat__caption {
+  color: color-mix(in srgb, var(--vui-color-text) 70%, transparent);
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.vui-stat__title {
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.vui-stat--featured .vui-stat__title {
+  font-size: 24px;
+}
+
+.vui-stat__value {
+  flex: none;
+  font-size: var(--vui-stat-value-size);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+@container (min-width: 480px) {
+  .vui-stat--featured .vui-stat__title {
+    font-size: 28px;
+  }
+
+  .vui-stat--featured .vui-stat__value {
+    font-size: 60px;
+  }
+}
+
+.vui-stat--interactive {
+  cursor: pointer;
+  user-select: none;
+}
+
+.vui-stat--interactive::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--vui-color-text);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+@media (hover: hover) {
+  .vui-stat--interactive:hover::after {
+    opacity: 0.05;
+  }
+}
+
+.vui-stat--interactive:active {
+  transform: scale(0.98);
+}
+
+.vui-stat--interactive:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 3px;
+}
+
+.vui-stat:disabled,
+.vui-stat[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Узкий ряд: главная карточка на всю ширину, остальные по две в строке. */
+.vui-stat-row {
+  container-type: inline-size;
+}
+
+.vui-stat-row__items {
+  --vui-stat-row-space: var(--vui-stat-row-gap, 16px);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vui-stat-row-space);
+}
+
+.vui-stat-row__items > .vui-stat {
+  flex: 1 1 calc(50% - var(--vui-stat-row-space) / 2);
+}
+
+.vui-stat-row__items > .vui-stat--featured {
+  flex-basis: 100%;
+}
+
+/* Широкий ряд: всё в одну строку, главная тянется, остальные — колонки фиксированной ширины. */
+@container (min-width: 640px) {
+  .vui-stat-row__items {
+    flex-wrap: nowrap;
+  }
+
+  .vui-stat-row__items > .vui-stat {
+    flex: 0 0 var(--vui-stat-row-item-width, 176px);
+  }
+
+  .vui-stat-row__items > .vui-stat--featured,
+  .vui-stat-row__items:not(:has(> .vui-stat--featured)) > .vui-stat {
+    flex: 1 1 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-stat,
+  .vui-stat--interactive::after {
+    transition: none;
+  }
+}

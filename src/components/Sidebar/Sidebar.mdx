@@ -1,0 +1,130 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Sidebar.stories';
+import { SidebarItem } from './SidebarItem';
+import { SidebarProvider } from './SidebarProvider';
+
+<Meta of={Stories} />
+
+# Sidebar
+
+Боковое меню приложения: логотип, пункты с иконками, низ для настроек и аккаунта. На компьютере стоит колонкой слева и сворачивается до иконок, на телефоне прячется за кнопку-«бургер» и выезжает панелью поверх страницы.
+
+```tsx
+import {
+  Sidebar,
+  SidebarBrand,
+  SidebarCollapseButton,
+  SidebarGroup,
+  SidebarItem,
+  SidebarMain,
+  SidebarProvider,
+  SidebarTrigger,
+} from 'varkeui';
+```
+
+<Canvas of={Stories.Default} />
+
+## Раскладка
+
+`SidebarProvider` хранит состояние меню и ставит `Sidebar` и `SidebarMain` в ряд. Кнопка `SidebarTrigger` открывает меню на телефоне и сама прячется на компьютере, `SidebarCollapseButton` — наоборот.
+
+```tsx
+<SidebarProvider>
+  <Sidebar
+    header={
+      <>
+        <SidebarBrand logo="/logo.svg" title="Студия" subtitle="Кабинет" href="/" />
+        <SidebarCollapseButton />
+      </>
+    }
+    footer={<AccountRow />}
+  >
+    <SidebarGroup>
+      <SidebarItem label="Главная" icon={<HomeIcon />} href="/" active />
+      <SidebarItem label="Календарь" icon={<CalendarIcon />} href="/calendar" badge={3} />
+    </SidebarGroup>
+  </Sidebar>
+  <SidebarMain>
+    <header>
+      <SidebarTrigger />
+    </header>
+    …
+  </SidebarMain>
+</SidebarProvider>
+```
+
+## Телефон
+
+До 768 px меню выезжает слева. Пункты выше (48 px) и крупнее, чтобы попадать пальцем. Панель закрывается:
+
+- после выбора пункта — и ссылки, и кнопки;
+- по клику на затемнение;
+- по Escape;
+- если окно растянули до компьютерной ширины.
+
+Пока панель открыта, страница под ней не прокручивается.
+
+<Canvas of={Stories.Mobile} />
+
+## Свёрнутое меню
+
+На компьютере `SidebarCollapseButton` сворачивает меню до колонки иконок. Названия пунктов становятся всплывающими подсказками, счётчик — точкой на иконке. Чтобы запомнить выбор, используйте управляемый режим:
+
+```tsx
+const [collapsed, setCollapsed] = useState(() => localStorage.getItem('menu') === 'collapsed');
+
+<SidebarProvider
+  collapsed={collapsed}
+  onCollapsedChange={(next) => {
+    setCollapsed(next);
+    localStorage.setItem('menu', next ? 'collapsed' : 'expanded');
+  }}
+>
+```
+
+Скрыть часть низа в свёрнутом меню можно хуком `useSidebar()` — он отдаёт `collapsed`, `open` и функции для своих кнопок.
+
+<Canvas of={Stories.Collapsed} />
+
+## Роутеры
+
+`SidebarItem` и `SidebarBrand` принимают компонент ссылки в `as`:
+
+```tsx
+import Link from 'next/link';
+
+<SidebarItem
+  as={Link}
+  href="/lessons"
+  label="Уроки"
+  icon={<BookIcon />}
+  active={pathname === '/lessons'}
+/>;
+```
+
+## Пропсы
+
+### SidebarItem
+
+<ArgTypes of={SidebarItem} />
+
+### SidebarProvider
+
+<ArgTypes of={SidebarProvider} />
+
+## Доступность
+
+- Пункты лежат в `<nav aria-label="Меню">`, текущая ссылка получает `aria-current="page"`, текущая кнопка — `aria-pressed`.
+- `SidebarTrigger` и `SidebarCollapseButton` сообщают состояние через `aria-expanded`.
+- Закрытая панель на телефоне скрыта через `visibility`, поэтому Tab не уходит в невидимое меню.
+
+## CSS-переменные
+
+| Переменная                      | По умолчанию               | Что задаёт                     |
+| ------------------------------- | -------------------------- | ------------------------------ |
+| `--vui-sidebar-width`           | `272px`                    | Ширина меню                    |
+| `--vui-sidebar-collapsed-width` | `72px`                     | Ширина свёрнутого меню         |
+| `--vui-sidebar-mobile-width`    | `min(320px, 86vw)`         | Ширина панели на телефоне      |
+| `--vui-sidebar-icon-stroke`     | `1.75`                     | Толщина линий контурных иконок |
+| `--vui-sidebar-bg`              | `--vui-color-bg`           | Фон меню                       |
+| `--vui-sidebar-badge-bg`        | `--vui-color-danger-solid` | Фон счётчика и точки           |

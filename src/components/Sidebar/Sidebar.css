@@ -1,0 +1,431 @@
+.vui-sidebar-layout {
+  --vui-sidebar-width: 272px;
+  --vui-sidebar-collapsed-width: 72px;
+  --vui-sidebar-mobile-width: min(320px, 86vw);
+
+  display: flex;
+  min-height: 100dvh;
+  font-family: var(--vui-font-family);
+}
+
+.vui-sidebar-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.vui-sidebar {
+  --vui-sidebar-padding: 16px;
+  --vui-sidebar-item-height: 44px;
+  --vui-sidebar-item-size: 16px;
+  --vui-sidebar-icon-size: 24px;
+
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  gap: 8px;
+  box-sizing: border-box;
+  width: var(--vui-sidebar-width);
+  height: 100dvh;
+  padding: var(--vui-sidebar-padding) 12px;
+  overflow: hidden;
+  background: var(--vui-sidebar-bg, var(--vui-color-bg));
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+  transition: width 0.22s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.vui-sidebar__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 56px;
+}
+
+.vui-sidebar__nav {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.vui-sidebar__footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Группа */
+
+.vui-sidebar-group__label {
+  padding: 0 12px 6px;
+  color: var(--vui-color-text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.vui-sidebar-group__list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Пункт */
+
+.vui-sidebar-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: var(--vui-sidebar-item-height);
+  margin: 0;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  color: var(--vui-color-text);
+  font: inherit;
+  font-size: var(--vui-sidebar-item-size);
+  font-weight: 500;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (hover: hover) {
+  .vui-sidebar-item:hover {
+    background: var(--vui-color-surface);
+  }
+}
+
+.vui-sidebar-item:active {
+  background: var(--vui-color-surface-hover);
+}
+
+.vui-sidebar-item:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: -2px;
+}
+
+.vui-sidebar-item--active,
+.vui-sidebar-item--active:hover {
+  background: var(--vui-color-surface);
+  color: var(--vui-color-text);
+}
+
+.vui-sidebar-item--danger,
+.vui-sidebar-item--danger:hover {
+  color: var(--vui-color-danger);
+}
+
+.vui-sidebar-item:disabled,
+.vui-sidebar-item[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.vui-sidebar-item__icon {
+  position: relative;
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--vui-sidebar-icon-size);
+  height: var(--vui-sidebar-icon-size);
+}
+
+.vui-sidebar-item__icon svg,
+.vui-sidebar-item__icon img {
+  width: var(--vui-sidebar-icon-size);
+  height: var(--vui-sidebar-icon-size);
+}
+
+/* Контурные иконки (lucide и похожие) в меню чуть тоньше — 1.75 вместо обычных 2. */
+.vui-sidebar-item__icon svg,
+.vui-sidebar-icon-button > svg {
+  stroke-width: var(--vui-sidebar-icon-stroke, 1.75);
+}
+
+.vui-sidebar-item__label,
+.vui-sidebar-item__badge,
+.vui-sidebar-brand__text,
+.vui-sidebar-group__label {
+  transition: opacity 0.15s ease;
+}
+
+.vui-sidebar-item__label {
+  flex: 1;
+  line-height: 20px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vui-sidebar-item__badge {
+  flex: none;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 7px;
+  box-sizing: border-box;
+  border-radius: 12px;
+  background: var(--vui-sidebar-badge-bg, var(--vui-color-danger-solid));
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.vui-sidebar-item__dot {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  display: none;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--vui-sidebar-bg, var(--vui-color-bg));
+  border-radius: 50%;
+  background: var(--vui-sidebar-badge-bg, var(--vui-color-danger-solid));
+}
+
+.vui-sidebar-separator {
+  flex: none;
+  width: auto;
+  height: 1px;
+  margin: 4px 12px;
+  border: 0;
+  background: var(--vui-color-border);
+}
+
+/* Шапка: логотип и название */
+
+.vui-sidebar-brand {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 4px;
+  border-radius: 14px;
+  color: var(--vui-color-text);
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a.vui-sidebar-brand:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: -2px;
+}
+
+.vui-sidebar-brand__logo {
+  display: flex;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.vui-sidebar-brand__logo > img,
+.vui-sidebar-brand__logo > svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vui-sidebar-brand__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.vui-sidebar-brand__title {
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.vui-sidebar-brand__subtitle {
+  overflow: hidden;
+  color: var(--vui-color-text-muted);
+  font-size: 14px;
+  text-overflow: ellipsis;
+}
+
+/* Кнопки «бургер» и «свернуть» */
+
+.vui-sidebar-icon-button {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 14px;
+  background: none;
+  color: var(--vui-color-text-muted);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-sidebar-icon-button > svg {
+  width: 24px;
+  height: 24px;
+}
+
+@media (hover: hover) {
+  .vui-sidebar-icon-button:hover {
+    background: var(--vui-color-surface);
+    color: var(--vui-color-text);
+  }
+}
+
+.vui-sidebar-icon-button:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 2px;
+}
+
+.vui-sidebar-overlay {
+  display: none;
+}
+
+/* Компьютер: колонка слева, сворачивается до иконок */
+
+@media (min-width: 768px) {
+  .vui-sidebar-trigger {
+    display: none;
+  }
+
+  .vui-sidebar--collapsed {
+    width: var(--vui-sidebar-collapsed-width);
+  }
+
+  /*
+   * Ширина свёрнутого меню подобрана так, что иконки и логотип остаются на месте:
+   * меняется только ширина колонки, а подписи гаснут и обрезаются её краем.
+   */
+  .vui-sidebar--collapsed .vui-sidebar-brand__text,
+  .vui-sidebar--collapsed .vui-sidebar-item__label,
+  .vui-sidebar--collapsed .vui-sidebar-item__badge,
+  .vui-sidebar--collapsed .vui-sidebar-group__label {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Кнопка «развернуть» встаёт на место логотипа и проявляется при наведении на шапку. */
+  .vui-sidebar--collapsed .vui-sidebar-collapse {
+    position: absolute;
+    top: 50%;
+    left: 2px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+  }
+
+  .vui-sidebar--collapsed
+    .vui-sidebar__header:is(:hover, :has(:focus-visible))
+    .vui-sidebar-collapse {
+    opacity: 1;
+  }
+
+  .vui-sidebar--collapsed
+    .vui-sidebar__header:is(:hover, :has(:focus-visible))
+    .vui-sidebar-brand__logo {
+    opacity: 0;
+  }
+
+  .vui-sidebar--collapsed .vui-sidebar-brand__logo {
+    transition: opacity 0.15s ease;
+  }
+
+  .vui-sidebar--collapsed .vui-sidebar-separator {
+    margin-inline: 8px;
+  }
+
+  .vui-sidebar--collapsed .vui-sidebar-item__dot {
+    display: block;
+  }
+}
+
+/* Телефон: панель выезжает слева поверх страницы */
+
+@media (max-width: 767.98px) {
+  .vui-sidebar-collapse {
+    display: none;
+  }
+
+  .vui-sidebar {
+    --vui-sidebar-padding: 20px;
+    --vui-sidebar-item-height: 48px;
+    --vui-sidebar-item-size: 17px;
+
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 50;
+    width: var(--vui-sidebar-mobile-width);
+    padding-bottom: max(var(--vui-sidebar-padding), env(safe-area-inset-bottom));
+    border-radius: 0 28px 28px 0;
+    box-shadow: 0 0 48px rgb(0 0 0 / 0.35);
+    visibility: hidden;
+    transform: translateX(-100%);
+    transition:
+      transform 0.25s ease,
+      visibility 0s linear 0.25s;
+  }
+
+  .vui-sidebar--open {
+    visibility: visible;
+    transform: none;
+    transition: transform 0.25s ease;
+  }
+
+  .vui-sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    display: block;
+    background: rgb(0 0 0 / 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .vui-sidebar-overlay--open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-sidebar,
+  .vui-sidebar--open,
+  .vui-sidebar-overlay,
+  .vui-sidebar-item {
+    transition: none;
+  }
+}
