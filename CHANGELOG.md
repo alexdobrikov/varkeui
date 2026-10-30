@@ -1,5 +1,12 @@
 # varkeui
 
+## 0.8.0
+
+### Minor Changes
+
+- fd2334a: Add Sidebar: collapsible app menu with a slide-out panel on phones
+- fd2334a: Add StatCard and StatRow
+
 ## 0.7.0
 
 ### Minor Changes
