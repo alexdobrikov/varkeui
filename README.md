@@ -86,7 +86,11 @@ export function Shortcuts() {
 <SectionHeader
   title="Уроки"
   subtitle="Свои уроки и открытые уроки платформы"
-  action={<Button size="sm" startIcon={<PlusIcon />}>Новый урок</Button>}
+  action={
+    <Button size="sm" startIcon={<PlusIcon />}>
+      Новый урок
+    </Button>
+  }
 />
 ```
 
