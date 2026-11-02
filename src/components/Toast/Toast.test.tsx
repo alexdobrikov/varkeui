@@ -33,6 +33,32 @@ describe('toast and Toaster', () => {
     expect(screen.queryByText('Saved')).not.toBeInTheDocument();
   });
 
+  it('raises the region into the top layer on every new toast, above an open dialog', () => {
+    const shown = vi.fn();
+    const proto = HTMLElement.prototype as unknown as Record<string, unknown>;
+    const prev = { show: proto.showPopover, hide: proto.hidePopover };
+    proto.showPopover = shown;
+    proto.hidePopover = () => {};
+    try {
+      render(<Toaster />);
+      const region = document.querySelector('.vui-toaster');
+      expect(region).toHaveAttribute('popover', 'manual');
+      act(() => {
+        toast('One');
+      });
+      act(() => {
+        toast('Two');
+      });
+      expect(shown).toHaveBeenCalledTimes(2);
+    } finally {
+      // jsdom поповеры не умеет: убираем подмену целиком, чтобы остальные тесты шли без них.
+      if (prev.show) proto.showPopover = prev.show;
+      else Reflect.deleteProperty(proto, 'showPopover');
+      if (prev.hide) proto.hidePopover = prev.hide;
+      else Reflect.deleteProperty(proto, 'hidePopover');
+    }
+  });
+
   it('uses alert role for errors and adds the tone icon', () => {
     render(<Toaster />);
     act(() => {
