@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.8.1
+
+### Patch Changes
+
+- 02f22a9: Input: browser autofill no longer paints a mismatched rectangle inside the rounded field
+
 ## 0.8.0
 
 ### Minor Changes
