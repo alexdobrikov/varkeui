@@ -103,6 +103,15 @@ export function Shortcuts() {
   <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/hub-light.png" alt="SectionHeader и Scroller" width="640" />
 </picture>
 
+### [Modal](https://alexdobrikov.github.io/varkeui/?path=/docs/components-modal--docs) и [ImageInput](https://alexdobrikov.github.io/varkeui/?path=/docs/components-imageinput--docs)
+
+Модальное окно на нативном `<dialog>`: фокус внутри, Esc и клик по фону закрывают, кнопки внизу — равной ширины. ImageInput — поле для картинки с превью, загрузкой и перетаскиванием файла, в стиле Input.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/modal-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/modal-light.png" alt="Modal с формой и ImageInput" width="560" />
+</picture>
+
 ### [Switch](https://alexdobrikov.github.io/varkeui/?path=/docs/components-switch--docs) и [Badge](https://alexdobrikov.github.io/varkeui/?path=/docs/components-badge--docs)
 
 Переключатели для настроек — в том числе целой строкой списка — и счётчики.

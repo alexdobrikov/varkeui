@@ -1,0 +1,47 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './ImageInput.stories';
+import { ImageInput } from './ImageInput';
+
+<Meta of={Stories} />
+
+# ImageInput
+
+Поле для картинки: обложка, аватар, иллюстрация. Выглядит как [Input](?path=/docs/components-input--docs) — та же подпись, поверхность и подсказка, — слева превью, справа кнопка. Файл можно перетащить прямо на поле.
+
+```tsx
+import { ImageInput } from 'varkeui';
+```
+
+<Canvas of={Stories.WithPreview} />
+
+## Загрузка
+
+Компонент не загружает файл сам: `onFileSelect` отдаёт выбранный `File`, а вы загружаете его куда нужно и передаёте адрес в `value`. Пока идёт загрузка, `loading` показывает крутилку вместо кнопки. `onRemove` добавляет крестик для удаления.
+
+```tsx
+<ImageInput
+  block
+  label="Cover"
+  value={url}
+  loading={uploading}
+  onFileSelect={async (file) => setUrl(await upload(file))}
+  onRemove={() => setUrl(null)}
+/>
+```
+
+## Состояния
+
+<Canvas of={Stories.States} />
+
+## Пропсы
+
+<ArgTypes of={ImageInput} />
+
+## CSS-переменные
+
+| Переменная                 | По умолчанию                |
+| -------------------------- | --------------------------- |
+| `--vui-image-input-height` | 72px                        |
+| `--vui-image-input-radius` | 20px                        |
+| `--vui-image-input-inset`  | 8px — отступ превью от края |
+| `--vui-image-input-bg`     | `var(--vui-color-surface)`  |

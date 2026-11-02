@@ -1,7 +1,9 @@
 @import './tokens.css';
 @import '../components/TileButton/TileButton.css';
 @import '../components/List/List.css';
+@import '../components/Modal/Modal.css';
 @import '../components/Input/Input.css';
+@import '../components/ImageInput/ImageInput.css';
 @import '../components/Bento/Bento.css';
 @import '../components/Button/Button.css';
 @import '../components/Badge/Badge.css';

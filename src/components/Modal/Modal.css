@@ -1,0 +1,143 @@
+.vui-modal {
+  --vui-modal-width: 520px;
+  --vui-modal-radius: 32px;
+  --vui-modal-padding: 28px;
+  --vui-modal-backdrop: rgb(0 0 0 / 0.55);
+
+  box-sizing: border-box;
+  width: min(var(--vui-modal-width), calc(100% - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: transparent;
+  color: var(--vui-color-text);
+  font-family: var(--vui-font-family);
+}
+
+.vui-modal--sm {
+  --vui-modal-width: 400px;
+}
+
+.vui-modal--lg {
+  --vui-modal-width: 720px;
+}
+
+.vui-modal:focus {
+  outline: none;
+}
+
+.vui-modal::backdrop {
+  background: var(--vui-modal-backdrop);
+  backdrop-filter: blur(4px);
+}
+
+/* Пока окно открыто, страница под ним не прокручивается. */
+html:has(.vui-modal[open]) {
+  overflow: hidden;
+}
+
+.vui-modal__panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+  max-height: calc(100dvh - 32px);
+  padding: var(--vui-modal-padding);
+  border-radius: var(--vui-modal-radius);
+  background: var(--vui-color-bg);
+  box-shadow: 0 24px 64px rgb(0 0 0 / 0.28);
+}
+
+.vui-modal[open] .vui-modal__panel {
+  animation: vui-modal-in 0.18s ease-out;
+}
+
+/* Двойной класс: стили кнопки подключаются позже и иначе перебили бы позицию. */
+.vui-modal .vui-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.vui-modal__header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Место под крестик, чтобы длинный заголовок под него не залезал. */
+  padding-right: 40px;
+}
+
+.vui-modal--centered .vui-modal__header {
+  align-items: center;
+  padding-inline: 40px;
+  text-align: center;
+}
+
+.vui-modal__icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+  font-size: 56px;
+  line-height: 1;
+}
+
+.vui-modal__icon img,
+.vui-modal__icon svg {
+  width: 72px;
+  height: 72px;
+}
+
+.vui-modal__title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.vui-modal__description {
+  margin: 0;
+  color: var(--vui-color-text-muted);
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.vui-modal__body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+  /* Длинная форма прокручивается внутри, шапка и кнопки остаются на месте. */
+  margin: -4px calc(var(--vui-modal-padding) * -1);
+  padding: 4px var(--vui-modal-padding);
+  overflow-y: auto;
+}
+
+/* Кнопки в ряд равной ширины. */
+.vui-modal__actions {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: 12px;
+}
+
+.vui-modal__actions > * {
+  width: 100%;
+}
+
+@keyframes vui-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-modal[open] .vui-modal__panel {
+    animation: none;
+  }
+}

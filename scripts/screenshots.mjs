@@ -13,6 +13,12 @@ const shots = [
   { name: 'form', story: 'examples-form--readme' },
   { name: 'hub', story: 'components-scroller--hub' },
   { name: 'section-header', story: 'components-sectionheader--readme' },
+  // Окно в верхнем слое — снимаем саму панель, а не корень истории.
+  {
+    name: 'modal',
+    story: 'components-modal--with-form',
+    selector: 'dialog[open] .vui-modal__panel',
+  },
   { name: 'settings', story: 'components-switch--settings-list' },
   { name: 'button', story: 'components-button--readme' },
   { name: 'tile-button', story: 'components-tilebutton--gallery' },
@@ -60,15 +66,15 @@ try {
   const page = await browser.newPage();
   await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 });
 
-  for (const { name, story } of shots) {
+  for (const { name, story, selector } of shots) {
     for (const theme of themes) {
       await page.goto(`${base}/iframe.html?id=${story}&viewMode=story&globals=theme:${theme}`, {
         waitUntil: 'networkidle0',
       });
-      const target = await page.waitForSelector('#storybook-root [data-vui-theme] > *');
+      const target = await page.waitForSelector(selector ?? '#storybook-root [data-vui-theme] > *');
       await page.evaluate(() => document.fonts.ready);
-      const box = await target.evaluate((node) => {
-        const rects = [...node.children].map((child) => child.getBoundingClientRect());
+      const box = await target.evaluate((node, own) => {
+        const rects = own ? [] : [...node.children].map((child) => child.getBoundingClientRect());
         if (!rects.length) rects.push(node.getBoundingClientRect());
         const x = Math.min(...rects.map((r) => r.left));
         const y = Math.min(...rects.map((r) => r.top));
@@ -78,7 +84,7 @@ try {
           width: Math.max(...rects.map((r) => r.right)) - x,
           height: Math.max(...rects.map((r) => r.bottom)) - y,
         };
-      });
+      }, Boolean(selector));
       const file = join(outDir, `${name}-${theme}.png`);
       await page.screenshot({
         path: file,

@@ -1,0 +1,50 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Modal.stories';
+import { Modal } from './Modal';
+
+<Meta of={Stories} />
+
+# Modal
+
+Модальное окно: подтверждение, короткая форма, выбор из списка. Построено на нативном `<dialog>`: окно в верхнем слое, фокус остаётся внутри, страница под ним недоступна и не прокручивается, Esc закрывает.
+
+```tsx
+import { Modal } from 'varkeui';
+```
+
+<Canvas of={Stories.Playground} />
+
+## Открытие и закрытие
+
+Окно управляется снаружи: `open` — показать, `onClose` — пользователь хочет закрыть (крестик, Esc, клик по фону). Закрыть — поставить `open={false}`. Так можно не закрывать окно, пока идёт сохранение. Клик по фону выключается `closeOnBackdrop={false}`.
+
+```tsx
+const [open, setOpen] = useState(false);
+
+<Modal open={open} onClose={() => setOpen(false)} title="Delete lesson?" actions={…} />;
+```
+
+## Форма
+
+`children` — содержимое окна: поля встают столбиком с отступом 20 px, длинная форма прокручивается внутри, шапка и кнопки остаются на месте. `actions` — кнопки внизу, в ряд равной ширины. `icon` — эмодзи или картинка над заголовком, с ней шапка центрируется.
+
+<Canvas of={Stories.WithForm} />
+
+## Размеры
+
+`size`: `sm` — 400 px, `md` — 520 px, `lg` — 720 px.
+
+<Canvas of={Stories.Sizes} />
+
+## Пропсы
+
+<ArgTypes of={Modal} />
+
+## CSS-переменные
+
+| Переменная             | По умолчанию          |
+| ---------------------- | --------------------- |
+| `--vui-modal-width`    | 400px / 520px / 720px |
+| `--vui-modal-radius`   | 32px                  |
+| `--vui-modal-padding`  | 28px                  |
+| `--vui-modal-backdrop` | `rgb(0 0 0 / 0.55)`   |

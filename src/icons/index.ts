@@ -6,6 +6,7 @@ export { CloseIcon } from './CloseIcon';
 export { ErrorIcon } from './ErrorIcon';
 export { EyeIcon } from './EyeIcon';
 export { EyeOffIcon } from './EyeOffIcon';
+export { ImageIcon } from './ImageIcon';
 export { InfoIcon } from './InfoIcon';
 export { PlusIcon } from './PlusIcon';
 export { SearchIcon } from './SearchIcon';
