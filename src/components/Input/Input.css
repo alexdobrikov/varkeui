@@ -102,6 +102,20 @@
   font-size: var(--vui-input-font-size);
 }
 
+/*
+ * Автозаполнение браузера (Chrome, Safari) красит сам <input> своим фоном. Он уже рамки поля
+ * (у поля внутренние отступы и скругление), и внутри появлялся голубоватый прямоугольник.
+ * Перекрываем его фоном поля через inset-тень — обычный background браузер не даёт переопределить.
+ */
+.vui-input__control:-webkit-autofill,
+.vui-input__control:-webkit-autofill:hover,
+.vui-input__control:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--vui-color-text);
+  caret-color: var(--vui-color-text);
+  box-shadow: 0 0 0 1000px var(--vui-input-bg) inset;
+  transition: background-color 9999s ease-out 0s;
+}
+
 .vui-input__control::-webkit-search-decoration,
 .vui-input__control::-webkit-search-cancel-button,
 .vui-input__control::-webkit-search-results-button,
