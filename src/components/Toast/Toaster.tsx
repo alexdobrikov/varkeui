@@ -123,6 +123,18 @@ export function Toaster({
     () => false,
   );
 
+  const region = useRef<HTMLElement>(null);
+
+  // Модальное окно (<dialog>) лежит в верхнем слое браузера, и z-index его не перекрывает.
+  // Поэтому область уведомлений — тоже поповер в верхнем слое; на каждое новое уведомление
+  // поднимаем её заново, чтобы оказаться над окном, открытым позже.
+  useEffect(() => {
+    const node = region.current;
+    if (!node || typeof node.showPopover !== 'function') return;
+    if (node.matches(':popover-open')) node.hidePopover();
+    if (items.length) node.showPopover();
+  }, [items]);
+
   if (!isClient) return null;
 
   const visible = items.slice(-max);
@@ -130,6 +142,9 @@ export function Toaster({
 
   return createPortal(
     <section
+      ref={region}
+      // Без поддержки поповеров (старые браузеры, jsdom) — обычный fixed с z-index.
+      popover={'showPopover' in HTMLElement.prototype ? 'manual' : undefined}
       aria-label="Notifications"
       className={cx('vui-toaster', `vui-toaster--${position}`, className)}
       style={style}
