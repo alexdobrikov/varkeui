@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import type { AnchorHTMLAttributes } from 'react';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
+import { PlusIcon } from '../../icons';
 import { SectionHeader } from './SectionHeader';
 
 const meta = {
@@ -33,6 +34,59 @@ export const Variants: Story = {
         }
       />
       <SectionHeader title="Inbox" href="#" action={<Badge tone="danger" count={12} />} />
+    </div>
+  ),
+};
+
+/** Кнопка в `action` центрируется по строке заголовка, подзаголовок — под ними. */
+export const WithSubtitleAndAction: Story = {
+  render: () => (
+    <div style={column}>
+      <SectionHeader
+        title="Lessons"
+        subtitle="Your own lessons and the open ones from the library. Homework lives in its own section."
+        action={
+          <Button size="sm" startIcon={<PlusIcon />}>
+            New lesson
+          </Button>
+        }
+      />
+      <SectionHeader
+        title="Students"
+        count={12}
+        subtitle="Send the invite link — they appear here once they accept"
+        action={
+          <Button variant="secondary" size="sm">
+            Copy link
+          </Button>
+        }
+      />
+    </div>
+  ),
+};
+
+/** Для README: заголовки секций в разных сочетаниях. */
+export const Readme: Story = {
+  render: () => (
+    <div style={{ ...column, width: 560 }}>
+      <SectionHeader
+        title="Lessons"
+        subtitle="Your own lessons and the open ones from the library"
+        action={
+          <Button size="sm" startIcon={<PlusIcon />}>
+            New lesson
+          </Button>
+        }
+      />
+      <SectionHeader title="Collections" count={24} href="#" />
+      <SectionHeader
+        title="Notifications"
+        action={
+          <Button variant="ghost" size="sm">
+            Mark all read
+          </Button>
+        }
+      />
     </div>
   ),
 };

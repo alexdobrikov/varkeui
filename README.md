@@ -73,9 +73,30 @@ export function Shortcuts() {
   <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/input-button-light.png" alt="Input и InputButton" width="440" />
 </picture>
 
-### [SectionHeader](https://alexdobrikov.github.io/varkeui/?path=/docs/components-sectionheader--docs) и [Scroller](https://alexdobrikov.github.io/varkeui/?path=/docs/components-scroller--docs)
+### [SectionHeader](https://alexdobrikov.github.io/varkeui/?path=/docs/components-sectionheader--docs)
 
-Заголовки секций со стрелкой-ссылкой и горизонтальные ленты: листаются пальцем с прилипанием, на десктопе — стрелками и клавиатурой.
+Заголовок секции: подзаголовок, счётчик, стрелка-ссылка и слот справа для кнопки — она выравнивается по строке заголовка, даже когда под ним есть подзаголовок.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/section-header-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/section-header-light.png" alt="SectionHeader" width="560" />
+</picture>
+
+```tsx
+<SectionHeader
+  title="Уроки"
+  subtitle="Свои уроки и открытые уроки платформы"
+  action={
+    <Button size="sm" startIcon={<PlusIcon />}>
+      Новый урок
+    </Button>
+  }
+/>
+```
+
+### [Scroller](https://alexdobrikov.github.io/varkeui/?path=/docs/components-scroller--docs)
+
+Горизонтальные ленты под заголовком секции: листаются пальцем с прилипанием, на десктопе — стрелками и клавиатурой.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/hub-dark.png" />

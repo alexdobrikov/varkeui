@@ -1,11 +1,13 @@
+/* Сетка, а не flex: слот action встаёт в строку заголовка и центрируется по ней,
+   а подзаголовок уходит под заголовок и кнопку не сдвигает. */
 .vui-section-header {
   --vui-section-header-font-size: 24px;
   --vui-section-header-chevron-size: 22px;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  column-gap: 16px;
   color: var(--vui-color-text);
   font-family: var(--vui-font-family);
 }
@@ -21,13 +23,13 @@
 }
 
 .vui-section-header__titles {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
+  display: contents;
 }
 
 .vui-section-header__title {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
   margin: 0;
   font-size: var(--vui-section-header-font-size);
   font-weight: 600;
@@ -80,14 +82,19 @@
   outline-offset: 4px;
 }
 
+/* Под заголовком на всю ширину — и под кнопкой тоже. */
 .vui-section-header__subtitle {
-  margin: 0;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 4px 0 0;
   color: var(--vui-color-text-muted);
   font-size: 15px;
   line-height: 1.35;
 }
 
 .vui-section-header__action {
+  grid-column: 2;
+  grid-row: 1;
   display: flex;
   flex: none;
   align-items: center;

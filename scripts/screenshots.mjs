@@ -12,6 +12,7 @@ const shots = [
   { name: 'feedback', story: 'examples-feedback--readme' },
   { name: 'form', story: 'examples-form--readme' },
   { name: 'hub', story: 'components-scroller--hub' },
+  { name: 'section-header', story: 'components-sectionheader--readme' },
   { name: 'settings', story: 'components-switch--settings-list' },
   { name: 'button', story: 'components-button--readme' },
   { name: 'tile-button', story: 'components-tilebutton--gallery' },

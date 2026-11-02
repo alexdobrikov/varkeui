@@ -34,6 +34,24 @@ import Link from 'next/link';
 
 <Canvas of={Stories.WithRouterLink} />
 
+## Подзаголовок и кнопка
+
+`action` — слот справа: кнопка, переключатель, бейдж. Он выравнивается по центру строки заголовка, а не всего блока, поэтому с подзаголовком кнопка остаётся на одной линии с заголовком. Подзаголовок идёт ниже на всю ширину.
+
+<Canvas of={Stories.WithSubtitleAndAction} />
+
+```tsx
+<SectionHeader
+  title="Lessons"
+  subtitle="Your own lessons and the open ones from the library"
+  action={
+    <Button size="sm" startIcon={<PlusIcon />}>
+      New lesson
+    </Button>
+  }
+/>
+```
+
 ## Счётчик
 
 `count` ставит число сразу после заголовка, приглушённым цветом: «Notifications 30». Он входит в заголовок и в ссылку, поэтому скринридер читает их вместе. Принимает число или готовую строку — сокращать большие числа вроде `1.2K` удобнее заранее. Цифры моноширинные, и заголовок не дёргается, когда число меняется.
