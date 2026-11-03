@@ -8,7 +8,7 @@ import {
 } from 'react';
 import { MinusIcon, PlusIcon } from '../../icons';
 import { cx } from '../../utils/cx';
-import type { InputSize } from '../Input';
+import type { InputSize, InputVariant } from '../Input';
 
 export interface NumberInputProps {
   /** Текущее число. */
@@ -31,6 +31,11 @@ export interface NumberInputProps {
    * @default md
    */
   size?: InputSize;
+  /**
+   * `filled` — с фоном, `outlined` — с обводкой, как у Input.
+   * @default filled
+   */
+  variant?: InputVariant;
   label?: ReactNode;
   hint?: ReactNode;
   error?: ReactNode;
@@ -61,6 +66,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(functi
     step = 1,
     format = String,
     size = 'md',
+    variant = 'filled',
     label,
     hint,
     error,
@@ -115,7 +121,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(functi
       className={cx(
         'vui-input',
         `vui-input--${size}`,
-        'vui-input--filled',
+        `vui-input--${variant}`,
         'vui-number-input',
         block && 'vui-input--block',
         error != null && 'vui-input--invalid',

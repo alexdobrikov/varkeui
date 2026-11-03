@@ -74,6 +74,25 @@ export const Sizes: Story = {
   },
 };
 
+export const Outlined: Story = {
+  render: function Render() {
+    const [value, setValue] = useState(2);
+    return (
+      <div style={column}>
+        <NumberInput
+          variant="outlined"
+          label="Participants"
+          value={value}
+          onValueChange={setValue}
+          min={2}
+          max={4}
+          block
+        />
+      </div>
+    );
+  },
+};
+
 export const States: Story = {
   render: () => (
     <div style={column}>

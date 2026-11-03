@@ -63,6 +63,13 @@ describe('NumberInput', () => {
     expect(input).toHaveAttribute('aria-valuetext', '3 pcs');
   });
 
+  it('supports the outlined variant', () => {
+    const { container } = render(
+      <NumberInput aria-label="n" value={1} onValueChange={() => {}} variant="outlined" />,
+    );
+    expect(container.firstElementChild).toHaveClass('vui-input--outlined');
+  });
+
   it('does not call onValueChange when the value does not change', async () => {
     const onValueChange = vi.fn();
     render(<NumberInput aria-label="n" value={4} onValueChange={onValueChange} max={4} />);
