@@ -7,6 +7,7 @@
   --vui-input-icon-size: 22px;
   --vui-input-action-inset: 6px;
   --vui-input-border-width: 2px;
+  --vui-input-transition: 0.15s ease;
   --vui-input-bg: var(--vui-color-surface);
   --vui-input-border-color: transparent;
 
@@ -66,8 +67,8 @@
   background: var(--vui-input-bg);
   cursor: text;
   transition:
-    border-color 0.15s ease,
-    background-color 0.15s ease;
+    border-color var(--vui-input-transition),
+    background-color var(--vui-input-transition);
 }
 
 .vui-input__field:has(> .vui-input__action) {
@@ -106,6 +107,8 @@
  * Автозаполнение браузера (Chrome, Safari) красит сам <input> своим фоном. Он уже рамки поля
  * (у поля внутренние отступы и скругление), и внутри появлялся голубоватый прямоугольник.
  * Перекрываем его фоном поля через inset-тень — обычный background браузер не даёт переопределить.
+ * Тень повторяет цвет фона поля, поэтому в hover переходим её с той же длительностью: иначе
+ * внутренний прямоугольник перекрашивался мгновенно, а скруглённое поле — плавно.
  */
 .vui-input__control:-webkit-autofill,
 .vui-input__control:-webkit-autofill:hover,
@@ -113,7 +116,9 @@
   -webkit-text-fill-color: var(--vui-color-text);
   caret-color: var(--vui-color-text);
   box-shadow: 0 0 0 1000px var(--vui-input-bg) inset;
-  transition: background-color 9999s ease-out 0s;
+  transition:
+    background-color 9999s ease-out 0s,
+    box-shadow var(--vui-input-transition);
 }
 
 .vui-input__control::-webkit-search-decoration,
@@ -239,5 +244,12 @@
   .vui-input__field,
   .vui-input-button {
     transition: none;
+  }
+
+  /* Поле меняет фон без перехода — тень автозаполнения должна перекрашиваться так же. */
+  .vui-input__control:-webkit-autofill,
+  .vui-input__control:-webkit-autofill:hover,
+  .vui-input__control:-webkit-autofill:focus {
+    transition: background-color 9999s ease-out 0s;
   }
 }
