@@ -1,0 +1,39 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './NumberInput.stories';
+import { NumberInput } from './NumberInput';
+
+<Meta of={Stories} />
+
+# NumberInput
+
+Поле для числа с кнопками «−» и «+»: количество участников, длительность, цена. Выглядит как [Input](?path=/docs/components-input--docs) — та же подпись, поверхность и подсказка. Число можно вписать с клавиатуры, стрелки ↑ ↓ меняют его на шаг.
+
+```tsx
+import { NumberInput } from 'varkeui';
+
+<NumberInput label="Участников" value={size} onValueChange={setSize} min={2} max={4} />;
+```
+
+<Canvas of={Stories.Playground} />
+
+## Шаг, формат и границы
+
+`step` — шаг кнопок, стрелок и округления вписанного числа. `min` и `max` — границы: на краю кнопка выключается, вписанное число прижимается к границе. `format` показывает число как нужно («1,5 ч», «1 500 ₽») — ввод всё равно разбирается обратно в число.
+
+Пока человек пишет, поле держит текст как есть и применяет число по blur или Enter — иначе «1,» превращалось бы в «1» на лету.
+
+<Canvas of={Stories.StepAndFormat} />
+
+## Размеры и состояния
+
+<Canvas of={Stories.Sizes} />
+
+<Canvas of={Stories.States} />
+
+## Доступность
+
+Поле — `role="spinbutton"` с `aria-valuenow`, `aria-valuemin`, `aria-valuemax` и `aria-valuetext` из `format`. Подписи кнопок — `decrementLabel` и `incrementLabel`.
+
+## Пропсы
+
+<ArgTypes of={NumberInput} />

@@ -1,3 +1,4 @@
+export * from './components/Avatar';
 export * from './components/Badge';
 export * from './components/Banner';
 export * from './components/Bento';
@@ -9,6 +10,7 @@ export * from './components/ImageInput';
 export * from './components/Input';
 export * from './components/List';
 export * from './components/Modal';
+export * from './components/NumberInput';
 export * from './components/PromoCard';
 export * from './components/Radio';
 export * from './components/Scroller';

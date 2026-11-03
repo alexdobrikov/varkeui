@@ -2,7 +2,9 @@
 @import '../components/TileButton/TileButton.css';
 @import '../components/List/List.css';
 @import '../components/Modal/Modal.css';
+@import '../components/Avatar/Avatar.css';
 @import '../components/Input/Input.css';
+@import '../components/NumberInput/NumberInput.css';
 @import '../components/ImageInput/ImageInput.css';
 @import '../components/Bento/Bento.css';
 @import '../components/Button/Button.css';

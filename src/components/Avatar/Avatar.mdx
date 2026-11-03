@@ -1,0 +1,37 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './Avatar.stories';
+import { Avatar, AvatarGroup } from './Avatar';
+
+<Meta of={Stories} />
+
+# Avatar и AvatarGroup
+
+Аватар человека: фото или инициалы на цветном круге. Цвет зависит от имени — у одного человека он одинаковый на всех экранах. Имя же — подпись для скринридеров и всплывающая подсказка.
+
+```tsx
+import { Avatar, AvatarGroup } from 'varkeui';
+
+<Avatar name="Анна Петрова" />;
+```
+
+<Canvas of={Stories.Sizes} />
+
+## Группа
+
+`AvatarGroup` ставит аватары в ряд с небольшим наездом — так показывают, кто в комнате или кто участвует. `max` ограничивает число кружков, остальные сворачиваются в «+N». Обводка у кругов — цвет фона (`--vui-avatar-ring`, по умолчанию `--vui-color-bg`): на цветной подложке задайте её цвет.
+
+<Canvas of={Stories.Group} />
+
+```tsx
+<AvatarGroup aria-label="В комнате" max={4}>
+  {members.map((m) => (
+    <Avatar key={m.id} name={m.name} />
+  ))}
+</AvatarGroup>
+```
+
+## Пропсы
+
+<ArgTypes of={Avatar} />
+
+<ArgTypes of={AvatarGroup} />
