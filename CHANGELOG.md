@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.11.0
+
+### Minor Changes
+
+- 1a348b6: NumberInput: вариант `outlined` — с обводкой и без фона, как у Input.
+
 ## 0.10.0
 
 ### Minor Changes
