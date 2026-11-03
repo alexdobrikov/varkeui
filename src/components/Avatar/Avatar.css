@@ -1,0 +1,67 @@
+.vui-avatar {
+  --vui-avatar-size: 40px;
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: var(--vui-avatar-size);
+  height: var(--vui-avatar-size);
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--vui-color-surface);
+  color: #fff;
+  font-family: var(--vui-font-family);
+  font-size: calc(var(--vui-avatar-size) * 0.38);
+  font-weight: 600;
+  line-height: 1;
+  user-select: none;
+}
+
+.vui-avatar--sm {
+  --vui-avatar-size: 32px;
+}
+
+.vui-avatar--lg {
+  --vui-avatar-size: 56px;
+}
+
+.vui-avatar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* «+N» — на поверхности, не цветной. */
+.vui-avatar--more {
+  background: var(--vui-color-surface-raised);
+  color: var(--vui-color-text);
+}
+
+/* Группа: каждый следующий наезжает на предыдущий примерно на пятую часть, обводка цветом фона разделяет круги. */
+.vui-avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.vui-avatar-group > .vui-avatar {
+  box-shadow: 0 0 0 2px var(--vui-avatar-ring, var(--vui-color-bg));
+}
+
+.vui-avatar-group > .vui-avatar + .vui-avatar {
+  margin-left: calc(var(--vui-avatar-size) * -0.22);
+}
+
+/* Размер группы — у всех её аватаров, даже если у Avatar задан свой. */
+.vui-avatar-group--sm > .vui-avatar {
+  --vui-avatar-size: 32px;
+}
+
+.vui-avatar-group--md > .vui-avatar {
+  --vui-avatar-size: 40px;
+}
+
+.vui-avatar-group--lg > .vui-avatar {
+  --vui-avatar-size: 56px;
+}

@@ -8,6 +8,7 @@ export { EyeIcon } from './EyeIcon';
 export { EyeOffIcon } from './EyeOffIcon';
 export { ImageIcon } from './ImageIcon';
 export { InfoIcon } from './InfoIcon';
+export { MinusIcon } from './MinusIcon';
 export { PlusIcon } from './PlusIcon';
 export { SearchIcon } from './SearchIcon';
 export { TrashIcon } from './TrashIcon';

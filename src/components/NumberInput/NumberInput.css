@@ -1,0 +1,67 @@
+/* Поле числа — на стилях Input (подпись, поверхность, подсказка, размеры), кнопки по краям
+   выровнены так же, как InputButton внутри Input. */
+/* Ширина по умолчанию — под число и две кнопки; block растягивает на контейнер. */
+.vui-number-input:not(.vui-input--block) {
+  width: 200px;
+}
+
+.vui-input__field.vui-number-input__field {
+  gap: 4px;
+  padding: calc(var(--vui-input-action-inset) - var(--vui-input-border-width));
+}
+
+.vui-number-input__control {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.vui-number-input__step {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: calc(var(--vui-input-radius) - var(--vui-input-action-inset));
+  background: var(--vui-color-surface-raised);
+  color: var(--vui-color-text);
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.vui-number-input__step > svg {
+  width: calc(var(--vui-input-icon-size) - 4px);
+  height: calc(var(--vui-input-icon-size) - 4px);
+}
+
+@media (hover: hover) {
+  .vui-number-input__step:not(:disabled):hover {
+    background: var(--vui-color-surface-hover);
+  }
+}
+
+.vui-number-input__step:not(:disabled):active {
+  transform: scale(0.94);
+}
+
+.vui-number-input__step:focus-visible {
+  outline: 2px solid var(--vui-color-focus);
+  outline-offset: 1px;
+}
+
+.vui-number-input__step:disabled {
+  cursor: default;
+  opacity: 0.35;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-number-input__step {
+    transition: none;
+  }
+}
