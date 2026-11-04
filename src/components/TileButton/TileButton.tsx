@@ -11,7 +11,7 @@ import { imagePositionVars, type ImagePosition } from '../../utils/imagePosition
 import { toCssSize } from '../../utils/toCssSize';
 
 export type TileButtonVariant = 'filled' | 'outlined';
-export type TileButtonSize = 'sm' | 'md' | 'lg';
+export type TileButtonSize = 'xs' | 'sm' | 'md' | 'lg';
 export type TileButtonImagePosition = ImagePosition;
 
 interface TileButtonOwnProps {
@@ -39,7 +39,7 @@ interface TileButtonOwnProps {
    */
   variant?: TileButtonVariant;
   /**
-   * Ширина плитки: 96, 128 или 160 px.
+   * Ширина плитки: 72, 96, 128 или 160 px.
    * @default lg
    */
   size?: TileButtonSize;

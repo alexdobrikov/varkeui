@@ -30,6 +30,14 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+.vui-tile--xs {
+  --vui-tile-width: 72px;
+  --vui-tile-radius: 20px;
+  --vui-tile-border-width: 2px;
+  --vui-tile-gap: 6px;
+  --vui-tile-font-size: 13px;
+}
+
 .vui-tile--sm {
   --vui-tile-width: 96px;
   --vui-tile-radius: 26px;
@@ -117,6 +125,7 @@
   color: var(--vui-color-text-muted);
 }
 
+.vui-tile--xs .vui-tile__badge,
 .vui-tile--sm .vui-tile__badge {
   width: 28px;
   height: 28px;

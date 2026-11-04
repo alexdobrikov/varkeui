@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.13.0
+
+### Minor Changes
+
+- Add a 72px xs TileButton size, keeping the corner badge at the same 28px size as sm.
+
 ## 0.12.0
 
 ### Minor Changes
