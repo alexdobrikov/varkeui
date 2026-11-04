@@ -24,3 +24,4 @@ export * from './components/Textarea';
 export * from './components/TileButton';
 export * from './components/Toast';
 export * from './icons';
+export * from './components/Select';

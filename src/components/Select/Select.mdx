@@ -1,0 +1,15 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import * as SelectStories from './Select.stories';
+
+<Meta of={SelectStories} />
+
+# Select
+
+Нативный выпадающий список. Меню, клавиатура и выбор на мобильных устройствах остаются системными.
+Поле использует размеры, варианты, скругления и состояния Input: sm 40 px, md 48 px, lg 56 px.
+Передавайте option через children, label для доступного имени, hint или error для пояснения.
+value, defaultValue, onChange, name, required, disabled и ref передаются нативному select.
+
+<Canvas of={SelectStories.Sizes} />
+<Canvas of={SelectStories.Outlined} />
+<Canvas of={SelectStories.Error} />
