@@ -83,6 +83,13 @@ export const ImagePositions: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={{ ...row, alignItems: 'flex-start' }}>
+      <TileButton
+        size="xs"
+        label="Extra small"
+        image="demo/plant.svg"
+        imagePosition="bottom"
+        badge={<PlusIcon />}
+      />
       <TileButton size="sm" label="Small" image="demo/plant.svg" imagePosition="bottom" />
       <TileButton size="md" label="Medium" image="demo/plant.svg" imagePosition="bottom" />
       <TileButton size="lg" label="Large" image="demo/plant.svg" imagePosition="bottom" />
