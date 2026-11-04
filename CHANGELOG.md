@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.12.0
+
+### Minor Changes
+
+- Add a native Select using Input sizes, tokens, states and accessible labels.
+
 ## 0.11.1
 
 ### Patch Changes

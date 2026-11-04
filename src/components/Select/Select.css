@@ -1,0 +1,38 @@
+.vui-select__field {
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+}
+.vui-select__control {
+  appearance: none;
+  width: 100%;
+  padding: 0 calc(var(--vui-input-padding-x) + var(--vui-input-icon-size) + var(--vui-input-gap)) 0
+    calc(var(--vui-input-padding-x) - var(--vui-input-border-width));
+  border-radius: calc(var(--vui-input-radius) - var(--vui-input-border-width));
+  cursor: inherit;
+  text-overflow: ellipsis;
+}
+.vui-select__control option {
+  background: var(--vui-color-surface);
+  color: var(--vui-color-text);
+}
+.vui-select__arrow {
+  position: absolute;
+  right: calc(var(--vui-input-padding-x) - var(--vui-input-border-width));
+  pointer-events: none;
+}
+.vui-select__start {
+  position: absolute;
+  left: calc(var(--vui-input-padding-x) - var(--vui-input-border-width));
+  pointer-events: none;
+}
+.vui-select__field:has(.vui-select__start) .vui-select__control {
+  padding-left: calc(
+    var(--vui-input-padding-x) + var(--vui-input-icon-size) + var(--vui-input-gap)
+  );
+}
+@media (forced-colors: active) {
+  .vui-select__field {
+    border-color: ButtonText;
+  }
+}
