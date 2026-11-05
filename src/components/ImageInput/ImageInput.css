@@ -1,14 +1,16 @@
 /* Image drop area: shared varkeui surfaces, focus colors and standard buttons. */
 .vui-image-input {
-  --vui-image-input-height: 224px;
-  --vui-image-input-radius: 20px;
-  --vui-image-input-inset: 24px;
+  --vui-image-input-height: 88px;
+  --vui-image-input-radius: 16px;
+  --vui-image-input-inset: 12px;
   --vui-image-input-bg: transparent;
   --vui-image-input-border-color: var(--vui-color-border);
   display: inline-flex;
   flex-direction: column;
   gap: 12px;
   width: 480px;
+  min-width: 0;
+  container-type: inline-size;
   max-width: 100%;
   color: var(--vui-color-text);
   font-family: var(--vui-font-family);
@@ -22,18 +24,17 @@
   font-weight: 500;
 }
 .vui-image-input__field {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
+  gap: 8px 12px;
   box-sizing: border-box;
   min-height: var(--vui-image-input-height);
   padding: var(--vui-image-input-inset);
   border: 2px dashed var(--vui-image-input-border-color);
   border-radius: var(--vui-image-input-radius);
   background: var(--vui-image-input-bg);
-  text-align: center;
+  text-align: left;
   cursor: pointer;
   transition:
     border-color 0.15s ease,
@@ -57,11 +58,14 @@
   --vui-image-input-border-color: var(--vui-color-danger);
 }
 .vui-image-input__preview {
+  grid-column: 1;
+  grid-row: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--vui-color-text-muted);
-  margin-bottom: 8px;
+  width: 56px;
+  height: 56px;
 }
 .vui-image-input__preview > svg {
   width: 32px;
@@ -70,13 +74,21 @@
 .vui-image-input__preview > img {
   display: block;
   max-width: 100%;
-  width: auto;
-  height: 112px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
   border-radius: 12px;
 }
+.vui-image-input__copy {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
 .vui-image-input__title {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   line-height: 1.4;
 }
@@ -86,12 +98,13 @@
   line-height: 1.4;
 }
 .vui-image-input__actions {
+  grid-column: 3;
+  grid-row: 1;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 8px;
-  margin-top: 12px;
 }
 .vui-image-input__file {
   display: none;
@@ -110,4 +123,96 @@
 .vui-image-input--disabled .vui-image-input__field {
   cursor: default;
   pointer-events: none;
+}
+
+.vui-image-input__progress {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  color: var(--vui-color-text-muted);
+  font-size: 14px;
+}
+.vui-image-input__progress progress {
+  width: 100%;
+  height: 6px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--vui-color-border);
+  accent-color: var(--vui-color-accent);
+}
+.vui-image-input__progress progress::-webkit-progress-bar {
+  border-radius: inherit;
+  background: var(--vui-color-border);
+}
+.vui-image-input__progress progress::-webkit-progress-value {
+  border-radius: inherit;
+  background: var(--vui-color-accent);
+}
+.vui-image-input__progress progress::-moz-progress-bar {
+  border-radius: inherit;
+  background: var(--vui-color-accent);
+}
+
+@container (max-width: 600px) {
+  .vui-image-input__field {
+    grid-template-columns: 40px minmax(0, 1fr);
+  }
+  .vui-image-input__preview {
+    width: 40px;
+    height: 40px;
+  }
+  .vui-image-input__preview > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+  }
+  .vui-image-input__actions {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .vui-image-input__progress {
+    grid-row: 3;
+  }
+  .vui-image-input--with-value .vui-image-input__actions {
+    grid-row: 1;
+  }
+  .vui-image-input--with-value .vui-image-input__progress {
+    grid-row: 2;
+  }
+}
+@container (max-width: 380px) {
+  .vui-image-input__actions .vui-button {
+    --vui-button-padding-x: 8px;
+    --vui-button-font-size: 13px;
+  }
+  .vui-image-input__actions {
+    grid-column: 1 / -1;
+  }
+  .vui-image-input__paste-hint {
+    display: none;
+  }
+  .vui-image-input__progress {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .vui-image-input--with-value .vui-image-input__actions {
+    grid-column: 2;
+  }
+}
+
+.vui-image-input__label--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }

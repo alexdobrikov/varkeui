@@ -2,6 +2,7 @@ import {
   forwardRef,
   useId,
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type ChangeEvent,
@@ -20,6 +21,8 @@ export interface ImageInputProps extends Omit<
   'onChange' | 'onError'
 > {
   label?: ReactNode;
+  /** Keep the accessible label while another component supplies the visible heading. */
+  labelHidden?: boolean;
   hint?: ReactNode;
   error?: ReactNode;
   value?: string | null;
@@ -33,6 +36,9 @@ export interface ImageInputProps extends Omit<
   onRemove?: () => void;
   accept?: string;
   loading?: boolean;
+  /** Real upload progress, 0–100; omit while preparing the file. */
+  progress?: number | null;
+  progressLabel?: (percent: number) => ReactNode;
   disabled?: boolean;
   block?: boolean;
   uploadLabel?: string;
@@ -52,6 +58,7 @@ export interface ImageInputProps extends Omit<
 export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function ImageInput(
   {
     label,
+    labelHidden = false,
     hint,
     error,
     value,
@@ -62,6 +69,8 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
     onRemove,
     accept = 'image/*',
     loading = false,
+    progress,
+    progressLabel = (percent) => `${percent}%`,
     disabled = false,
     block = false,
     uploadLabel = 'Upload',
@@ -85,10 +94,22 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
   const file = useRef<HTMLInputElement>(null);
   const field = useRef<HTMLDivElement>(null);
   const inFlight = useRef(false);
+  const mounted = useRef(true);
+  useEffect(() => {
+    mounted.current = true;
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
   const [dragging, setDragging] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [localError, setLocalError] = useState<string | null>(null);
   const busy = loading || disabled || processing;
+  const percent =
+    typeof progress === 'number' && Number.isFinite(progress)
+      ? Math.min(100, Math.max(0, Math.round(progress)))
+      : null;
+  const progressText = progressLabel(percent ?? 0);
   const message = error ?? localError ?? hint;
   const invalid = error != null || localError != null;
 
@@ -126,7 +147,7 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
   const selectFile = (selected: File) =>
     run(async () => {
       const prepared = await prepareImage(selected, { maxSize, accept, webp });
-      await onFileSelect(prepared);
+      if (mounted.current) await latest.current.onFileSelect(prepared);
     });
   const pick = () => {
     if (!busy) file.current?.click();
@@ -157,15 +178,16 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
         if (!type) continue;
         const blob = await imageTimeout(item.getType(type));
         const selected = new File([blob], `clipboard.${type.split('/')[1] || 'png'}`, { type });
-        await onFileSelect(await prepareImage(selected, { maxSize, accept, webp }));
+        const prepared = await prepareImage(selected, { maxSize, accept, webp });
+        if (mounted.current) await latest.current.onFileSelect(prepared);
         return;
       }
       throw new ImageInputError('clipboard', 'No clipboard image');
     });
   // Keep callbacks current without unregistering/reordering recipients on every render.
-  const latest = useRef({ busy, selectFile });
-  useEffect(() => {
-    latest.current = { busy, selectFile };
+  const latest = useRef({ busy, selectFile, onFileSelect });
+  useLayoutEffect(() => {
+    latest.current = { busy, selectFile, onFileSelect };
   });
   useEffect(() => {
     const element = field.current;
@@ -197,6 +219,7 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
       className={cx(
         'vui-image-input',
         block && 'vui-image-input--block',
+        value && 'vui-image-input--with-value',
         invalid && 'vui-image-input--invalid',
         disabled && 'vui-image-input--disabled',
         dragging && 'vui-image-input--dragging',
@@ -204,7 +227,11 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
       )}
     >
       {label != null && (
-        <label id={labelId} className="vui-image-input__label" htmlFor={inputId}>
+        <label
+          id={labelId}
+          className={cx('vui-image-input__label', labelHidden && 'vui-image-input__label--hidden')}
+          htmlFor={inputId}
+        >
           {label}
         </label>
       )}
@@ -238,21 +265,28 @@ export const ImageInput = forwardRef<HTMLDivElement, ImageInputProps>(function I
           {value ? <img alt="" src={value} /> : <ImageIcon />}
         </span>
         {!value && (
-          <>
+          <span className="vui-image-input__copy">
             <span className="vui-image-input__title">{dropLabel}</span>
             <span className="vui-image-input__text">{placeholder}</span>
-            {allowPaste && pasteHint && <span className="vui-image-input__text">{pasteHint}</span>}
-          </>
+            {allowPaste && pasteHint && (
+              <span className="vui-image-input__text vui-image-input__paste-hint">{pasteHint}</span>
+            )}
+          </span>
+        )}
+        {(loading || processing) && (
+          <span className="vui-image-input__progress" role="status" aria-live="polite">
+            <span>{progressText}</span>
+            {
+              <progress
+                max={100}
+                value={percent ?? 0}
+                aria-label={typeof progressText === 'string' ? progressText : 'Upload progress'}
+              />
+            }
+          </span>
         )}
         <span className="vui-image-input__actions" onClick={(event) => event.stopPropagation()}>
-          <Button
-            size="sm"
-            variant="outline"
-            disabled={busy}
-            loading={loading || processing}
-            onClick={pick}
-            type="button"
-          >
+          <Button size="sm" variant="outline" disabled={busy} onClick={pick} type="button">
             {value ? replaceLabel : uploadLabel}
           </Button>
           {allowPaste && (

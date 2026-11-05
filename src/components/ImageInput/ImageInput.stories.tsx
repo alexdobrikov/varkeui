@@ -44,7 +44,7 @@ export const States: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 480 }}>
       <ImageInput block label="Empty" onFileSelect={() => {}} />
-      <ImageInput block label="Loading" loading onFileSelect={() => {}} />
+      <ImageInput block label="Loading" loading progress={42} onFileSelect={() => {}} />
       <ImageInput
         block
         label="Error"
