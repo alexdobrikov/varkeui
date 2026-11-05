@@ -1,7 +1,8 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
+import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ImageInput } from './ImageInput';
+import * as imagePreparation from './prepareImage';
 
 const png = () => new File(['x'], 'cover.png', { type: 'image/png' });
 
@@ -256,5 +257,71 @@ describe('ImageInput page paste', () => {
       }),
     ).toBe(true);
     expect(upload).not.toHaveBeenCalled();
+  });
+});
+
+describe('ImageInput progress and current callbacks', () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  it('renders real progress, preparation and hides progress after completion', () => {
+    const { rerender } = render(
+      <ImageInput
+        loading
+        progress={42}
+        progressLabel={(value) => `${value}%`}
+        onFileSelect={() => {}}
+      />,
+    );
+    expect(screen.getByRole('progressbar')).toHaveAttribute('value', '42');
+    expect(screen.getByRole('status')).toHaveTextContent('42%');
+    rerender(<ImageInput loading progress={120} onFileSelect={() => {}} />);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('value', '100');
+    rerender(<ImageInput loading progress={-5} onFileSelect={() => {}} />);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('value', '0');
+    rerender(<ImageInput loading progress={null} onFileSelect={() => {}} />);
+    expect(screen.getByRole('progressbar')).toHaveAttribute('value', '0');
+    expect(screen.getByRole('status')).toHaveTextContent('0%');
+    rerender(<ImageInput progress={100} onFileSelect={() => {}} />);
+    expect(screen.queryByRole('status')).not.toBeInTheDocument();
+  });
+
+  it('uses the current callback after asynchronous preparation', async () => {
+    let finish!: (file: File) => void;
+    vi.spyOn(imagePreparation, 'prepareImage').mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const previous = vi.fn();
+    const current = vi.fn();
+    const { rerender } = render(<ImageInput label="Race cover" onFileSelect={previous} />);
+    const selected = png();
+    fireEvent.change(screen.getByLabelText('Race cover'), { target: { files: [selected] } });
+    rerender(<ImageInput label="Race cover" onFileSelect={current} />);
+    await act(async () => {
+      finish(selected);
+    });
+    expect(previous).not.toHaveBeenCalled();
+    expect(current).toHaveBeenCalledWith(selected);
+  });
+
+  it('does not deliver a prepared image after its field was removed', async () => {
+    let finish!: (file: File) => void;
+    vi.spyOn(imagePreparation, 'prepareImage').mockImplementation(
+      () =>
+        new Promise((resolve) => {
+          finish = resolve;
+        }),
+    );
+    const callback = vi.fn();
+    const { unmount } = render(<ImageInput label="Removed cover" onFileSelect={callback} />);
+    const selected = png();
+    fireEvent.change(screen.getByLabelText('Removed cover'), { target: { files: [selected] } });
+    unmount();
+    await act(async () => {
+      finish(selected);
+    });
+    expect(callback).not.toHaveBeenCalled();
   });
 });
