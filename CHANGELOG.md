@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.14.0
+
+### Minor Changes
+
+- ImageInput: optional size limits, local WebP resizing, clipboard/keyboard paste, URL input, async upload state and recoverable errors. Export prepareImage for shared upload pipelines.
+
 ## 0.13.0
 
 ### Minor Changes
