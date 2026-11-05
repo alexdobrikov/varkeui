@@ -56,7 +56,7 @@ export const States: Story = {
   ),
 };
 
-/** File upload, paste, URL, size validation and optional local WebP conversion. */
+/** File upload, paste, size validation and optional local WebP conversion. */
 export const AllSources: Story = {
   render: function Render() {
     const [url, setUrl] = useState<string | null>(null);
@@ -68,9 +68,9 @@ export const AllSources: Story = {
         maxSize={5 * 1024 * 1024}
         webp
         allowPaste
-        hint="Up to 5 MB; files become WebP. You can also paste an image or use a link."
+        placeholder="JPG, PNG, WebP · up to 5 MB"
+        hint="Files are converted to WebP before upload."
         onFileSelect={(file) => setUrl(URL.createObjectURL(file))}
-        onUrlSelect={setUrl}
         onRemove={() => setUrl(null)}
       />
     );

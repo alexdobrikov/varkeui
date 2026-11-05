@@ -1,6 +1,6 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ImageInput } from './ImageInput';
 
 const png = () => new File(['x'], 'cover.png', { type: 'image/png' });
@@ -76,22 +76,6 @@ describe('ImageInput sources and errors', () => {
     await screen.findByRole('button', { name: 'Upload' });
     await waitFor(() => expect(upload).toHaveBeenCalledWith(file));
   });
-  it('accepts an https URL and rejects javascript URLs', async () => {
-    const selectUrl = vi.fn();
-    render(<ImageInput onFileSelect={() => {}} onUrlSelect={selectUrl} />);
-    await userEvent.click(screen.getByRole('button', { name: 'Use link' }));
-    await userEvent.type(screen.getByRole('textbox', { name: 'Use link' }), 'javascript:alert(1)');
-    await userEvent.click(screen.getByRole('button', { name: 'Apply' }));
-    expect(await screen.findByRole('alert')).toHaveTextContent('http');
-    expect(selectUrl).not.toHaveBeenCalled();
-    await userEvent.clear(screen.getByRole('textbox', { name: 'Use link' }));
-    await userEvent.type(
-      screen.getByRole('textbox', { name: 'Use link' }),
-      'https://example.com/cover.webp',
-    );
-    await userEvent.click(screen.getByRole('button', { name: 'Apply' }));
-    expect(selectUrl).toHaveBeenCalledWith('https://example.com/cover.webp');
-  });
   it('resets loading after an upload error and allows a retry', async () => {
     const upload = vi
       .fn()
@@ -102,5 +86,175 @@ describe('ImageInput sources and errors', () => {
     expect(await screen.findByRole('alert')).toHaveTextContent('Upload timed out');
     await userEvent.upload(screen.getByLabelText('Retry cover'), png());
     await waitFor(() => expect(upload).toHaveBeenCalledTimes(2));
+  });
+});
+
+describe('ImageInput page paste', () => {
+  afterEach(() => vi.restoreAllMocks());
+  const visible = () =>
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      top: 0,
+      left: 0,
+      right: 300,
+      bottom: 200,
+      width: 300,
+      height: 200,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    });
+  const pasteImage = (target: Element | Document = document) => {
+    const file = png();
+    const accepted = fireEvent.paste(target, {
+      clipboardData: { items: [{ kind: 'file', type: 'image/png', getAsFile: () => file }] },
+    });
+    return { file, accepted };
+  };
+
+  it('pastes without focus, chooses one field and prefers the last interacted field', async () => {
+    visible();
+    const first = vi.fn();
+    const second = vi.fn();
+    const { container } = render(
+      <>
+        <ImageInput allowPaste onFileSelect={first} />
+        <ImageInput allowPaste onFileSelect={second} />
+      </>,
+    );
+    const pasted = pasteImage();
+    expect(pasted.accepted).toBe(false);
+    await waitFor(() => expect(first).toHaveBeenCalledWith(pasted.file));
+    expect(second).not.toHaveBeenCalled();
+    fireEvent.pointerDown(container.querySelectorAll('.vui-image-input__field')[1]);
+    const next = pasteImage();
+    await waitFor(() => expect(second).toHaveBeenCalledWith(next.file));
+    expect(first).toHaveBeenCalledTimes(1);
+  });
+
+  it('never steals paste from a text input, textarea, contenteditable or URL field', async () => {
+    visible();
+    const upload = vi.fn();
+    render(
+      <>
+        <input aria-label="Title" />
+        <textarea aria-label="Body" />
+        <div contentEditable role="textbox" aria-label="Editor" tabIndex={0} />
+        <input type="url" aria-label="URL" />
+        <ImageInput allowPaste onFileSelect={upload} />
+      </>,
+    );
+    for (const name of ['Title', 'Body', 'Editor', 'URL']) {
+      const input = screen.getByRole('textbox', { name });
+      input.focus();
+      expect(pasteImage(input).accepted).toBe(true);
+      expect(pasteImage().accepted).toBe(true);
+    }
+    await Promise.resolve();
+    expect(upload).not.toHaveBeenCalled();
+  });
+
+  it('does not duplicate a paste handled by the component', async () => {
+    visible();
+    const upload = vi.fn();
+    const { container } = render(<ImageInput allowPaste onFileSelect={upload} />);
+    pasteImage(container.querySelector('.vui-image-input__field')!);
+    await waitFor(() => expect(upload).toHaveBeenCalledTimes(1));
+  });
+
+  it('ignores disabled, invisible, out-of-viewport and unmounted inputs', async () => {
+    visible();
+    const upload = vi.fn();
+    const rendered = render(<ImageInput disabled allowPaste onFileSelect={upload} />);
+    expect(pasteImage().accepted).toBe(true);
+    rendered.rerender(<ImageInput style={{ display: 'none' }} allowPaste onFileSelect={upload} />);
+    // Real browsers give descendants of display:none no layout boxes.
+    vi.mocked(HTMLElement.prototype.getBoundingClientRect).mockReturnValue({
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      width: 0,
+      height: 0,
+      x: 0,
+      y: 0,
+      toJSON: () => ({}),
+    });
+    expect(pasteImage().accepted).toBe(true);
+    vi.mocked(HTMLElement.prototype.getBoundingClientRect).mockReturnValue({
+      top: 9000,
+      left: 0,
+      right: 300,
+      bottom: 9200,
+      width: 300,
+      height: 200,
+      x: 0,
+      y: 9000,
+      toJSON: () => ({}),
+    });
+    expect(pasteImage().accepted).toBe(true);
+    rendered.unmount();
+    expect(pasteImage().accepted).toBe(true);
+    await Promise.resolve();
+    expect(upload).not.toHaveBeenCalled();
+  });
+
+  it('pastes only into the top modal, never the page behind it', async () => {
+    visible();
+    const page = vi.fn();
+    const modal = vi.fn();
+    const { rerender } = render(
+      <>
+        <ImageInput allowPaste onFileSelect={page} />
+        <dialog open>
+          <ImageInput allowPaste onFileSelect={modal} />
+        </dialog>
+      </>,
+    );
+    pasteImage();
+    await waitFor(() => expect(modal).toHaveBeenCalledOnce());
+    expect(page).not.toHaveBeenCalled();
+    rerender(
+      <>
+        <ImageInput allowPaste onFileSelect={page} />
+        <dialog open>No image input here</dialog>
+      </>,
+    );
+    expect(pasteImage().accepted).toBe(true);
+    expect(page).not.toHaveBeenCalled();
+  });
+
+  it('does not route repeated paste into another input during an upload', async () => {
+    visible();
+    let resolve!: () => void;
+    const pending = new Promise<void>((done) => {
+      resolve = done;
+    });
+    const first = vi.fn(() => pending);
+    const other = vi.fn();
+    render(
+      <>
+        <ImageInput allowPaste onFileSelect={first} />
+        <ImageInput allowPaste onFileSelect={other} />
+      </>,
+    );
+    pasteImage();
+    pasteImage();
+    await waitFor(() => expect(first).toHaveBeenCalledOnce());
+    expect(other).not.toHaveBeenCalled();
+    resolve();
+    await waitFor(() => expect(screen.getAllByRole('button', { name: 'Upload' })[0]).toBeEnabled());
+  });
+
+  it('preserves text-only paste and opt-out behaviour', () => {
+    visible();
+    const upload = vi.fn();
+    render(<ImageInput onFileSelect={upload} />);
+    expect(pasteImage().accepted).toBe(true);
+    expect(
+      fireEvent.paste(document, {
+        clipboardData: { items: [{ kind: 'string', type: 'text/plain' }] },
+      }),
+    ).toBe(true);
+    expect(upload).not.toHaveBeenCalled();
   });
 });

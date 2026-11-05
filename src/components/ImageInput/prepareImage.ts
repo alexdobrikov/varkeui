@@ -7,7 +7,7 @@ export interface WebPOptions {
 
 export class ImageInputError extends Error {
   constructor(
-    public code: 'size' | 'type' | 'processing' | 'clipboard' | 'url',
+    public code: 'size' | 'type' | 'processing' | 'clipboard',
     message: string,
   ) {
     super(message);

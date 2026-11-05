@@ -1,157 +1,113 @@
-/* Поле выбора картинки: та же поверхность, подпись и подсказка, что у Input,
-   слева превью, справа кнопка. Файл можно перетащить на поле. */
+/* Image drop area: shared varkeui surfaces, focus colors and standard buttons. */
 .vui-image-input {
-  --vui-image-input-height: 72px;
+  --vui-image-input-height: 224px;
   --vui-image-input-radius: 20px;
-  --vui-image-input-inset: 8px;
-  --vui-image-input-preview-size: calc(
-    var(--vui-image-input-height) - var(--vui-image-input-inset) * 2
-  );
-  --vui-image-input-border-width: 2px;
-  --vui-image-input-bg: var(--vui-color-surface);
-  --vui-image-input-border-color: transparent;
-  /* Кнопка внутри — по размерам InputButton в поле md. */
-  --vui-input-height: 48px;
-  --vui-input-radius: 16px;
-  --vui-input-action-inset: 4px;
-  --vui-input-font-size: 16px;
-  --vui-input-icon-size: 20px;
-
+  --vui-image-input-inset: 24px;
+  --vui-image-input-bg: transparent;
+  --vui-image-input-border-color: var(--vui-color-border);
   display: inline-flex;
   flex-direction: column;
-  gap: 8px;
-  width: 360px;
+  gap: 12px;
+  width: 480px;
   max-width: 100%;
   color: var(--vui-color-text);
   font-family: var(--vui-font-family);
 }
-
 .vui-image-input--block {
   display: flex;
   width: 100%;
 }
-
 .vui-image-input__label {
   font-size: 15px;
   font-weight: 500;
 }
-
 .vui-image-input__field {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 8px;
   box-sizing: border-box;
-  height: var(--vui-image-input-height);
-  padding: calc(var(--vui-image-input-inset) - var(--vui-image-input-border-width));
-  padding-right: calc(var(--vui-image-input-inset) + 4px - var(--vui-image-input-border-width));
-  border: var(--vui-image-input-border-width) solid var(--vui-image-input-border-color);
+  min-height: var(--vui-image-input-height);
+  padding: var(--vui-image-input-inset);
+  border: 2px dashed var(--vui-image-input-border-color);
   border-radius: var(--vui-image-input-radius);
   background: var(--vui-image-input-bg);
+  text-align: center;
   cursor: pointer;
   transition:
     border-color 0.15s ease,
     background-color 0.15s ease;
 }
-
 @media (hover: hover) {
   .vui-image-input__field:hover {
-    --vui-image-input-bg: var(--vui-color-surface-hover);
+    --vui-image-input-bg: var(--vui-color-surface);
   }
 }
-
+.vui-image-input__field:focus-visible,
 .vui-image-input__field:focus-within,
 .vui-image-input--dragging .vui-image-input__field {
   --vui-image-input-border-color: var(--vui-color-focus);
+  outline: none;
 }
-
+.vui-image-input--dragging .vui-image-input__field {
+  --vui-image-input-bg: var(--vui-color-surface);
+}
 .vui-image-input--invalid .vui-image-input__field {
   --vui-image-input-border-color: var(--vui-color-danger);
 }
-
 .vui-image-input__preview {
   display: flex;
-  flex: none;
   align-items: center;
   justify-content: center;
-  width: var(--vui-image-input-preview-size);
-  height: var(--vui-image-input-preview-size);
-  overflow: hidden;
-  border-radius: calc(var(--vui-image-input-radius) - var(--vui-image-input-inset));
-  background: var(--vui-color-surface-raised);
   color: var(--vui-color-text-muted);
+  margin-bottom: 8px;
 }
-
 .vui-image-input__preview > svg {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
 }
-
 .vui-image-input__preview > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: 112px;
+  object-fit: contain;
+  border-radius: 12px;
 }
-
+.vui-image-input__title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
 .vui-image-input__text {
-  flex: 1;
-  min-width: 0;
-  overflow: hidden;
   color: var(--vui-color-text-muted);
-  font-size: 15px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-size: 14px;
+  line-height: 1.4;
 }
-
 .vui-image-input__actions {
   display: flex;
-  flex: none;
-  align-items: stretch;
-  gap: 4px;
-  height: 40px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
 }
-
-.vui-image-input__spinner {
-  width: 20px;
-  height: 20px;
-  animation: vui-button-spin 0.8s linear infinite;
-}
-
 .vui-image-input__file {
   display: none;
 }
-
 .vui-image-input__hint {
   color: var(--vui-color-text-muted);
   font-size: 14px;
   line-height: 1.35;
 }
-
 .vui-image-input--invalid .vui-image-input__hint {
   color: var(--vui-color-danger);
 }
-
 .vui-image-input--disabled {
   opacity: 0.45;
 }
-
 .vui-image-input--disabled .vui-image-input__field {
   cursor: default;
   pointer-events: none;
-}
-
-.vui-image-input__sources {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-}
-
-.vui-image-input__url {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.vui-image-input__url > .vui-input {
-  min-width: 0;
-  flex: 1;
 }
