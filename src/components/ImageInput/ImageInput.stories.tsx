@@ -55,3 +55,24 @@ export const States: Story = {
     </div>
   ),
 };
+
+/** File upload, paste, URL, size validation and optional local WebP conversion. */
+export const AllSources: Story = {
+  render: function Render() {
+    const [url, setUrl] = useState<string | null>(null);
+    return (
+      <ImageInput
+        block
+        label="Lesson cover"
+        value={url}
+        maxSize={5 * 1024 * 1024}
+        webp
+        allowPaste
+        hint="Up to 5 MB; files become WebP. You can also paste an image or use a link."
+        onFileSelect={(file) => setUrl(URL.createObjectURL(file))}
+        onUrlSelect={setUrl}
+        onRemove={() => setUrl(null)}
+      />
+    );
+  },
+};

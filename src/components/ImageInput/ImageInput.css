@@ -138,3 +138,20 @@
   cursor: default;
   pointer-events: none;
 }
+
+.vui-image-input__sources {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.vui-image-input__url {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vui-image-input__url > .vui-input {
+  min-width: 0;
+  flex: 1;
+}
