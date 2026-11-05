@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.15.0
+
+### Minor Changes
+
+- be20fbf: Redesign ImageInput as a dashed drop area with standard buttons, and preview. Remove external URL input. Add dropLabel/pasteHint and page-wide image paste outside text editors, with one visible recipient, modal isolation and protection against duplicate uploads.
+
 ## 0.14.0
 
 ### Minor Changes
