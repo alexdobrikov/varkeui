@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.16.0
+
+### Minor Changes
+
+- 6325037: Add StatusScreen: a status screen for 404/403 errors, empty sections and results, with eyebrow, icon, title, description and stacked or inline actions.
+
 ## 0.15.0
 
 ### Minor Changes
