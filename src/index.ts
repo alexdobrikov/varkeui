@@ -25,3 +25,4 @@ export * from './components/TileButton';
 export * from './components/Toast';
 export * from './icons';
 export * from './components/Select';
+export * from './components/StatusScreen';
