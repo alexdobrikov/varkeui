@@ -1,0 +1,73 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './StatusScreen.stories';
+import { StatusScreen } from './StatusScreen';
+
+<Meta of={Stories} />
+
+# StatusScreen
+
+Экран состояния: страница не найдена, нет доступа, раздел пока пуст, действие выполнено. Объясняет, что случилось, и даёт один-два понятных выхода.
+
+```tsx
+import { StatusScreen } from 'varkeui';
+```
+
+<Canvas of={Stories.Playground} />
+
+## Когда использовать
+
+- Ошибки целой страницы: 404, 403, 500. Здесь заголовок — `h1`.
+- Пустой раздел, где нужно подтолкнуть к первому действию.
+- Итог длинного процесса: оплата прошла, заявка отправлена.
+
+Для сообщения внутри страницы, которое не заменяет её содержимое, берите [Banner](?path=/docs/components-banner--docs).
+
+## Нет доступа
+
+`eyebrow` — строка над заголовком, обычно `Badge` с кодом ошибки. Кнопки по умолчанию идут столбиком на всю ширину блока: главная первой.
+
+<Canvas of={Stories.NoAccess} />
+
+```tsx
+<StatusScreen
+  headingAs="h1"
+  eyebrow={<Badge tone="danger">Error 403</Badge>}
+  title="This area is for teachers"
+  description="Your account is a student one. Switch the account type in settings to continue."
+  actions={
+    <>
+      <Button block size="lg">
+        Switch account type
+      </Button>
+      <Button block size="lg" variant="secondary">
+        Back to dashboard
+      </Button>
+    </>
+  }
+/>
+```
+
+## По центру и кнопки в строку
+
+`align="center"` ставит блок по центру контейнера, `actionsLayout="row"` выстраивает кнопки в ряд. `icon` — иллюстрация над текстом, она декоративная.
+
+<Canvas of={Stories.CenteredEmpty} />
+
+## Пропсы
+
+<ArgTypes of={StatusScreen} />
+
+## Доступность
+
+- Корневой элемент — `section`. Подберите `headingAs` под структуру страницы: на отдельном экране ошибки это `h1`.
+- Иконка скрыта от скринридеров (`aria-hidden`), смысл передают заголовок и текст.
+- Экран не объявляет себя live-регионом. Если он появляется после действия пользователя и об этом нужно сообщить сразу, передайте `role="status"`.
+
+## CSS-переменные
+
+| Переменная                             | По умолчанию        |
+| -------------------------------------- | ------------------- |
+| `--vui-status-screen-max-width`        | 480px               |
+| `--vui-status-screen-gap`              | 24px                |
+| `--vui-status-screen-title-size`       | 36px, на узком 30px |
+| `--vui-status-screen-description-size` | 17px                |
