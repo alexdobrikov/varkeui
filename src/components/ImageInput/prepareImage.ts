@@ -96,6 +96,19 @@ async function decodeImage(
   }
 }
 
+function renamed(name: string, extension: string): string {
+  return `${name.replace(/\.[^.]+$/, '') || 'image'}.${extension}`;
+}
+
+/** canvas.toBlob as a bounded promise; null when the browser cannot encode at all. */
+function encodeCanvas(
+  canvas: HTMLCanvasElement,
+  type: string,
+  quality: number,
+): Promise<Blob | null> {
+  return imageTimeout(new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, type, quality)));
+}
+
 /** Process locally before uploading. Animated inputs are converted to a still preview. */
 export async function prepareImage(
   file: File,
@@ -122,20 +135,25 @@ export async function prepareImage(
     const context = canvas.getContext('2d');
     if (!context) throw new ImageInputError('processing', 'Unable to process this image');
     context.drawImage(decoded.image, 0, 0, canvas.width, canvas.height);
-    const blob = await imageTimeout(
-      new Promise<Blob>((resolve, reject) =>
-        canvas.toBlob(
-          (result) => {
-            if (result?.type === 'image/webp') resolve(result);
-            else reject(new ImageInputError('processing', 'WebP is not supported in this browser'));
-          },
-          'image/webp',
-          quality,
-        ),
-      ),
-    );
-    const result = new File([blob], `${file.name.replace(/\.[^.]+$/, '') || 'image'}.webp`, {
-      type: 'image/webp',
+    const webpBlob = await encodeCanvas(canvas, 'image/webp', quality);
+    if (webpBlob?.type === 'image/webp') {
+      const result = new File([webpBlob], renamed(file.name, 'webp'), { type: 'image/webp' });
+      validateImage(result, options.maxSize);
+      return result;
+    }
+    // Safari decodes WebP but cannot encode it: canvas.toBlob silently returns PNG.
+    // An original that already fits is uploaded as is; the server converts it to WebP.
+    if (ratio === 1) return file;
+    const fallbackType =
+      file.type === 'image/png' || file.type === 'image/gif' ? 'image/png' : 'image/jpeg';
+    const fallbackBlob =
+      webpBlob?.type === fallbackType
+        ? webpBlob
+        : await encodeCanvas(canvas, fallbackType, quality);
+    if (!fallbackBlob) throw new ImageInputError('processing', 'Unable to encode this image');
+    const extension = fallbackBlob.type === 'image/png' ? 'png' : 'jpg';
+    const result = new File([fallbackBlob], renamed(file.name, extension), {
+      type: fallbackBlob.type,
     });
     validateImage(result, options.maxSize);
     return result;
