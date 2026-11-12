@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { useState } from 'react';
+import { Avatar } from '../Avatar';
 import { Checkbox } from './Checkbox';
 
 const meta = {
@@ -65,4 +66,25 @@ function SelectAllDemo() {
 
 export const SelectAll: Story = {
   render: () => <SelectAllDemo />,
+};
+
+const people = ['Anna Lebedeva', 'Mark Sokolov'];
+
+export const AlignCenter: Story = {
+  render: () => (
+    <div style={column}>
+      {people.map((name) => (
+        <Checkbox
+          key={name}
+          align="center"
+          label={
+            <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <Avatar name={name} size="sm" />
+              {name}
+            </span>
+          }
+        />
+      ))}
+    </div>
+  ),
 };

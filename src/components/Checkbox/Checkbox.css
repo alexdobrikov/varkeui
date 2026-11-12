@@ -22,6 +22,10 @@
   --vui-check-font-size: 15px;
 }
 
+.vui-check--align-center {
+  align-items: center;
+}
+
 .vui-check--radio {
   --vui-check-radius: 50%;
 }
@@ -34,6 +38,10 @@
   height: var(--vui-check-size);
   /* Выравнивает квадрат по первой строке подписи. */
   margin-top: calc((var(--vui-check-font-size) * 1.35 - var(--vui-check-size)) / 2);
+}
+
+.vui-check--align-center .vui-check__control {
+  margin-top: 0;
 }
 
 .vui-check__input {

@@ -34,4 +34,11 @@ describe('Checkbox', () => {
     expect(screen.getByText('Once a week')).toHaveClass('vui-check__description');
     expect(ref.current).toBeInstanceOf(HTMLInputElement);
   });
+
+  it('aligns the box to the first line by default and to the center on request', () => {
+    const { container, rerender } = render(<Checkbox label="Anna" />);
+    expect(container.firstChild).not.toHaveClass('vui-check--align-center');
+    rerender(<Checkbox label="Anna" align="center" />);
+    expect(container.firstChild).toHaveClass('vui-check--align-center');
+  });
 });

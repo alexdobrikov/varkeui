@@ -25,6 +25,12 @@ export interface CheckboxProps extends Omit<
    * @default md
    */
   size?: 'sm' | 'md';
+  /**
+   * Как ставить квадрат по высоте подписи: `start` — по первой строке текста,
+   * `center` — по центру всей подписи (удобно, когда в подписи аватарка или иконка).
+   * @default start
+   */
+  align?: 'start' | 'center';
   /** Подсветить как ошибочный. */
   invalid?: boolean;
   /** Вызывается с новым значением. */
@@ -41,6 +47,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
     description,
     indeterminate = false,
     size = 'md',
+    align = 'start',
     invalid,
     onChange,
     onCheckedChange,
@@ -67,6 +74,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(function Che
       className={cx(
         'vui-check',
         `vui-check--${size}`,
+        align === 'center' && 'vui-check--align-center',
         invalid && 'vui-check--invalid',
         disabled && 'vui-check--disabled',
         className,
