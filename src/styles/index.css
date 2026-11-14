@@ -8,6 +8,8 @@
 @import '../components/ImageInput/ImageInput.css';
 @import '../components/Bento/Bento.css';
 @import '../components/Button/Button.css';
+/* После Button.css: правило :hover кнопки иначе сбросило бы блик. */
+@import '../components/ShineButton/ShineButton.css';
 @import '../components/Badge/Badge.css';
 @import '../components/Switch/Switch.css';
 @import '../components/SectionHeader/SectionHeader.css';

@@ -1,0 +1,52 @@
+/*
+ * Блик — фоновый градиент самой кнопки, а не псевдоэлемент: у .vui-button прозрачная рамка,
+ * и слой внутри обрезался бы по ней, не доходя до края. Полоса идёт под текстом.
+ * Два класса и подключение после Button.css: правило :hover кнопки задаёт фон сокращённо
+ * и иначе сбросило бы градиент.
+ */
+.vui-button.vui-shine-button {
+  --vui-shine-button-shine: rgb(255 255 255 / 0.8);
+  --vui-shine-button-duration: 4.5s;
+
+  box-shadow: 0 6px 22px -6px color-mix(in srgb, var(--vui-button-bg) 60%, transparent);
+  background-image: linear-gradient(
+    105deg,
+    transparent 42%,
+    var(--vui-shine-button-shine) 50%,
+    transparent 58%
+  );
+  background-repeat: no-repeat;
+  /* Размер и позиция фона по умолчанию считаются без рамки — полоса не доходила бы до краёв. */
+  background-origin: border-box;
+  /* Фон в 2,5 раза шире кнопки: позиция 105% → −5% проводит полосу от левого края за правый. */
+  background-size: 250% 100%;
+  background-position: 105% 0;
+  animation: vui-shine-button var(--vui-shine-button-duration) ease-in-out 1.2s infinite;
+}
+
+/* Проход занимает 40% цикла, остальное — пауза. */
+@keyframes vui-shine-button {
+  0% {
+    background-position: 105% 0;
+  }
+
+  40%,
+  100% {
+    background-position: -5% 0;
+  }
+}
+
+.vui-button.vui-shine-button:disabled,
+.vui-button.vui-shine-button[aria-disabled='true'],
+.vui-button.vui-shine-button.vui-button--loading {
+  animation: none;
+  background-image: none;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vui-button.vui-shine-button {
+    animation: none;
+    background-image: none;
+  }
+}
