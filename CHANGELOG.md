@@ -1,5 +1,11 @@
 # varkeui
 
+## 0.19.0
+
+### Minor Changes
+
+- ded26c3: ShineButton: кнопка с бликом, как у главных кнопок Telegram. Те же пропсы, что у `Button`, плюс `color`, `textColor` и `shineColor`.
+
 ## 0.18.0
 
 ### Minor Changes
