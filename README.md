@@ -46,6 +46,15 @@ export function Shortcuts() {
   <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/button-light.png" alt="Button и IconButton" width="640" />
 </picture>
 
+### [ShineButton](https://alexdobrikov.github.io/varkeui/?path=/docs/components-shinebutton--docs)
+
+Кнопка с бликом, как у главных кнопок Telegram: полоса света периодически проходит по кнопке. Пропсы `Button` плюс `color`, `textColor` и `shineColor`.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/shine-button-dark.png" />
+  <img src="https://raw.githubusercontent.com/alexdobrikov/varkeui/main/docs/images/shine-button-light.png" alt="ShineButton" width="640" />
+</picture>
+
 ### [TileButton](https://alexdobrikov.github.io/varkeui/?path=/docs/components-tilebutton--docs)
 
 Плитка с картинкой и подписью: быстрые действия, разделы, коллекции.

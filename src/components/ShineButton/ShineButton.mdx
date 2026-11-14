@@ -1,0 +1,52 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './ShineButton.stories';
+import { ShineButton } from './ShineButton';
+
+<Meta of={Stories} />
+
+# ShineButton
+
+Кнопка с бликом, как у главных кнопок Telegram: раз в несколько секунд по ней проходит полоса света.
+Для одного главного призыва на экране — «Войти», «Попробовать». Две такие кнопки рядом спорят за внимание.
+
+```tsx
+import { ShineButton } from 'varkeui';
+
+<ShineButton color="#e8b04a" textColor="#1c1b20" href="/login">
+  Войти
+</ShineButton>;
+```
+
+<Canvas of={Stories.Colors} />
+
+## Пропсы
+
+Всё, что умеет `Button` (`variant`, `size`, `startIcon`, `as`, `href`, `loading`…), плюс три цвета:
+
+| Проп         | Что задаёт                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------ |
+| `color`      | Цвет кнопки. Наведение чуть светлее. Без него — цвет варианта `variant`                    |
+| `textColor`  | Цвет текста и иконок. С `color` по умолчанию белый — для светлого `color` передайте тёмный |
+| `shineColor` | Цвет блика. По умолчанию белый с прозрачностью 0.8                                         |
+
+Под кнопкой мягкое свечение в её цвете.
+
+## На ярком фоне
+
+<Canvas of={Stories.OnBrightBackground} />
+
+## Размеры
+
+<Canvas of={Stories.Sizes} />
+
+## Доступность
+
+- Без анимации для тех, кто отключил её в системе (`prefers-reduced-motion`).
+- У неактивной и загружающейся кнопки блика нет.
+- Блик идёт под текстом и не мешает его читать.
+
+## Настройка
+
+`--vui-shine-button-duration` — длина цикла (по умолчанию `4.5s`, проход занимает 40%).
+
+<ArgTypes of={ShineButton} />

@@ -16,6 +16,7 @@ export * from './components/Radio';
 export * from './components/Scroller';
 export * from './components/SectionHeader';
 export * from './components/SegmentedControl';
+export * from './components/ShineButton';
 export * from './components/Sidebar';
 export * from './components/Skeleton';
 export * from './components/StatCard';

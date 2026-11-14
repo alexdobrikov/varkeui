@@ -21,6 +21,7 @@ const shots = [
   },
   { name: 'settings', story: 'components-switch--settings-list' },
   { name: 'button', story: 'components-button--readme' },
+  { name: 'shine-button', story: 'components-shinebutton--colors' },
   { name: 'tile-button', story: 'components-tilebutton--gallery' },
   { name: 'list', story: 'components-list--onboarding' },
   { name: 'input-button', story: 'components-input--with-button' },
