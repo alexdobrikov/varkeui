@@ -113,6 +113,7 @@ export const WithCount: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={column}>
+      <SectionHeader size="xs" title="Extra small" count={3} />
       <SectionHeader size="sm" title="Small" href="#" />
       <SectionHeader size="md" title="Medium" href="#" />
       <SectionHeader size="lg" title="Large" href="#" headingAs="h1" />

@@ -54,4 +54,9 @@ describe('SectionHeader', () => {
     rerender(<SectionHeader title="Notifications" count={0} href="/n" />);
     expect(screen.getByRole('link')).toContainElement(screen.getByText('0'));
   });
+
+  it('applies the xs size class', () => {
+    const { container } = render(<SectionHeader title="Students" count="2 of 5" size="xs" />);
+    expect(container.firstChild).toHaveClass('vui-section-header--xs');
+  });
 });

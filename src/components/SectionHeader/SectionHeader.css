@@ -12,6 +12,13 @@
   font-family: var(--vui-font-family);
 }
 
+/* Как подпись поля (.vui-input__label): заголовок группы внутри формы стоит в одном ряду с подписями. */
+.vui-section-header--xs {
+  --vui-section-header-font-size: 15px;
+  --vui-section-header-font-weight: 500;
+  --vui-section-header-chevron-size: 16px;
+}
+
 .vui-section-header--sm {
   --vui-section-header-font-size: 20px;
   --vui-section-header-chevron-size: 18px;
@@ -32,7 +39,7 @@
   min-width: 0;
   margin: 0;
   font-size: var(--vui-section-header-font-size);
-  font-weight: 600;
+  font-weight: var(--vui-section-header-font-weight, 600);
   line-height: 1.2;
   letter-spacing: -0.01em;
 }
