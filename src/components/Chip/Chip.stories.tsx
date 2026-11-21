@@ -97,10 +97,10 @@ function SizesDemo() {
     setSelected((prev) => (on ? [...prev, label] : prev.filter((item) => item !== label)));
   return (
     <div style={row}>
-      {(['sm', 'md'] as const).map((size) =>
+      {(['xs', 'sm', 'md'] as const).map((size) =>
         [
-          size === 'sm' ? 'Small' : 'Medium',
-          size === 'sm' ? 'Small selected' : 'Medium selected',
+          { xs: 'Extra small', sm: 'Small', md: 'Medium' }[size],
+          `${{ xs: 'Extra small', sm: 'Small', md: 'Medium' }[size]} selected`,
         ].map((label) => (
           <Chip
             key={label}
