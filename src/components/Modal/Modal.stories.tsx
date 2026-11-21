@@ -11,7 +11,11 @@ const meta = {
   title: 'Components/Modal',
   component: Modal,
   args: { open: false, onClose: () => {}, title: 'Delete lesson?' },
-  argTypes: { actions: { control: false }, icon: { control: false } },
+  argTypes: {
+    actions: { control: false },
+    headerActions: { control: false },
+    icon: { control: false },
+  },
 } satisfies Meta<typeof Modal>;
 
 export default meta;
@@ -115,6 +119,31 @@ export const Sizes: Story = {
           actions={<Button onClick={() => setSize(null)}>OK</Button>}
         />
       </div>
+    );
+  },
+};
+
+export const WithHeaderActions: Story = {
+  render: function Render(args) {
+    const [open, setOpen] = useState(false);
+    return (
+      <>
+        <Button onClick={() => setOpen(true)}>Open</Button>
+        <Modal
+          {...args}
+          open={open}
+          onClose={() => setOpen(false)}
+          size="lg"
+          title="Travelling in China"
+          headerActions={
+            <Button size="sm" onClick={() => setOpen(false)}>
+              Add to cart · 250 ₽
+            </Button>
+          }
+        >
+          <p style={{ margin: 0 }}>Lesson preview: words, grammar and exercises.</p>
+        </Modal>
+      </>
     );
   },
 };

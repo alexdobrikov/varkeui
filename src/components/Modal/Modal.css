@@ -71,6 +71,46 @@ html:has(.vui-modal[open]) {
   padding-right: 40px;
 }
 
+/* Кнопки в шапке: справа на строке заголовка, перед крестиком. Строка поднята к крестику
+   и не ниже него (40 px), поэтому заголовок, кнопки и крестик стоят на одной линии. */
+.vui-modal__header--actions {
+  display: grid;
+  grid-template-rows: minmax(40px, auto);
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: 12px;
+  margin-top: calc(16px - var(--vui-modal-padding));
+}
+
+.vui-modal__header--actions > * {
+  grid-column: 1;
+}
+
+.vui-modal__header-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.vui-modal__header--actions > .vui-modal__header-actions {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+/* На узком экране кнопкам не хватает места рядом с заголовком: уходят под него. */
+@media (max-width: 480px) {
+  .vui-modal__header--actions {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .vui-modal__header--actions > .vui-modal__header-actions {
+    grid-row: auto;
+    grid-column: 1;
+    margin-top: 8px;
+  }
+}
+
 .vui-modal--centered .vui-modal__header {
   align-items: center;
   padding-inline: 40px;

@@ -69,4 +69,25 @@ describe('Modal', () => {
     expect(dialog).toHaveClass('vui-modal', 'vui-modal--sm', 'vui-modal--centered');
     expect(container.querySelector('.vui-modal__actions')).toHaveTextContent('OK');
   });
+
+  it('renders header actions next to the title', () => {
+    const { container } = render(
+      <Modal
+        open
+        onClose={() => {}}
+        title="T"
+        headerActions={<button type="button">Buy</button>}
+      />,
+    );
+    const header = container.querySelector('.vui-modal__header')!;
+    expect(header).toHaveClass('vui-modal__header--actions');
+    expect(header.querySelector('.vui-modal__header-actions')).toHaveTextContent('Buy');
+  });
+
+  it('keeps the plain header without header actions', () => {
+    const { container } = render(<Modal open onClose={() => {}} title="T" />);
+    expect(container.querySelector('.vui-modal__header')).not.toHaveClass(
+      'vui-modal__header--actions',
+    );
+  });
 });

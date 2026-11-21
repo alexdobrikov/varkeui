@@ -27,6 +27,8 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDialogElement>, 'tit
   icon?: ReactNode;
   /** Кнопки внизу. Встают в ряд равной ширины. */
   actions?: ReactNode;
+  /** Кнопки в шапке справа от заголовка, перед крестиком: главное действие длинного окна. На узком экране уходят под заголовок. */
+  headerActions?: ReactNode;
   /**
    * Ширина: 400, 520 или 720 px.
    * @default md
@@ -52,6 +54,7 @@ export const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
     description,
     icon,
     actions,
+    headerActions,
     size = 'md',
     closeOnBackdrop = true,
     closeLabel = 'Close',
@@ -90,6 +93,17 @@ export const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
     if (closeOnBackdrop && event.target === event.currentTarget) onClose();
   };
 
+  const closeButton = (
+    <IconButton
+      aria-label={closeLabel}
+      className="vui-modal__close"
+      icon={<CloseIcon />}
+      onClick={onClose}
+      size="sm"
+      variant="ghost"
+    />
+  );
+
   return (
     <dialog
       ref={dialog}
@@ -107,16 +121,14 @@ export const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
       onClick={handleClick}
     >
       <div className="vui-modal__panel">
-        <IconButton
-          aria-label={closeLabel}
-          className="vui-modal__close"
-          icon={<CloseIcon />}
-          onClick={onClose}
-          size="sm"
-          variant="ghost"
-        />
-        {(icon != null || title != null || description != null) && (
-          <header className="vui-modal__header">
+        {closeButton}
+        {(icon != null || title != null || description != null || headerActions != null) && (
+          <header
+            className={cx(
+              'vui-modal__header',
+              headerActions != null && 'vui-modal__header--actions',
+            )}
+          >
             {icon != null && (
               <div className="vui-modal__icon" aria-hidden="true">
                 {icon}
@@ -131,6 +143,9 @@ export const Modal = forwardRef<HTMLDialogElement, ModalProps>(function Modal(
               <p id={descriptionId} className="vui-modal__description">
                 {description}
               </p>
+            )}
+            {headerActions != null && (
+              <div className="vui-modal__header-actions">{headerActions}</div>
             )}
           </header>
         )}

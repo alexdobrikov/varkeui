@@ -30,6 +30,12 @@ const [open, setOpen] = useState(false);
 
 <Canvas of={Stories.WithForm} />
 
+## Кнопки в шапке
+
+`headerActions` — кнопки справа на строке заголовка, перед крестиком: главное действие окна, до которого не нужно листать вниз (например, «В корзину» в превью урока). На экране уже 480 px кнопки уходят под заголовок.
+
+<Canvas of={Stories.WithHeaderActions} />
+
 ## Размеры
 
 `size`: `sm` — 400 px, `md` — 520 px, `lg` — 720 px.
