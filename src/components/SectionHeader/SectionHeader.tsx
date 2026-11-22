@@ -7,6 +7,7 @@ import {
 } from 'react';
 import { ChevronRightIcon } from '../../icons';
 import { cx } from '../../utils/cx';
+import { useCountUp } from '../../utils/useCountUp';
 
 export interface SectionHeaderProps extends Omit<
   HTMLAttributes<HTMLDivElement>,
@@ -15,6 +16,13 @@ export interface SectionHeaderProps extends Omit<
   title: ReactNode;
   /** Число рядом с заголовком приглушённым цветом: «Notifications 30». */
   count?: ReactNode;
+  /**
+   * Анимировать числовой `count`: при появлении он набегает от нуля, при смене — от прежнего
+   * значения. Строки (`"2 of 5"`) и дробные числа выводятся как есть. При гидрации с сервера
+   * и при `prefers-reduced-motion` число сразу конечное.
+   * @default true
+   */
+  animateCount?: boolean;
   /** Текст под заголовком. */
   subtitle?: ReactNode;
   /**
@@ -44,6 +52,7 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
   {
     title,
     count,
+    animateCount = true,
     subtitle,
     headingAs: Heading = 'h2',
     size = 'md',
@@ -60,7 +69,21 @@ export const SectionHeader = forwardRef<HTMLDivElement, SectionHeaderProps>(func
   const linked = linkAs !== undefined || href !== undefined || onClick !== undefined;
   const Link: ElementType = linkAs ?? (href !== undefined ? 'a' : 'button');
   const buttonProps = Link === 'button' ? { type: 'button' } : {};
-  const counter = count != null && <span className="vui-section-header__count">{count}</span>;
+  const shownCount = useCountUp(count, animateCount) as ReactNode;
+  const counting = shownCount !== count;
+  const counter = count != null && (
+    <span className="vui-section-header__count">
+      {counting ? (
+        <>
+          {/* Скринридер читает конечное число, а не каждый кадр анимации. */}
+          <span aria-hidden="true">{shownCount}</span>
+          <span className="vui-section-header__count-final">{count}</span>
+        </>
+      ) : (
+        count
+      )}
+    </span>
+  );
 
   return (
     <div

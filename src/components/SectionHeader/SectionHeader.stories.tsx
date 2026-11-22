@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { AnchorHTMLAttributes } from 'react';
+import { useState, type AnchorHTMLAttributes } from 'react';
 import { Badge } from '../Badge';
 import { Button } from '../Button';
 import { PlusIcon } from '../../icons';
@@ -108,6 +108,36 @@ export const WithCount: Story = {
       <SectionHeader size="lg" title="Photos" count={4096} headingAs="h1" />
     </div>
   ),
+};
+
+/** Число набегает при появлении и при каждой смене — от прежнего значения. */
+export const AnimatedCount: Story = {
+  render: function Render() {
+    const [count, setCount] = useState(12);
+    return (
+      <div style={column}>
+        <SectionHeader
+          title="Ready decks"
+          count={count}
+          action={
+            <>
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setCount((c) => Math.max(0, c - 5))}
+              >
+                −5
+              </Button>
+              <Button variant="secondary" size="sm" onClick={() => setCount((c) => c + 120)}>
+                +120
+              </Button>
+            </>
+          }
+        />
+        <SectionHeader title="Static" count={30} animateCount={false} />
+      </div>
+    );
+  },
 };
 
 export const Sizes: Story = {
