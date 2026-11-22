@@ -67,6 +67,16 @@
   font-variant-numeric: tabular-nums;
 }
 
+/* Конечное число для скринридера, пока на экране идёт анимация. */
+.vui-section-header__count-final {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .vui-section-header__link .vui-section-header__count {
   margin-left: 0.1em;
 }
