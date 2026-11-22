@@ -25,10 +25,10 @@ export interface ChipProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'onClic
    */
   removeLabel?: string;
   /**
-   * Высота: 32 или 40 px.
+   * Высота: 28, 32 или 40 px. `xs` — компактные характеристики и теги в карточках.
    * @default md
    */
-  size?: 'sm' | 'md';
+  size?: 'xs' | 'sm' | 'md';
   disabled?: boolean;
 }
 

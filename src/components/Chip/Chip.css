@@ -3,6 +3,7 @@
   --vui-chip-padding-x: 16px;
   --vui-chip-font-size: 15px;
   --vui-chip-icon-size: 18px;
+  --vui-chip-gap: 6px;
   --vui-chip-bg: var(--vui-color-surface);
   --vui-chip-bg-hover: var(--vui-color-surface-hover);
   --vui-chip-color: var(--vui-color-text);
@@ -34,6 +35,14 @@
   --vui-chip-icon-size: 16px;
 }
 
+.vui-chip--xs {
+  --vui-chip-height: 28px;
+  --vui-chip-padding-x: 8px;
+  --vui-chip-font-size: 12px;
+  --vui-chip-icon-size: 14px;
+  --vui-chip-gap: 4px;
+}
+
 .vui-chip--selected {
   --vui-chip-bg: var(--vui-color-accent);
   --vui-chip-bg-hover: var(--vui-color-accent-hover);
@@ -43,7 +52,7 @@
 .vui-chip__main {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: var(--vui-chip-gap);
   height: 100%;
   margin: 0;
   padding: 0 var(--vui-chip-padding-x);

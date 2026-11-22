@@ -46,7 +46,8 @@ const [active, setActive] = useState('All');
 
 ## Размеры
 
-32 и 40 px.
+28, 32 и 40 px. `xs` — для компактных характеристик и тегов в карточках: текст 12 px,
+иконка 14 px, отступы по 8 px. Остальные размеры сохраняют прежние значения.
 
 <Canvas of={Stories.Sizes} />
 
@@ -63,6 +64,9 @@ const [active, setActive] = useState('All');
 
 | Переменная                                                 | По умолчанию                       |
 | ---------------------------------------------------------- | ---------------------------------- |
-| `--vui-chip-height`                                        | 32px / 40px по `size`              |
-| `--vui-chip-padding-x`                                     | 12px / 16px                        |
+| `--vui-chip-height`                                        | 28px / 32px / 40px по `size`       |
+| `--vui-chip-padding-x`                                     | 8px / 12px / 16px                  |
+| `--vui-chip-font-size`                                     | 12px / 14px / 15px                 |
+| `--vui-chip-icon-size`                                     | 14px / 16px / 18px                 |
+| `--vui-chip-gap`                                           | 4px / 6px / 6px                    |
 | `--vui-chip-bg`, `--vui-chip-bg-hover`, `--vui-chip-color` | Поверхность, у выбранного — акцент |
