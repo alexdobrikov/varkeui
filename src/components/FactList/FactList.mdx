@@ -1,0 +1,77 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './FactList.stories';
+import { Fact, FactList } from './FactList';
+
+<Meta of={Stories} />
+
+# FactList
+
+Строка коротких фактов о материале под заголовком: уровень, дата публикации, время чтения,
+длительность курса, автор. У каждого факта значок, приглушённая подпись и значение — читается
+с одного взгляда и не сливается с описанием над ним.
+
+```tsx
+import { Fact, FactList, LevelMeter } from 'varkeui';
+```
+
+<Canvas of={Stories.Playground} />
+
+```tsx
+<FactList>
+  <Fact icon={<LevelMeter value={1} />} label="Уровень">
+    Начальный · HSK 1–3
+  </Fact>
+  <Fact icon={<CalendarDays />} label="Опубликовано">
+    <time dateTime="2026-11-27">27 ноября 2026</time>
+  </Fact>
+  <Fact icon={<Clock />} label="Время чтения">
+    19 минут
+  </Fact>
+</FactList>
+```
+
+Значок — любая иконка (lucide, свои SVG) или [LevelMeter](?path=/docs/components-levelmeter--docs)
+для сложности. Значок рисуется без подложки, его размер задаёт `size` списка.
+
+## Размеры
+
+Значок 20, 24 или 28 px; подпись и значение растут вместе с ним. `md` — для шапки статьи,
+`sm` — для карточек и списков, `lg` — для крупных обложек.
+
+<Canvas of={Stories.Sizes} />
+
+## Без значков
+
+<Canvas of={Stories.WithoutIcons} />
+
+## Другие примеры
+
+<Canvas of={Stories.Course} />
+
+## Пропсы
+
+### FactList
+
+<ArgTypes of={FactList} />
+
+### Fact
+
+<ArgTypes of={Fact} />
+
+## Доступность
+
+- Список — `<dl>`: скринридер читает пары «подпись — значение».
+- Значок декоративный (`aria-hidden`), смысл несёт текст. Не оставляйте значение только в значке.
+- Даты кладите в `<time dateTime>`.
+
+## CSS-переменные
+
+| Переменная              | По умолчанию             |
+| ----------------------- | ------------------------ |
+| `--vui-fact-icon-size`  | 20px / 24px / 28px       |
+| `--vui-fact-label-size` | 11px / 12px / 13px       |
+| `--vui-fact-value-size` | 13px / 14px / 16px       |
+| `--vui-fact-gap`        | 8px / 10px / 12px        |
+| `--vui-facts-gap-x`     | 24px / 32px / 40px       |
+| `--vui-facts-gap-y`     | 12px / 16px / 20px       |
+| `--vui-fact-icon-color` | `--vui-color-text-muted` |

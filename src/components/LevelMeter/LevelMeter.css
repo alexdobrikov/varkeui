@@ -1,0 +1,24 @@
+.vui-level-meter {
+  --vui-level-meter-height: 0.84em;
+  --vui-level-meter-bar-width: 0.2em;
+  --vui-level-meter-gap: 0.125em;
+  --vui-level-meter-on: currentColor;
+  --vui-level-meter-off: color-mix(in srgb, currentColor 22%, transparent);
+
+  display: inline-flex;
+  flex: none;
+  align-items: flex-end;
+  gap: var(--vui-level-meter-gap);
+  height: var(--vui-level-meter-height);
+  vertical-align: middle;
+}
+
+.vui-level-meter__bar {
+  width: var(--vui-level-meter-bar-width);
+  border-radius: calc(var(--vui-level-meter-bar-width) / 2);
+  background: var(--vui-level-meter-off);
+}
+
+.vui-level-meter__bar--on {
+  background: var(--vui-level-meter-on);
+}
