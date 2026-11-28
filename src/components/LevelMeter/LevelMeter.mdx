@@ -1,0 +1,46 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks';
+import * as Stories from './LevelMeter.stories';
+import { LevelMeter } from './LevelMeter';
+
+<Meta of={Stories} />
+
+# LevelMeter
+
+Шкала из столбиков растущей высоты, как индикатор сигнала: сложность материала, уровень
+владения, сила. Чаще всего — значок в [FactList](?path=/docs/components-factlist--docs).
+
+```tsx
+import { LevelMeter } from 'varkeui';
+
+<LevelMeter value={1} />            // 1 из 3
+<LevelMeter value={4} max={5} />    // 4 из 5
+```
+
+<Canvas of={Stories.Levels} />
+
+## Размер и цвет
+
+Размер берётся из `font-size`: высота шкалы 0.84em, поэтому в `FactList` она ровно под значки
+соседних фактов. Закрашенные деления — `currentColor`, пустые — он же на 22%.
+
+<Canvas of={Stories.InText} />
+
+## Пропсы
+
+<ArgTypes of={LevelMeter} />
+
+## Доступность
+
+- С `label` шкала — `role="img"` с этой подписью: «Сложность: начальный».
+- Без `label` шкала декоративная и скрыта от скринридеров — тогда уровень пишите текстом рядом,
+  как в `FactList`.
+
+## CSS-переменные
+
+| Переменная                    | По умолчанию          |
+| ----------------------------- | --------------------- |
+| `--vui-level-meter-height`    | 0.84em                |
+| `--vui-level-meter-bar-width` | 0.2em                 |
+| `--vui-level-meter-gap`       | 0.125em               |
+| `--vui-level-meter-on`        | `currentColor`        |
+| `--vui-level-meter-off`       | `currentColor` на 22% |

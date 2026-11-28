@@ -1,0 +1,79 @@
+.vui-facts {
+  --vui-fact-icon-size: 24px;
+  --vui-fact-label-size: 12px;
+  --vui-fact-value-size: 14px;
+  --vui-fact-gap: 10px;
+  --vui-facts-gap-x: 32px;
+  --vui-facts-gap-y: 16px;
+  --vui-fact-icon-color: var(--vui-color-text-muted);
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vui-facts-gap-y) var(--vui-facts-gap-x);
+  margin: 0;
+  padding: 0;
+  font-family: var(--vui-font-family);
+}
+
+.vui-facts--sm {
+  --vui-fact-icon-size: 20px;
+  --vui-fact-label-size: 11px;
+  --vui-fact-value-size: 13px;
+  --vui-fact-gap: 8px;
+  --vui-facts-gap-x: 24px;
+  --vui-facts-gap-y: 12px;
+}
+
+.vui-facts--lg {
+  --vui-fact-icon-size: 28px;
+  --vui-fact-label-size: 13px;
+  --vui-fact-value-size: 16px;
+  --vui-fact-gap: 12px;
+  --vui-facts-gap-x: 40px;
+  --vui-facts-gap-y: 20px;
+}
+
+.vui-fact {
+  display: flex;
+  align-items: center;
+  gap: var(--vui-fact-gap);
+  min-width: 0;
+}
+
+/* Значок без подложки. font-size — чтобы LevelMeter и другие значки в em росли вместе с ним. */
+.vui-fact__icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--vui-fact-icon-size);
+  height: var(--vui-fact-icon-size);
+  color: var(--vui-fact-icon-color);
+  font-size: var(--vui-fact-icon-size);
+}
+
+.vui-fact__icon > svg {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.75;
+}
+
+/* Подпись и значение почти вплотную: вместе по высоте примерно как значок. */
+.vui-fact__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  line-height: 1.2;
+}
+
+.vui-fact__label {
+  color: var(--vui-color-text-muted);
+  font-size: var(--vui-fact-label-size);
+}
+
+.vui-fact__value {
+  margin: 0;
+  color: var(--vui-color-text);
+  font-size: var(--vui-fact-value-size);
+  font-weight: 500;
+}
